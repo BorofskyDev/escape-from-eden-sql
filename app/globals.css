@@ -2,3 +2,51 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  /* Set the body to use Open Sans (body) by default */
+  body {
+    @apply font-body;
+  }
+  
+  /* Make all headers use Playfair Display (header) */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-header;
+  }
+  
+  /* Global link styles */
+  a {
+    @apply underline font-bold text-primary;
+    font-family: var(--font-open-sans); /* ensure links use Open Sans */
+    transition: color 0.2s;
+  }
+  
+  a:hover,
+  a:focus {
+    @apply text-secondary;
+  }
+}
+
+/* Light mode variables (default) */
+:root {
+  --bg1: #F6F1ED;
+  --bg2: #EDE7E3;
+  --text1: #2C2C2C;
+  --text2: #242424;
+  --primary: #3B0F00;
+  --secondary: #2C7A7B;
+  --accent: #4B2742;
+}
+
+/* Dark mode variables */
+.dark {
+  --bg1: #121212;
+  --bg2: #1A1A1A;
+  --text1: #EDEDED;
+  --text2: #DADADA;
+  --primary: #FFD2CC;
+  --secondary: #6ED3D6;
+  --accent: #B388C2;
+}
+
+
+

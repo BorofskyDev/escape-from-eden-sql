@@ -1,16 +1,21 @@
 import './globals.css'
 import type { Metadata } from 'next'
 import Providers from './providers'
-import { Geist, Geist_Mono } from 'next/font/google'
+import { Playfair_Display, Open_Sans } from 'next/font/google'
+import Navbar from '@/components/layouts/header/Navbar'
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
+const playfair = Playfair_Display({
+  display: 'swap',
+  variable: '--font-playfair',
   subsets: ['latin'],
+  weight: ['400', '500', '600', '700', '800', '900'],
 })
 
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
+const openSans = Open_Sans({
+  display: 'swap',
+  variable: '--font-open-sans',
   subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700', '800'],
 })
 
 export const metadata: Metadata = {
@@ -25,12 +30,12 @@ export default function RootLayout({
 }) {
   // This is a Server Component by default
   return (
-    <html lang='en'>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-       
-        <Providers>{children}</Providers>
+    <html lang='en' suppressHydrationWarning>
+      <body suppressHydrationWarning className={`${playfair.variable} ${openSans.variable} antialiased`}>
+        <Providers>
+          <Navbar />
+          {children}
+        </Providers>
       </body>
     </html>
   )

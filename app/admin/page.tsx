@@ -25,7 +25,7 @@ export default function AdminPage() {
     >(undefined)
 
   return (
-    <div className='p-8'>
+    <div className='mt-10 p-8'>
       <h1 className='text-2xl font-bold mb-4'>This is the admin page</h1>
       <button
         onClick={handleOpen}

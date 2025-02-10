@@ -82,7 +82,7 @@ export default function Modal({ open, onClose, children, origin }: ModalProps) {
             {/* Actual Modal Content */}
             <div
               onClick={handleModalClick}
-              className='bg-white rounded-md shadow-xl p-6 relative max-w-md w-full'
+              className='bg-bg2 rounded-md shadow-xl p-6 relative max-w-md w-full'
             >
               {/* Close Button (X) */}
               <button

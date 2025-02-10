@@ -1,12 +1,14 @@
+// components/CreatePostModal.tsx
 'use client'
 
+import { useState } from 'react'
 import Modal from '../Modal'
+import FormField from '@/components/ui/inputs/FormField'
+import SlugGenerator from '@/components/ui/inputs/SlugGenerator'
 
-// For now, no real functionality. Just placeholders
 interface CreatePostModalProps {
   open: boolean
   onClose: () => void
-  // Optional: origin, if you want the fancy "zoom from click" effect
   origin?: { x: number; y: number }
 }
 
@@ -15,47 +17,41 @@ export default function CreatePostModal({
   onClose,
   origin,
 }: CreatePostModalProps) {
+  // Create state for the title so we can update the slug live.
+  const [title, setTitle] = useState('')
+
   return (
     <Modal open={open} onClose={onClose} origin={origin}>
       <div className='flex flex-col gap-4'>
         <h2 className='text-xl font-semibold'>Create a New Post</h2>
 
-        {/* Title */}
-        <div>
-          <label className='block text-sm font-medium text-gray-700'>
-            Title
-          </label>
-          <input
-            type='text'
-            className='mt-1 block w-full border rounded p-2'
-            placeholder='Enter post title'
-            // No onChange since we're ignoring logic for now
-          />
-        </div>
+        {/* Title Field */}
+        <FormField
+          label='Title'
+          placeholder='Enter post title'
+          variant='input'
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+        />
+
+        {/* Slug Generator (read-only) */}
+        <SlugGenerator title={title} />
 
         {/* Description */}
-        <div>
-          <label className='block text-sm font-medium text-gray-700'>
-            Description
-          </label>
-          <textarea
-            className='mt-1 block w-full border rounded p-2'
-            rows={2}
-            placeholder='Enter a short post description'
-          />
-        </div>
+        <FormField
+          label='Description'
+          placeholder='Enter a short post description'
+          variant='textarea'
+          rows={2}
+        />
 
         {/* Content */}
-        <div>
-          <label className='block text-sm font-medium text-gray-700'>
-            Content
-          </label>
-          <textarea
-            className='mt-1 block w-full border rounded p-2'
-            rows={4}
-            placeholder='Write your blog post content here...'
-          />
-        </div>
+        <FormField
+          label='Content'
+          placeholder='Write your blog post content here...'
+          variant='textarea'
+          rows={4}
+        />
 
         {/* Category (Single) */}
         <div>
@@ -69,40 +65,13 @@ export default function CreatePostModal({
         </div>
 
         {/* Tags (Multiple) */}
-        <div>
-          <label className='block text-sm font-medium text-gray-700'>
-            Tags
-          </label>
-          <input
-            type='text'
-            className='mt-1 block w-full border rounded p-2'
-            placeholder='Comma-separated tags'
-          />
-        </div>
+        <FormField
+          label='Tags'
+          placeholder='Comma-separated tags'
+          variant='input'
+        />
 
-        {/* Published checkbox */}
-        <div className='flex items-center gap-2'>
-          <input
-            type='checkbox'
-            className='h-4 w-4'
-            // No onChange for now
-          />
-          <label className='text-sm font-medium text-gray-700'>Published</label>
-        </div>
-
-        {/* Slug */}
-        <div>
-          <label className='block text-sm font-medium text-gray-700'>
-            Slug
-          </label>
-          <input
-            type='text'
-            className='mt-1 block w-full border rounded p-2'
-            placeholder='Unique slug (e.g., my-first-post)'
-          />
-        </div>
-
-        {/* Placeholder for Submit and Cancel (no real logic yet) */}
+        {/* Submit and Cancel Buttons */}
         <div className='flex justify-end gap-2 mt-4'>
           <button
             className='bg-gray-300 text-gray-700 py-2 px-4 rounded hover:bg-gray-400'
@@ -110,10 +79,7 @@ export default function CreatePostModal({
           >
             Cancel
           </button>
-          <button
-            className='bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700'
-            // On future: handle form submission
-          >
+          <button className='bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700'>
             Create
           </button>
         </div>

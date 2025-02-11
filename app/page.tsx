@@ -1,9 +1,10 @@
+import SplashPage from "@/components/pages/SplashPage";
 
 
 export default function Home() {
   return (
     <div >
-      <h1>Home Page</h1>
+      <SplashPage  />
     </div>
   );
 }

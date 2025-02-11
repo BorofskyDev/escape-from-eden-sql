@@ -1,21 +1,24 @@
-// components/ui/inputs/TagSelector.tsx
 'use client'
 
-import React, { useState, useEffect } from 'react'
-import { getTags, createTag, type Tag } from '@/lib/functions/tag'
+import { useState, useEffect } from 'react'
+import { getTags, createTag, Tag } from '@/lib/functions/tag'
 
 interface TagSelectorProps {
-  // Optional: callback to lift selected tags upward
+  defaultTagIds?: string[]
   onChange?: (selectedTags: Tag[]) => void
 }
 
-export default function TagSelector({ onChange }: TagSelectorProps) {
+export default function TagSelector({
+  defaultTagIds,
+  onChange,
+}: TagSelectorProps) {
   const [tags, setTags] = useState<Tag[]>([])
-  const [selectedTagIds, setSelectedTagIds] = useState<string[]>([])
-  const [creating, setCreating] = useState(false)
-  const [newTagName, setNewTagName] = useState('')
+  const [selectedTagIds, setSelectedTagIds] = useState<string[]>(
+    defaultTagIds || []
+  )
+  const [creating, setCreating] = useState<boolean>(false)
+  const [newTagName, setNewTagName] = useState<string>('')
 
-  // Fetch tags from the database on component mount.
   useEffect(() => {
     async function fetchTags() {
       try {
@@ -37,7 +40,8 @@ export default function TagSelector({ onChange }: TagSelectorProps) {
     }
     setSelectedTagIds(updated)
     if (onChange) {
-      onChange(tags.filter((tag) => updated.includes(tag.id)))
+      const selected = tags.filter((tag) => updated.includes(tag.id))
+      onChange(selected)
     }
   }
 
@@ -70,20 +74,23 @@ export default function TagSelector({ onChange }: TagSelectorProps) {
         </div>
       ) : (
         <div className='mt-1 flex flex-wrap gap-2'>
-          {tags.map((tag) => (
-            <button
-              key={tag.id}
-              type='button'
-              onClick={() => toggleTag(tag.id)}
-              className={`px-3 py-1 border rounded ${
-                selectedTagIds.includes(tag.id)
-                  ? 'bg-blue-600 text-white'
-                  : 'bg-gray-100 text-gray-700'
-              }`}
-            >
-              {tag.name}
-            </button>
-          ))}
+          {tags.map((tag) => {
+            const isActive = selectedTagIds.includes(tag.id)
+            return (
+              <button
+                key={tag.id}
+                type='button'
+                onClick={() => toggleTag(tag.id)}
+                className={`px-3 py-1 border rounded ${
+                  isActive
+                    ? 'bg-blue-600 text-white'
+                    : 'bg-gray-100 text-gray-700'
+                }`}
+              >
+                {tag.name}
+              </button>
+            )
+          })}
         </div>
       )}
       <div className='mt-2'>
@@ -99,6 +106,7 @@ export default function TagSelector({ onChange }: TagSelectorProps) {
             <button
               onClick={handleCreateTag}
               className='bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700'
+              type='button'
             >
               Save
             </button>
@@ -107,6 +115,7 @@ export default function TagSelector({ onChange }: TagSelectorProps) {
           <button
             onClick={() => setCreating(true)}
             className='mt-2 text-blue-600 hover:underline'
+            type='button'
           >
             Create Tag
           </button>

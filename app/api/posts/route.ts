@@ -4,9 +4,56 @@ import { PrismaClient } from '@prisma/client'
 
 const prisma = new PrismaClient()
 
+// GET endpoint to fetch posts with pagination
+export async function GET(request: Request) {
+  try {
+    const { searchParams } = new URL(request.url)
+    const page = Number(searchParams.get('page')) || 1
+    const limit = Number(searchParams.get('limit')) || 10
+    const skip = (page - 1) * limit
+
+    // Fetch one extra post to determine if there is a next page.
+    const posts = await prisma.post.findMany({
+      skip,
+      take: limit + 1,
+      orderBy: {
+        // Ordering by updatedAt descending. Replace or extend this with your custom logic if needed.
+        updatedAt: 'desc',
+      },
+      select: {
+        id: true,
+        title: true,
+        featuredImage: true,
+        published: true,
+        publishedAt: true,
+        createdAt: true,
+        updatedAt: true,
+        description: true,
+        content: true,
+        slug: true,
+        categoryId: true,
+        tags: {
+          select: { id: true, name: true },
+        },
+      },
+    })
+
+    let hasNextPage = false
+    if (posts.length > limit) {
+      hasNextPage = true
+      posts.pop() // remove the extra post from the returned array
+    }
+
+    return NextResponse.json({ posts, hasNextPage })
+  } catch (error) {
+    console.error('Error fetching posts:', error)
+    return NextResponse.json({ error: 'Error fetching posts' }, { status: 500 })
+  }
+}
+
+// Existing POST handler (for creating posts)
 export async function POST(request: Request) {
   try {
-    // Parse the request JSON once and log it.
     const body = await request.json()
     console.log('Received payload:', body)
 
@@ -20,7 +67,6 @@ export async function POST(request: Request) {
       tagIds,
     } = body
 
-    // Validate required fields.
     if (!title || !description || !content || !slug) {
       return NextResponse.json(
         {
@@ -31,7 +77,6 @@ export async function POST(request: Request) {
       )
     }
 
-    // Create the post using Prisma.
     const post = await prisma.post.create({
       data: {
         title,
@@ -39,8 +84,7 @@ export async function POST(request: Request) {
         content,
         featuredImage: featuredImage || null,
         slug,
-        published: false, // Always false on creation.
-        // publishedAt is left as null.
+        published: false,
         category: categoryId ? { connect: { id: categoryId } } : undefined,
         tags:
           tagIds && Array.isArray(tagIds) && tagIds.length > 0

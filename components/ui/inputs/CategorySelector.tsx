@@ -1,7 +1,6 @@
-// components/ui/inputs/CategorySelector.tsx
 'use client'
 
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect, ChangeEvent } from 'react'
 import {
   getCategories,
   createCategory,
@@ -9,17 +8,21 @@ import {
 } from '@/lib/functions/category'
 
 interface CategorySelectorProps {
-  // Optional: callback to lift the selected category upward
-  onSelect?: (category: Category) => void
+  defaultCategoryId?: string
+  onSelect?: (category: Category | null) => void
 }
 
-export default function CategorySelector({ onSelect }: CategorySelectorProps) {
+export default function CategorySelector({
+  defaultCategoryId,
+  onSelect,
+}: CategorySelectorProps) {
   const [categories, setCategories] = useState<Category[]>([])
-  const [selectedCategoryId, setSelectedCategoryId] = useState<string>('')
-  const [creating, setCreating] = useState(false)
-  const [newCategoryName, setNewCategoryName] = useState('')
+  const [selectedCategoryId, setSelectedCategoryId] = useState<string>(
+    defaultCategoryId || ''
+  )
+  const [creating, setCreating] = useState<boolean>(false)
+  const [newCategoryName, setNewCategoryName] = useState<string>('')
 
-  // Fetch categories on mount.
   useEffect(() => {
     async function fetchCategories() {
       try {
@@ -32,11 +35,11 @@ export default function CategorySelector({ onSelect }: CategorySelectorProps) {
     fetchCategories()
   }, [])
 
-  const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
     const id = e.target.value
     setSelectedCategoryId(id)
-    const cat = categories.find((c) => c.id === id)
-    if (cat && onSelect) {
+    const cat = categories.find((c) => c.id === id) || null
+    if (onSelect) {
       onSelect(cat)
     }
   }
@@ -78,6 +81,7 @@ export default function CategorySelector({ onSelect }: CategorySelectorProps) {
           ))}
         </select>
       )}
+
       <div className='mt-2'>
         {creating ? (
           <div className='flex gap-2'>
@@ -91,6 +95,7 @@ export default function CategorySelector({ onSelect }: CategorySelectorProps) {
             <button
               onClick={handleCreateCategory}
               className='bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700'
+              type='button'
             >
               Save
             </button>
@@ -99,6 +104,7 @@ export default function CategorySelector({ onSelect }: CategorySelectorProps) {
           <button
             onClick={() => setCreating(true)}
             className='mt-2 text-blue-600 hover:underline'
+            type='button'
           >
             Create Category
           </button>

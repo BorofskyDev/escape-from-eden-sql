@@ -15,13 +15,12 @@ interface ModalProps {
 }
 
 /**
- * A generic Modal that:
- * - Fades/zooms in using Framer Motion.
- * - Closes when clicking outside or pressing the "X".
- * - Can optionally animate from a given origin coordinate.
+ * A generic Modal with:
+ * - A fixed overlay (full screen) with dark/blur background
+ * - A centered scrollable panel if content exceeds viewport
+ * - No scrolling on the background (body locked)
  */
 export default function Modal({ open, onClose, children, origin }: ModalProps) {
-  // Close if user clicks Escape, for example
   const handleKeyDown = useCallback(
     (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
@@ -31,18 +30,22 @@ export default function Modal({ open, onClose, children, origin }: ModalProps) {
     [onClose]
   )
 
+  // Manage ESC key
   useEffect(() => {
     if (open) {
+      document.body.style.overflow = 'hidden' // lock scrolling
       window.addEventListener('keydown', handleKeyDown)
     } else {
+      document.body.style.overflow = ''
       window.removeEventListener('keydown', handleKeyDown)
     }
     return () => {
+      document.body.style.overflow = ''
       window.removeEventListener('keydown', handleKeyDown)
     }
   }, [open, handleKeyDown])
 
-  // For outside-click detection
+  // Outside-click detection
   const handleOverlayClick = () => {
     onClose()
   }
@@ -58,43 +61,51 @@ export default function Modal({ open, onClose, children, origin }: ModalProps) {
   return (
     <AnimatePresence>
       {open && (
-        <>
-          {/* Overlay */}
+        <motion.div
+          className='fixed inset-0 z-50 overflow-hidden'
+          // ^ no scroll on the container
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+        >
+          {/* Dark / blurred overlay (fills the entire screen) */}
           <motion.div
-            className='fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50'
+            className='absolute inset-0 bg-black/50 backdrop-blur-sm'
+            onClick={handleOverlayClick}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            onClick={handleOverlayClick}
           />
-          {/* Modal Container */}
+
+          {/* Centered container for the modal itself */}
           <motion.div
-            className='fixed inset-0 z-50 flex items-center justify-center overflow-auto'
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.8 }}
-            style={{
-              transformOrigin,
-            }}
+            className='absolute inset-0 flex items-center justify-center'
+            style={{ transformOrigin }}
+            initial={{ scale: 0.8 }}
+            animate={{ scale: 1 }}
+            exit={{ scale: 0.8 }}
             transition={{ duration: 0.3 }}
             onClick={handleOverlayClick}
           >
-            {/* Actual Modal Content */}
+            {/* Scrollable modal panel */}
             <div
               onClick={handleModalClick}
-              className='bg-bg2 rounded-md shadow-xl p-6 relative max-w-md w-full'
+              className='relative bg-bg2 rounded shadow-xl p-6 w-full max-w-md 
+                         max-h-[calc(100vh-4rem)] overflow-y-auto'
             >
-              {/* Close Button (X) */}
+              {/* Close Button */}
               <button
+                type='button'
                 className='absolute top-2 right-2 text-gray-500 hover:text-gray-800'
                 onClick={onClose}
               >
                 ✕
               </button>
+
               {children}
             </div>
           </motion.div>
-        </>
+        </motion.div>
       )}
     </AnimatePresence>
   )

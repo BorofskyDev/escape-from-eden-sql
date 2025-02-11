@@ -3,6 +3,7 @@
 import { signOut } from 'next-auth/react'
 import { useState } from 'react'
 import CreatePostModal from '@/components/modals/blog-ui/CreatePostModal'
+import PostsTable from '@/components/admin/PostsTable'
 
 export default function AdminPage() {
   const [open, setOpen] = useState(false)
@@ -41,6 +42,7 @@ export default function AdminPage() {
             origin={modalOrigin}
           />
         </div>
+        <PostsTable />
       </section>
 
       {/* Messages Section */}

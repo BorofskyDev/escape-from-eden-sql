@@ -69,7 +69,7 @@ export default function Modal({ open, onClose, children, origin }: ModalProps) {
           />
           {/* Modal Container */}
           <motion.div
-            className='fixed inset-0 z-50 flex items-center justify-center'
+            className='fixed inset-0 z-50 flex items-center justify-center overflow-auto'
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.8 }}

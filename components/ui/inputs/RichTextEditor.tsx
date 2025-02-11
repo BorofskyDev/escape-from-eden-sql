@@ -21,12 +21,17 @@ export default function RichTextEditor({ onChange }: RichTextEditorProps) {
       Image,
     ],
     content: '<p></p>',
+    editorProps: {
+      attributes: {
+        class: 'h-40 prose prose-sm lg:prose-lg mx-auto focus:outline-none',
+      },
+    },
     onUpdate: ({ editor }) => {
-        const html = editor.getHTML()
-        if (onChange) {
-            onChange(html)
-        }
-    }
+      const html = editor.getHTML()
+      if (onChange) {
+        onChange(html)
+      }
+    },
   })
 
   const fileInputRef = useRef<HTMLInputElement>(null)

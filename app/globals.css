@@ -15,7 +15,7 @@
   
   /* Global link styles */
   a {
-    @apply underline font-bold text-primary;
+    @apply font-bold text-primary;
     font-family: var(--font-open-sans); /* ensure links use Open Sans */
     transition: color 0.2s;
   }

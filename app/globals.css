@@ -15,37 +15,34 @@
   
   /* Global link styles */
   a {
-    @apply font-bold text-primary;
+    
     font-family: var(--font-open-sans); /* ensure links use Open Sans */
     transition: color 0.2s;
   }
   
-  a:hover,
-  a:focus {
-    @apply text-secondary;
-  }
+  
 }
 
 /* Light mode variables (default) */
 :root {
-  --bg1: #F6F1ED;
-  --bg2: #EDE7E3;
-  --text1: #2C2C2C;
-  --text2: #242424;
-  --primary: #3B0F00;
-  --secondary: #2C7A7B;
-  --accent: #4B2742;
+  --bg1: #FAFAFA;
+  --bg2: #EBEDF5;
+  --text1: #0A0A0A;
+  --text2: #141414;
+  --primary: #100E7D;
+  --secondary: #6E0C52;
+  --accent: #74B59C;
 }
 
 /* Dark mode variables */
 .dark {
-  --bg1: #121212;
-  --bg2: #1A1A1A;
-  --text1: #EDEDED;
-  --text2: #DADADA;
-  --primary: #FFD2CC;
-  --secondary: #6ED3D6;
-  --accent: #B388C2;
+  --bg1: #141414;
+  --bg2: #141314;
+  --text1: #F8F7FA;
+  --text2: #E1DFEB;
+  --primary: #72AFF7;
+  --secondary: #CB90F0;
+  --accent: #90F0C7;
 }
 
 

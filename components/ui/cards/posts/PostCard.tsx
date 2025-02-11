@@ -44,7 +44,7 @@ export default function PostCard({ post, variant }: PostCardProps) {
 
   // Build container classes
   const containerClass = clsx(
-    'border rounded shadow overflow-hidden bg-white flex flex-col',
+    'border rounded shadow-lg overflow-hidden bg-bg2 flex flex-col',
     variant === 'small' && 'w-full',
     variant === 'medium' && 'md:flex-row md:max-w-2xl',
     variant === 'largeRow' && 'lg:flex-row',
@@ -53,7 +53,7 @@ export default function PostCard({ post, variant }: PostCardProps) {
 
   // Image container classes
   const imageContainerClass = clsx(
-    'relative w-full h-52',
+    'relative w-full h-52 ',
     variant === 'medium' && 'md:w-2/5 md:h-auto',
     variant === 'largeRow' && 'lg:w-1/2 lg:h-64',
     variant === 'largeColumn' && 'lg:h-64'
@@ -73,24 +73,24 @@ export default function PostCard({ post, variant }: PostCardProps) {
       </div>
 
       <div className={contentContainerClass}>
-        <p className='text-sm text-gray-500 mb-1'>{publishedAt}</p>
+        <p className='text-sm text-text2 mb-1'>{publishedAt}</p>
 
         <Link
           href={`/blog/${slug}`}
-          className='text-lg font-semibold text-blue-600 hover:underline'
+          className='text-xl font-semibold text-primary capitalize font-header hover:underline'
         >
           {title}
         </Link>
 
-        <p className='text-gray-700 my-2'>{description}</p>
+        <p className='text-text1 my-2'>{description}</p>
 
         {/* Category Link */}
-        <p className='text-sm font-medium text-gray-600 mb-2'>
+        <p className='text-sm font-medium text-text2 mb-2'>
           Category:{' '}
           <Link
             href={`/categories/${categoryId ?? 'unknown'}`}
             // If you only have the name, do /categories/[categoryName]
-            className='text-blue-500 hover:underline'
+            className='text-secondary hover:underline'
           >
             {categoryName}
           </Link>
@@ -102,7 +102,7 @@ export default function PostCard({ post, variant }: PostCardProps) {
             <Link
               key={tag.id}
               href={`/tags/${tag.id}`}
-              className='px-2 py-1 text-xs bg-blue-100 text-blue-800 rounded hover:bg-blue-200'
+              className='px-2 py-1 text-xs bg-primary font-semibold text-bg1 rounded hover:bg-secondary'
             >
               {tag.name}
             </Link>

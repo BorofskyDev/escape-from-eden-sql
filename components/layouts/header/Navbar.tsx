@@ -14,7 +14,7 @@ export default function Navbar() {
 
   return (
     <header className='w-full fixed top-0 z-50 bg-bg1 shadow'>
-      <div className='max-w-7xl mx-auto px-4 py-4 flex items-center justify-between'>
+      <div className='max-w-7xl mx-auto px-6 md:px-8 lg:px-16 py-4 flex items-center justify-between'>
         {/* Site Title */}
         <Link href='/' className='text-primary font-bold text-xl'>
           Escape from Eden

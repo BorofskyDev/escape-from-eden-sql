@@ -14,11 +14,12 @@ export async function GET(request: Request) {
 
     // Fetch one extra post to determine if there is a next page.
     const posts = await prisma.post.findMany({
+      where: {published: true},
       skip,
       take: limit + 1,
       orderBy: {
         // Ordering by updatedAt descending. Replace or extend this with your custom logic if needed.
-        updatedAt: 'desc',
+        publishedAt: 'desc',
       },
       select: {
         id: true,
@@ -39,13 +40,15 @@ export async function GET(request: Request) {
       },
     })
 
+    const total = await prisma.post.count()
+
     let hasNextPage = false
     if (posts.length > limit) {
       hasNextPage = true
       posts.pop() // remove the extra post from the returned array
     }
 
-    return NextResponse.json({ posts, hasNextPage })
+    return NextResponse.json({ posts, hasNextPage, total })
   } catch (error) {
     console.error('Error fetching posts:', error)
     return NextResponse.json({ error: 'Error fetching posts' }, { status: 500 })

@@ -1,4 +1,6 @@
 import RecentPostsSection from "../layouts/sections/RecentPostsSection";
+import AboutSection from "../layouts/sections/AboutSection";
+import AllPostsSection from "../layouts/sections/AllPostsSection";
 
 export default function SplashPage() {
     return (
@@ -6,6 +8,8 @@ export default function SplashPage() {
             <h1 className='w-full mx-auto text-center text-7xl lg:text-9xl text-text1 capitalize'>Escape from Eden</h1>
             <p className=' my-6 text-xl text-center'>A former conservative Christian philosopher turned agnostic progressive explores his new world of unbelief</p>
             <RecentPostsSection />
+            <AboutSection />
+            <AllPostsSection />
         </section>
     )
 }

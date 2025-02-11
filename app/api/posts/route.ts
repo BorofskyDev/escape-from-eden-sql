@@ -32,6 +32,7 @@ export async function GET(request: Request) {
         content: true,
         slug: true,
         categoryId: true,
+        category: { select: { id: true, name: true } },
         tags: {
           select: { id: true, name: true },
         },

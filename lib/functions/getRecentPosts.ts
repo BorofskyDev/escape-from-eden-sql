@@ -8,8 +8,8 @@ export interface RecentPost {
   updatedAt: string
   slug: string
   categoryId: string | null
+  category: { id: string; name: string } | null
   tags: { id: string; name: string }[]
-  // etc...
 }
 
 export async function getRecentPosts(): Promise<RecentPost[]> {
@@ -19,8 +19,7 @@ export async function getRecentPosts(): Promise<RecentPost[]> {
       throw new Error(`Failed to fetch recent posts: ${res.statusText}`)
     }
     const data = await res.json()
-    // data.posts is presumably an array
-    return data.posts
+    return data.posts // Now each post has { category: {id, name}, ... }
   } catch (error) {
     console.error('Error in getRecentPosts:', error)
     return []

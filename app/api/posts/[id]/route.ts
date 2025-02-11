@@ -5,21 +5,55 @@ import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 
 /** GET /api/posts/[id] - Fetch a single post by ID (optional if needed). */
-export async function GET(
-  request: Request,
-  { params }: { params: { id: string } }
-) {
+export async function GET(request: Request) {
   try {
-    const post = await prisma.post.findUnique({
-      where: { id: params.id },
+    const { searchParams } = new URL(request.url)
+    const page = Number(searchParams.get('page')) || 1
+    const limit = Number(searchParams.get('limit')) || 10
+    const skip = (page - 1) * limit
+
+    // Fetch one extra post to determine if there is a next page.
+    const posts = await prisma.post.findMany({
+      skip,
+      take: limit + 1,
+      orderBy: { updatedAt: 'desc' },
+      select: {
+        id: true,
+        title: true,
+        featuredImage: true,
+        published: true,
+        publishedAt: true,
+        createdAt: true,
+        updatedAt: true,
+        description: true,
+        content: true,
+        slug: true,
+
+        // We want the category name
+        categoryId: true,
+        category: {
+          select: {
+            id: true,
+            name: true,
+          },
+        },
+
+        tags: {
+          select: { id: true, name: true },
+        },
+      },
     })
-    if (!post) {
-      return NextResponse.json({ error: 'Post not found' }, { status: 404 })
+
+    let hasNextPage = false
+    if (posts.length > limit) {
+      hasNextPage = true
+      posts.pop()
     }
-    return NextResponse.json(post)
+
+    return NextResponse.json({ posts, hasNextPage })
   } catch (error) {
-    console.error('Error fetching post:', error)
-    return NextResponse.json({ error: 'Error fetching post' }, { status: 500 })
+    console.error('Error fetching posts:', error)
+    return NextResponse.json({ error: 'Error fetching posts' }, { status: 500 })
   }
 }
 

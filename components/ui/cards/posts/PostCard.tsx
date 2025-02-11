@@ -44,7 +44,7 @@ export default function PostCard({ post, variant }: PostCardProps) {
 
   // Build container classes
   const containerClass = clsx(
-    'border rounded shadow-lg overflow-hidden bg-bg2 flex flex-col',
+    'rounded shadow-xl overflow-hidden bg-bg2 flex flex-col',
     variant === 'small' && 'w-full',
     variant === 'medium' && 'md:flex-row md:max-w-2xl',
     variant === 'largeRow' && 'lg:flex-row',

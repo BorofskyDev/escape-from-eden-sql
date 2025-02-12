@@ -55,7 +55,7 @@ export default function PostCard({ post, variant }: PostCardProps) {
   const imageContainerClass = clsx(
     'relative w-full h-52 ',
     variant === 'medium' && 'md:w-2/5 md:h-auto',
-    variant === 'largeRow' && 'lg:w-1/2 lg:h-64',
+    variant === 'largeRow' && 'lg:w-1/2 lg:h-auto',
     variant === 'largeColumn' && 'lg:h-64'
   )
 

@@ -15,7 +15,7 @@ export default function AboutSection() {
       <br />
       <p>
         This blog is the result of those ponderings. These are my individual
-        views, my way of coping in this made world and trying to make sense of
+        views, my way of coping in this mad world and trying to make sense of
         it all.{' '}
       </p>
 

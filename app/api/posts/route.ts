@@ -1,8 +1,6 @@
 // app/api/posts/route.ts
 import { NextResponse } from 'next/server'
-import { PrismaClient } from '@prisma/client'
-
-const prisma = new PrismaClient()
+import { prisma } from '@/lib/prisma'
 
 // GET endpoint to fetch posts with pagination
 export async function GET(request: Request) {

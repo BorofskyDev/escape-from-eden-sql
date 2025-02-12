@@ -1,5 +1,6 @@
 import NextAuth from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
+import { prisma } from '@/lib/prisma'
 
 declare module 'next-auth' {
   interface User {
@@ -10,12 +11,9 @@ declare module 'next-auth' {
     user?: User
   }
 }
-import { PrismaClient } from '@prisma/client'
 import bcrypt from 'bcryptjs'
 
-// We create a single instance of PrismaClient.
-// In production, consider the "prisma singleton" pattern to avoid issues with hot reload.
-const prisma = new PrismaClient()
+
 
 const handler = NextAuth({
   // We’re using JWT sessions by default (recommended for Credentials provider).

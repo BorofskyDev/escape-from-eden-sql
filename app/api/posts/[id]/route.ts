@@ -1,8 +1,6 @@
 //app/posts/[id]/route.ts
 import { NextResponse } from 'next/server'
-import { PrismaClient } from '@prisma/client'
-
-const prisma = new PrismaClient()
+import { prisma } from '@/lib/prisma'
 
 /** GET /api/posts/[id] - Fetch a single post by ID (optional if needed). */
 export async function GET(request: Request) {

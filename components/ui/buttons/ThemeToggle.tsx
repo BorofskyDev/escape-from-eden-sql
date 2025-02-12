@@ -27,7 +27,7 @@ export default function ThemeToggleBtn() {
       onClick={toggleTheme}
       className='px-4 py-2 border border-accent rounded focus:outline-none'
     >
-      {theme === 'light' ? 'go dark' : 'go light'}
+      {theme === 'light' ? 'Dark' : 'Light'}
     </button>
   )
 }

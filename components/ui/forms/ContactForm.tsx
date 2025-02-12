@@ -76,7 +76,7 @@ export default function ContactForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className='max-w-lg mx-auto p-4 bg-bg1 rounded shadow'
+      className='max-w-lg mx-auto p-4 bg-bg2 rounded shadow'
     >
       <h1 className='text-2xl font-bold mb-4'>Contact Me</h1>
       {success && (

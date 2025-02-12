@@ -3,6 +3,7 @@ import type { Metadata } from 'next'
 import Providers from './providers'
 import { Playfair_Display, Open_Sans } from 'next/font/google'
 import Navbar from '@/components/layouts/header/Navbar'
+import Footer from '@/components/layouts/footer/Footer'
 
 const playfair = Playfair_Display({
   display: 'swap',
@@ -35,6 +36,7 @@ export default function RootLayout({
         <Providers>
           <Navbar />
           {children}
+          <Footer />
         </Providers>
       </body>
     </html>

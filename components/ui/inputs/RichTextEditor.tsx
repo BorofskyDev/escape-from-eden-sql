@@ -179,7 +179,7 @@ export default function RichTextEditor({
         </button>
       </div>
       {/* Editor Content */}
-      <EditorContent editor={editor} className='border rounded p-4 h-40' />
+      <EditorContent editor={editor} className='border rounded p-4 h-96 overflow-auto' />
     </div>
   )
 }

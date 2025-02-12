@@ -21,7 +21,8 @@ export function usePosts(page: number = 1, limit: number = 10) {
     async function fetchPosts() {
       setLoading(true)
       try {
-        const res = await fetch(`/api/posts?limit=${limit}&page=${page}`)
+        // Note: use the admin endpoint here.
+        const res = await fetch(`/api/admin/posts?limit=${limit}&page=${page}`)
         if (!res.ok) {
           throw new Error(`Error fetching posts: ${res.statusText}`)
         }

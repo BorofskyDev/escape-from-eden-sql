@@ -107,7 +107,7 @@ export default async function PostPage({
           )}
         </div>
         <div
-          className='prose mb-4 bg-bg2 py-4 px-6 max-w-4xl mx-auto leading-6 flex flex-col gap-4'
+          className='prose mb-4 bg-bg2 p-8 max-w-4xl mx-auto shadow-lg rounded-md leading-6 flex flex-col gap-4'
           dangerouslySetInnerHTML={{ __html: sanitizedContent }}
         />
       </article>

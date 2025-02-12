@@ -6,6 +6,7 @@
   /* Set the body to use Open Sans (body) by default */
   body {
     @apply font-body;
+    background-color: var(--bg1);
   }
   
   /* Make all headers use Playfair Display (header) */
@@ -25,8 +26,8 @@
 
 /* Light mode variables (default) */
 :root {
-  --bg1: #FAFAFA;
-  --bg2: #EBEDF5;
+  --bg1: #EBEDF5;
+  --bg2: #FAFAFA;
   --text1: #0A0A0A;
   --text2: #141414;
   --primary: #100E7D;

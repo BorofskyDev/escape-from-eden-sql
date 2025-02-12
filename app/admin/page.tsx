@@ -4,6 +4,7 @@ import { signOut } from 'next-auth/react'
 import { useState } from 'react'
 import CreatePostModal from '@/components/modals/blog-ui/CreatePostModal'
 import PostsTable from '@/components/admin/PostsTable'
+import GeneralSection from '@/components/layouts/sections/GeneralSection'
 
 export default function AdminPage() {
   const [open, setOpen] = useState(false)
@@ -23,7 +24,7 @@ export default function AdminPage() {
   }
 
   return (
-    <div className='mt-10 p-8 space-y-8'>
+    <GeneralSection>
       <h1 className='text-2xl font-bold mb-4'>Admin Dashboard</h1>
 
       {/* Blog Settings Section */}
@@ -61,6 +62,6 @@ export default function AdminPage() {
           Sign Out
         </button>
       </div>
-    </div>
+    </GeneralSection>
   )
 }

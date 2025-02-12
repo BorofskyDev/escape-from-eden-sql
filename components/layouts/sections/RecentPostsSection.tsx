@@ -46,7 +46,7 @@ export default function RecentPostsSection() {
 
   return (
     <section className='my-8'>
-      <h2 className='text-2xl font-bold mb-4'>Recent Posts</h2>
+      <h2 className='text-center text-5xl font-header my-10'>Recent Posts</h2>
 
       <div className='flex flex-col gap-6'>
         <div className='flex flex-col gap-6 lg:flex-row'>

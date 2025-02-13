@@ -99,3 +99,18 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: 'Error creating post' }, { status: 500 })
   }
 }
+
+export async function DELETE(
+  request: Request,
+  { params }: { params: { id: string } }
+) {
+  try {
+    const deletedPost = await prisma.post.delete({
+      where: { id: params.id },
+    })
+    return NextResponse.json(deletedPost)
+  } catch (error) {
+    console.error('Error deleting post:', error)
+    return NextResponse.json({ error: 'Error deleting post' }, { status: 500 })
+  }
+}

@@ -4,18 +4,43 @@
 import { useState } from 'react'
 import { usePosts, Post } from '@/lib/hooks/usePosts'
 import { formatDate } from '@/lib/functions/formatDate'
-import EditPostModal from '@/components/modals/blog-ui/EditPostModal'
+import EditPostModal from '@/components/modals/EditPostModal'
 import Image from 'next/image'
+import { deletePost } from '@/lib/functions/deletePost'
 
 export default function PostsTable() {
   const [page, setPage] = useState(1)
-  const { posts, hasNextPage, loading, error } = usePosts(page)
+  const { posts, hasNextPage, loading, error, refetch } = usePosts(page)
   const [selectedPost, setSelectedPost] = useState<Post | null>(null)
   const [editModalOpen, setEditModalOpen] = useState(false)
 
   const handleRowClick = (post: Post) => {
     setSelectedPost(post)
     setEditModalOpen(true)
+  }
+
+  const handleDelete = async (post: Post, e: React.MouseEvent) => {
+    e.stopPropagation() // Prevent the row click event
+    const confirmed = window.confirm(
+      `Are you sure you want to delete the post "${post.title}"?`
+    )
+    if (!confirmed) return
+
+    try {
+      await deletePost(post.id)
+      // Option 1: refetch the posts list after deletion
+      if (refetch) {
+        refetch()
+      }
+      // Option 2: remove the deleted post from state (if you're managing it locally)
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        console.error('Failed to delete post:', err.message)
+      } else {
+        console.error('Failed to delete post:', err)
+      }
+      alert('Failed to delete post. Please try again.')
+    }
   }
 
   return (
@@ -31,6 +56,7 @@ export default function PostsTable() {
               <th className='border p-2'>Title</th>
               <th className='border p-2'>Status</th>
               <th className='border p-2'>Last Updated</th>
+              <th className='border p-2'>Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -54,6 +80,14 @@ export default function PostsTable() {
                   {post.published ? 'Published' : 'Draft'}
                 </td>
                 <td className='border p-2'>{formatDate(post.updatedAt)}</td>
+                <td className='border p-2'>
+                  <button
+                    onClick={(e) => handleDelete(post, e)}
+                    className='bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600'
+                  >
+                    Delete
+                  </button>
+                </td>
               </tr>
             ))}
           </tbody>

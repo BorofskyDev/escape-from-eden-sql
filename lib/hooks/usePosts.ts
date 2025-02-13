@@ -17,30 +17,31 @@ export function usePosts(page: number = 1, limit: number = 10) {
   const [loading, setLoading] = useState<boolean>(true)
   const [error, setError] = useState<Error | null>(null)
 
-  useEffect(() => {
-    async function fetchPosts() {
-      setLoading(true)
-      try {
-        // Note: use the admin endpoint here.
-        const res = await fetch(`/api/admin/posts?limit=${limit}&page=${page}`)
-        if (!res.ok) {
-          throw new Error(`Error fetching posts: ${res.statusText}`)
-        }
-        const data = await res.json()
-        setPosts(data.posts)
-        setHasNextPage(data.hasNextPage)
-      } catch (err: unknown) {
-        if (err instanceof Error) {
-          setError(err)
-        } else {
-          setError(new Error(String(err)))
-        }
-      } finally {
-        setLoading(false)
+  // Define the fetching function
+  const fetchPosts = async () => {
+    setLoading(true)
+    try {
+      const res = await fetch(`/api/admin/posts?limit=${limit}&page=${page}`)
+      if (!res.ok) {
+        throw new Error(`Error fetching posts: ${res.statusText}`)
       }
+      const data = await res.json()
+      setPosts(data.posts)
+      setHasNextPage(data.hasNextPage)
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        setError(err)
+      } else {
+        setError(new Error(String(err)))
+      }
+    } finally {
+      setLoading(false)
     }
+  }
+
+  useEffect(() => {
     fetchPosts()
   }, [page, limit])
 
-  return { posts, hasNextPage, loading, error }
+  return { posts, hasNextPage, loading, error, refetch: fetchPosts }
 }

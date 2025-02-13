@@ -1,4 +1,4 @@
-// lib/hooks/functions/tag.ts
+// lib/functions/tag.ts
 export interface Tag {
   id: string
   name: string

@@ -1,12 +1,9 @@
-// app/api/categories/route.ts
 import { NextResponse } from 'next/server'
-import { prisma} from '@/lib/prisma'
+import { prisma } from '@/lib/prisma'
 
-
-
+// GET all non-deleted categories.
 export async function GET() {
   try {
-    // Fetch all non-deleted categories
     const categories = await prisma.category.findMany({
       where: { deletedAt: null },
       orderBy: { name: 'asc' },
@@ -18,20 +15,65 @@ export async function GET() {
   }
 }
 
+// POST: Create a new category.
 export async function POST(request: Request) {
   try {
-    const { name, slug } = await request.json()
-
-    // Create a new category with a unique slug
+    const { name, slug, description } = await request.json()
     const category = await prisma.category.create({
-      data: { name, slug },
+      data: { name, slug, description },
     })
-
     return NextResponse.json(category, { status: 201 })
   } catch (error) {
     console.error('Error creating category:', error)
     return NextResponse.json(
       { error: 'Error creating category' },
+      { status: 500 }
+    )
+  }
+}
+
+// PATCH: Update a category.
+export async function PATCH(request: Request) {
+  try {
+    const { id, name, slug, description } = await request.json()
+    if (!id) {
+      return NextResponse.json(
+        { error: 'Category id is required' },
+        { status: 400 }
+      )
+    }
+    const updatedCategory = await prisma.category.update({
+      where: { id },
+      data: { name, slug, description },
+    })
+    return NextResponse.json(updatedCategory)
+  } catch (error) {
+    console.error('Error updating category:', error)
+    return NextResponse.json(
+      { error: 'Error updating category' },
+      { status: 500 }
+    )
+  }
+}
+
+// DELETE: Delete a category.
+export async function DELETE(request: Request) {
+  try {
+    const { id } = await request.json()
+    if (!id) {
+      return NextResponse.json(
+        { error: 'Category id is required' },
+        { status: 400 }
+      )
+    }
+    const deletedCategory = await prisma.category.delete({
+      where: { id },
+    })
+    return NextResponse.json(deletedCategory)
+  } catch (error) {
+    console.error('Error deleting category:', error)
+    return NextResponse.json(
+      { error: 'Error deleting category' },
       { status: 500 }
     )
   }

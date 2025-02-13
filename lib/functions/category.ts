@@ -3,6 +3,7 @@ export interface Category {
   id: string
   name: string
   slug: string
+  description?: string
 }
 
 /**
@@ -27,6 +28,31 @@ export async function getCategories(): Promise<Category[]> {
   return res.json()
 }
 
-/**
- * Create a new category via the API.
- */
+// lib/functions/category.ts
+export async function updateCategory(
+  id: string,
+  payload: { name: string; description?: string }
+): Promise<Category> {
+  const slug = generateSlug(payload.name)
+  const res = await fetch('/api/categories', {
+    method: 'PATCH',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ id, name: payload.name, slug, description: payload.description }),
+  })
+  if (!res.ok) {
+    throw new Error('Failed to update category')
+  }
+  return res.json()
+}
+
+export async function deleteCategory(id: string): Promise<Category> {
+  const res = await fetch('/api/categories', {
+    method: 'DELETE',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ id }),
+  })
+  if (!res.ok) {
+    throw new Error('Failed to delete category')
+  }
+  return res.json()
+}

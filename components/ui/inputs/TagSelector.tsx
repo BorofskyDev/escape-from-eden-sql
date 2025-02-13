@@ -1,7 +1,9 @@
+// components/ui/inputs/TagSelector.tsx
 'use client'
 
 import { useState, useEffect } from 'react'
-import { getTags, createTag, Tag } from '@/lib/functions/tag'
+import { getTags, Tag} from '@/lib/functions/tag'
+import TagCreator from './TagCreator'
 
 interface TagSelectorProps {
   defaultTagIds?: string[]
@@ -16,8 +18,7 @@ export default function TagSelector({
   const [selectedTagIds, setSelectedTagIds] = useState<string[]>(
     defaultTagIds || []
   )
-  const [creating, setCreating] = useState<boolean>(false)
-  const [newTagName, setNewTagName] = useState<string>('')
+  const [showCreator, setShowCreator] = useState<boolean>(false)
 
   useEffect(() => {
     async function fetchTags() {
@@ -32,37 +33,26 @@ export default function TagSelector({
   }, [])
 
   const toggleTag = (tagId: string) => {
-    let updated: string[]
-    if (selectedTagIds.includes(tagId)) {
-      updated = selectedTagIds.filter((id) => id !== tagId)
-    } else {
-      updated = [...selectedTagIds, tagId]
-    }
+    const updated = selectedTagIds.includes(tagId)
+      ? selectedTagIds.filter((id) => id !== tagId)
+      : [...selectedTagIds, tagId]
     setSelectedTagIds(updated)
     if (onChange) {
-      const selected = tags.filter((tag) => updated.includes(tag.id))
-      onChange(selected)
+      onChange(tags.filter((tag) => updated.includes(tag.id)))
     }
   }
 
-  const handleCreateTag = async () => {
-    if (!newTagName.trim()) return
-    try {
-      const newTag = await createTag(newTagName)
-      const updatedTags = [...tags, newTag]
-      setTags(updatedTags)
-      const updatedSelectedTagIds = [...selectedTagIds, newTag.id]
-      setSelectedTagIds(updatedSelectedTagIds)
-      if (onChange) {
-        onChange(
-          updatedTags.filter((tag) => updatedSelectedTagIds.includes(tag.id))
-        )
-      }
-      setNewTagName('')
-      setCreating(false)
-    } catch (error) {
-      console.error('Error creating tag:', error)
+  const handleTagCreated = (newTag: Tag) => {
+    const updatedTags = [...tags, newTag]
+    setTags(updatedTags)
+    const updatedSelectedTagIds = [...selectedTagIds, newTag.id]
+    setSelectedTagIds(updatedSelectedTagIds)
+    if (onChange) {
+      onChange(
+        updatedTags.filter((tag) => updatedSelectedTagIds.includes(tag.id))
+      )
     }
+    setShowCreator(false)
   }
 
   return (
@@ -94,26 +84,14 @@ export default function TagSelector({
         </div>
       )}
       <div className='mt-2'>
-        {creating ? (
-          <div className='flex gap-2'>
-            <input
-              type='text'
-              placeholder='New tag name'
-              value={newTagName}
-              onChange={(e) => setNewTagName(e.target.value)}
-              className='block w-full border rounded p-2'
-            />
-            <button
-              onClick={handleCreateTag}
-              className='bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700'
-              type='button'
-            >
-              Save
-            </button>
-          </div>
+        {showCreator ? (
+          <TagCreator
+            onTagCreated={handleTagCreated}
+            onCancel={() => setShowCreator(false)}
+          />
         ) : (
           <button
-            onClick={() => setCreating(true)}
+            onClick={() => setShowCreator(true)}
             className='mt-2 text-blue-600 hover:underline'
             type='button'
           >

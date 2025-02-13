@@ -1,11 +1,9 @@
+// components/ui/inputs/CategorySelector.tsx
 'use client'
 
 import { useState, useEffect, ChangeEvent } from 'react'
-import {
-  getCategories,
-  createCategory,
-  Category,
-} from '@/lib/functions/category'
+import { getCategories, Category } from '@/lib/functions/category'
+import CategoryCreator from './CategoryCreator'
 
 interface CategorySelectorProps {
   defaultCategoryId?: string
@@ -21,7 +19,6 @@ export default function CategorySelector({
     defaultCategoryId || ''
   )
   const [creating, setCreating] = useState<boolean>(false)
-  const [newCategoryName, setNewCategoryName] = useState<string>('')
 
   useEffect(() => {
     async function fetchCategories() {
@@ -44,18 +41,13 @@ export default function CategorySelector({
     }
   }
 
-  const handleCreateCategory = async () => {
-    if (!newCategoryName.trim()) return
-    try {
-      const newCat = await createCategory(newCategoryName)
-      setCategories((prev) => [...prev, newCat])
-      setSelectedCategoryId(newCat.id)
-      if (onSelect) onSelect(newCat)
-      setNewCategoryName('')
-      setCreating(false)
-    } catch (error) {
-      console.error('Error creating category:', error)
+  const handleCategoryCreated = (newCat: Category) => {
+    setCategories((prev) => [...prev, newCat])
+    setSelectedCategoryId(newCat.id)
+    if (onSelect) {
+      onSelect(newCat)
     }
+    setCreating(false)
   }
 
   return (
@@ -81,25 +73,12 @@ export default function CategorySelector({
           ))}
         </select>
       )}
-
       <div className='mt-2'>
         {creating ? (
-          <div className='flex gap-2'>
-            <input
-              type='text'
-              placeholder='New category name'
-              value={newCategoryName}
-              onChange={(e) => setNewCategoryName(e.target.value)}
-              className='block w-full border rounded p-2'
-            />
-            <button
-              onClick={handleCreateCategory}
-              className='bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700'
-              type='button'
-            >
-              Save
-            </button>
-          </div>
+          <CategoryCreator
+            onCategoryCreated={handleCategoryCreated}
+            onCancel={() => setCreating(false)}
+          />
         ) : (
           <button
             onClick={() => setCreating(true)}

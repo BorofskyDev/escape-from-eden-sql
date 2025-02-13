@@ -1,8 +1,9 @@
-// lib/hooks/functions/category.ts
+// lib/functions/category.ts
 export interface Category {
   id: string
   name: string
   slug: string
+  description?: string
 }
 
 /**
@@ -28,5 +29,20 @@ export async function getCategories(): Promise<Category[]> {
 }
 
 /**
- * Create a new category via the API.
+ * Creates a new category via the API.
  */
+export async function createCategory(
+  name: string,
+  description?: string
+): Promise<Category> {
+  const slug = generateSlug(name)
+  const res = await fetch('/api/categories', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ name, slug, description }),
+  })
+  if (!res.ok) {
+    throw new Error('Failed to create category')
+  }
+  return res.json()
+}

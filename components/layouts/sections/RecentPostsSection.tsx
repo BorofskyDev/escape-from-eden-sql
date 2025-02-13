@@ -54,7 +54,7 @@ export default function RecentPostsSection() {
             <LargePostColumnCard post={big1} />
           </div>
 
-          <div className='lg:w-1/2 flex flex-col gap-6 lg:gap-0 justify-between'>
+          <div className='lg:w-1/2 flex flex-col gap-6 justify-between'>
             <MediumPostCard post={med2} />
             <MediumPostCard post={med3} />
           </div>

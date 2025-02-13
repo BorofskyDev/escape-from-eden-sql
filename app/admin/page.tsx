@@ -7,6 +7,7 @@ import PostsTable from '@/components/admin/PostsTable'
 import ManageCategoriesModal from '@/components/modals/ManageCategoriesModal'
 import ManageTagsModal from '@/components/modals/ManageTagsModal'
 import GeneralSection from '@/components/layouts/sections/GeneralSection'
+import PageTitle from '@/components/typography/PageTitle'
 
 export default function AdminPage() {
   const [open, setOpen] = useState(false)
@@ -30,7 +31,7 @@ export default function AdminPage() {
 
   return (
     <GeneralSection>
-      <h1 className='text-2xl font-bold mb-4'>Admin Dashboard</h1>
+      <PageTitle>Admin Dashboard</PageTitle>
 
       {/* Blog Settings Section */}
       <section className='border p-4 rounded shadow mb-8'>

@@ -35,11 +35,13 @@ export default function AdminPage() {
 
       {/* Blog Settings Section */}
       <section className='border p-4 rounded shadow mb-8'>
-        <h2 className='text-xl font-semibold mb-2'>Blog Settings</h2>
-        <div className='space-y-4'>
+        <h2 className='text-xl font-semibold mb-2 text-center'>
+          Blog Settings
+        </h2>
+        <div className='mt-10 flex justify-around items-center  place-items-center'>
           <button
             onClick={handleOpen}
-            className='bg-primary px-4 py-2 text-bg1 rounded'
+            className='bg-primary px-4 py-2 text-bg1 rounded transition-all duration-200 hover:bg-secondary'
           >
             Create New Post
           </button>
@@ -48,21 +50,19 @@ export default function AdminPage() {
             onClose={() => setOpen(false)}
             origin={modalOrigin}
           />
-          {/* New Manage Categories and Manage Tags buttons */}
-          <div className='flex flex-col gap-2 mt-4'>
-            <button
-              onClick={() => setManageCategoriesOpen(true)}
-              className='bg-secondary px-4 py-2 text-bg1 rounded hover:bg-secondary-dark'
-            >
-              Manage Categories
-            </button>
-            <button
-              onClick={() => setManageTagsOpen(true)}
-              className='bg-secondary px-4 py-2 text-bg1 rounded hover:bg-secondary-dark'
-            >
-              Manage Tags
-            </button>
-          </div>
+
+          <button
+            onClick={() => setManageCategoriesOpen(true)}
+            className='bg-primary px-4 py-2 text-bg1 rounded transition-all duration-200 hover:bg-secondary'
+          >
+            Manage Categories
+          </button>
+          <button
+            onClick={() => setManageTagsOpen(true)}
+            className='bg-primary px-4 py-2 text-bg1 rounded transition-all duration-200 hover:bg-secondary'
+          >
+            Manage Tags
+          </button>
         </div>
         <PostsTable />
       </section>

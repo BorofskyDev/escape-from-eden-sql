@@ -44,26 +44,26 @@ export default function PostsTable() {
   }
 
   return (
-    <div className='mt-8'>
-      <h2 className='text-xl font-bold mb-4'>Posts</h2>
+    <div className='mt-16'>
+      <h2 className='text-xl font-bold mb-4 text-center'>Posts</h2>
       {loading && <p>Loading posts...</p>}
       {error && <p className='text-red-600'>Error: {error.message}</p>}
       {!loading && !error && (
-        <table className='min-w-full border-collapse'>
+        <table className='min-w-full border-collapse '>
           <thead>
-            <tr className='bg-gray-200'>
-              <th className='border p-2'>Thumbnail</th>
-              <th className='border p-2'>Title</th>
-              <th className='border p-2'>Status</th>
-              <th className='border p-2'>Last Updated</th>
-              <th className='border p-2'>Actions</th>
+            <tr className='bg-primary'>
+              <th className='border p-2 text-bg1'>Thumbnail</th>
+              <th className='border p-2 text-bg1'>Title</th>
+              <th className='border p-2 text-bg1'>Status</th>
+              <th className='border p-2 text-bg1'>Last Updated</th>
+              <th className='border p-2 text-bg1'>Actions</th>
             </tr>
           </thead>
           <tbody>
             {posts.map((post) => (
               <tr
                 key={post.id}
-                className='cursor-pointer hover:bg-gray-100'
+                className='cursor-pointer hover:bg-secondary transition-all duration-200 hover:text-bg1'
                 onClick={() => handleRowClick(post)}
               >
                 <td className='border p-2'>
@@ -75,7 +75,7 @@ export default function PostsTable() {
                     height={1060}
                   />
                 </td>
-                <td className='border p-2'>{post.title}</td>
+                <td className='border p-2 capitalize'>{post.title}</td>
                 <td className='border p-2'>
                   {post.published ? 'Published' : 'Draft'}
                 </td>

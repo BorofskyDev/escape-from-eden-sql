@@ -95,8 +95,8 @@ export default function AllPostsSection() {
             <button
               key={idx}
               onClick={() => setPage(p)}
-              className={`px-3 py-1 border rounded hover:bg-gray-200 ${
-                p === page ? 'bg-blue-500 text-white' : ''
+              className={`px-3 py-1 border rounded hover:bg-secondary transition-all duration-200 ${
+                p === page ? 'bg-primary text-bg1' : ''
               }`}
             >
               {p}

@@ -1,5 +1,5 @@
 // lib/hooks/usePosts.ts
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 
 export interface Post {
   id: string
@@ -18,7 +18,7 @@ export function usePosts(page: number = 1, limit: number = 10) {
   const [error, setError] = useState<Error | null>(null)
 
   // Define the fetching function
-  const fetchPosts = async () => {
+  const fetchPosts = useCallback(async () => {
     setLoading(true)
     try {
       const res = await fetch(`/api/admin/posts?limit=${limit}&page=${page}`)
@@ -37,11 +37,11 @@ export function usePosts(page: number = 1, limit: number = 10) {
     } finally {
       setLoading(false)
     }
-  }
+  }, [page, limit])
 
   useEffect(() => {
     fetchPosts()
-  }, [page, limit])
+  }, [fetchPosts])
 
   return { posts, hasNextPage, loading, error, refetch: fetchPosts }
 }

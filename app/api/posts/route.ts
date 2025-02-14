@@ -15,7 +15,7 @@ export async function GET(request: Request) {
       where: { published: true },
       skip,
       take: limit + 1,
-      orderBy: [{ publishedAt: 'desc' }, { updatedAt: 'desc' }],
+      orderBy: [{ publishedAt: 'desc' }],
       select: {
         id: true,
         title: true,

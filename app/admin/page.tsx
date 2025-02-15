@@ -8,6 +8,7 @@ import ManageCategoriesModal from '@/components/modals/ManageCategoriesModal'
 import ManageTagsModal from '@/components/modals/ManageTagsModal'
 import GeneralSection from '@/components/layouts/sections/GeneralSection'
 import PageTitle from '@/components/typography/PageTitle'
+import MessagesList from '@/components/admin/MessageList'
 
 export default function AdminPage() {
   const [open, setOpen] = useState(false)
@@ -70,8 +71,8 @@ export default function AdminPage() {
       {/* Messages Section */}
       <section className='border p-4 rounded shadow mb-8'>
         <h2 className='text-xl font-semibold mb-2'>Messages</h2>
-        <p className='text-gray-700'>Here are your latest messages.</p>
-        {/* Insert your messages UI here */}
+        <p className='text-text2'>Here are your latest messages.</p>
+        <MessagesList />
       </section>
 
       {/* Sign Out Button at the end */}

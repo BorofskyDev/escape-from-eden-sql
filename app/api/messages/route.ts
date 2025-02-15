@@ -92,3 +92,19 @@ export async function POST(request: Request) {
     )
   }
 }
+
+export async function GET() {
+  try {
+    // Fetch messages from the database
+    const messages = await prisma.message.findMany({
+      orderBy: { createdAt: 'desc' },
+    })
+    return NextResponse.json(messages)
+  } catch (error) {
+    console.error('Error fetching messages:', error)
+    return NextResponse.json(
+      { error: 'Error fetching messages' },
+      { status: 500 }
+    )
+  }
+}

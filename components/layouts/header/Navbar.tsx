@@ -29,6 +29,12 @@ export default function Navbar() {
             Home
           </Link>
           <Link
+            href='/search'
+            className='hover:text-secondary transition-colors duration-200'
+          >
+            Search
+          </Link>
+          <Link
             href='/about'
             className='hover:text-secondary transition-colors duration-200'
           >
@@ -87,6 +93,14 @@ export default function Navbar() {
                 className='hover:text-secondary transition-colors duration-200'
               >
                 Home
+              </Link>
+              
+              <Link
+                href='/search'
+                onClick={() => setIsOpen(false)}
+                className='hover:text-secondary transition-colors duration-200'
+              >
+                Search
               </Link>
               
               <Link

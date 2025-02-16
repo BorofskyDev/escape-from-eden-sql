@@ -5,6 +5,7 @@ import { prisma } from '@/lib/prisma'
 // GET endpoint for fetching posts with pagination (unchanged)
 export async function GET(request: Request) {
   try {
+    console.log('DATABASE_URL in production:', process.env.DATABASE_URL)
     const { searchParams } = new URL(request.url)
     const page = Number(searchParams.get('page')) || 1
     const limit = Number(searchParams.get('limit')) || 10

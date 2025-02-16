@@ -12,9 +12,9 @@ const prisma = new PrismaClient()
 export default async function TagPage({
   params,
 }: {
-  params: { tagId: string }
+  params: Promise<{ tagId: string }>
 }) {
-  const { tagId } = params
+  const { tagId } = await params
 
   // Fetch the current tag information.
   const tag = await prisma.tag.findUnique({
@@ -52,14 +52,40 @@ export default async function TagPage({
   })
 
   // Fetch all tags for the buttons list.
-  const allTags = await prisma.tag.findMany({
+  const allTags: TagData[] = await prisma.tag.findMany({
     where: { deletedAt: null },
     orderBy: { name: 'asc' },
     select: { id: true, name: true, slug: true },
   })
 
+  interface TagData {
+    id: string
+    name: string
+    slug: string
+  }
+
   // Transform posts into the shape expected by SmallPostCard.
-  const transformedPosts: PostData[] = posts.map((post) => ({
+  interface OriginalCategory {
+    id: string
+    name: string
+  }
+
+  interface OriginalTag {
+    id: string
+    name: string
+  }
+
+  interface OriginalPost {
+    title: string
+    description: string
+    publishedAt: string | Date | null
+    featuredImage?: string | null
+    category?: OriginalCategory | null
+    tags: OriginalTag[]
+    slug: string
+  }
+
+  const transformedPosts: PostData[] = posts.map((post: OriginalPost) => ({
     title: post.title,
     description: post.description,
     publishedAt: post.publishedAt
@@ -72,9 +98,11 @@ export default async function TagPage({
     imageUrl: post.featuredImage || 'https://via.placeholder.com/800',
     categoryName: post.category?.name || 'Uncategorized',
     categoryId: post.category?.id,
-    tags: post.tags.map((t) => ({ id: t.id, name: t.name })),
+    tags: post.tags.map((t: OriginalTag) => ({ id: t.id, name: t.name })),
     slug: post.slug,
   }))
+
+ 
 
   return (
     <GeneralSection>

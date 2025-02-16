@@ -1,65 +1,54 @@
-//app/posts/[id]/route.ts
+// app/api/posts/[id]/route.ts
 import { NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 
-/** GET /api/posts/[id] - Fetch a single post by ID (optional if needed). */
-export async function GET(request: Request) {
-  try {
-    const { searchParams } = new URL(request.url)
-    const page = Number(searchParams.get('page')) || 1
-    const limit = Number(searchParams.get('limit')) || 10
-    const skip = (page - 1) * limit
 
-    // Fetch one extra post to determine if there is a next page.
-    const posts = await prisma.post.findMany({
-      skip,
-      take: limit + 1,
-      orderBy: { updatedAt: 'desc' },
+export async function GET(
+  request: Request,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  const { id } = await params
+  try {
+    const post = await prisma.post.findUnique({
+      where: { id },
       select: {
         id: true,
         title: true,
+        description: true,
+        content: true,
         featuredImage: true,
         published: true,
         publishedAt: true,
         createdAt: true,
         updatedAt: true,
-        description: true,
-        content: true,
         slug: true,
-
-        // We want the category name
-        categoryId: true,
         category: {
           select: {
             id: true,
             name: true,
           },
         },
-
         tags: {
           select: { id: true, name: true },
         },
       },
     })
 
-    let hasNextPage = false
-    if (posts.length > limit) {
-      hasNextPage = true
-      posts.pop()
+    if (!post) {
+      return NextResponse.json({ error: 'Post not found' }, { status: 404 })
     }
 
-    return NextResponse.json({ posts, hasNextPage })
+    return NextResponse.json(post)
   } catch (error) {
-    console.error('Error fetching posts:', error)
-    return NextResponse.json({ error: 'Error fetching posts' }, { status: 500 })
+    console.error('Error fetching post:', error)
+    return NextResponse.json({ error: 'Error fetching post' }, { status: 500 })
   }
 }
-
-/** PATCH /api/posts/[id] - Update a post. */
 export async function PATCH(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await params
   try {
     const body = await request.json()
     const {
@@ -74,7 +63,7 @@ export async function PATCH(
     } = body
 
     const post = await prisma.post.update({
-      where: { id: params.id },
+      where: { id },
       data: {
         title,
         description,
@@ -84,11 +73,10 @@ export async function PATCH(
         publishedAt,
         category: categoryId
           ? { connect: { id: categoryId } }
-          : { disconnect: true }, // if no category selected
+          : { disconnect: true },
         tags:
           tagIds && Array.isArray(tagIds)
             ? {
-                // remove all existing tags first, then reconnect
                 set: [],
                 connect: tagIds.map((id: string) => ({ id })),
               }
@@ -104,11 +92,12 @@ export async function PATCH(
 
 export async function DELETE(
   request: Request,
-  { params }: { params: { id: string } }
-) {
+  { params }: { params: Promise<{ id: string }> }
+): Promise<NextResponse> {
+  const { id } = await params
   try {
     const deletedPost = await prisma.post.delete({
-      where: { id: params.id },
+      where: { id },
     })
     return NextResponse.json(deletedPost)
   } catch (error) {

@@ -2,7 +2,7 @@
 import { NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 
-// GET endpoint to fetch posts with pagination
+// GET endpoint for fetching posts with pagination (unchanged)
 export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url)
@@ -10,7 +10,6 @@ export async function GET(request: Request) {
     const limit = Number(searchParams.get('limit')) || 10
     const skip = (page - 1) * limit
 
-    // Fetch one extra post to determine if there is a next page.
     const posts = await prisma.post.findMany({
       where: { published: true },
       skip,
@@ -29,19 +28,16 @@ export async function GET(request: Request) {
         slug: true,
         categoryId: true,
         category: { select: { id: true, name: true } },
-        tags: {
-          select: { id: true, name: true },
-        },
+        tags: { select: { id: true, name: true } },
       },
     })
 
     const total = await prisma.post.count({ where: { published: true } })
 
-
     let hasNextPage = false
     if (posts.length > limit) {
       hasNextPage = true
-      posts.pop() // remove the extra post from the returned array
+      posts.pop() // remove the extra post
     }
 
     return NextResponse.json({ posts, hasNextPage, total })
@@ -51,7 +47,7 @@ export async function GET(request: Request) {
   }
 }
 
-// Existing POST handler (for creating posts)
+// POST endpoint for creating posts (unchanged)
 export async function POST(request: Request) {
   try {
     const body = await request.json()
@@ -100,13 +96,15 @@ export async function POST(request: Request) {
   }
 }
 
+// DELETE endpoint updated to use Promise for params
 export async function DELETE(
   request: Request,
-  { params }: { params: { id: string } }
-) {
+  { params }: { params: Promise<{ id: string }> }
+): Promise<NextResponse> {
+  const { id } = await params
   try {
     const deletedPost = await prisma.post.delete({
-      where: { id: params.id },
+      where: { id },
     })
     return NextResponse.json(deletedPost)
   } catch (error) {

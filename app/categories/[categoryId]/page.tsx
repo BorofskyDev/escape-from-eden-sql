@@ -3,7 +3,7 @@ import { PrismaClient } from '@prisma/client'
 import { notFound } from 'next/navigation'
 import CategoryDropdown from '@/components/ui/dropdowns/CategoryDropdown'
 import SmallPostCard from '@/components/ui/cards/posts/SmallPostCard'
-import { PostData } from '@/components/ui/cards/posts/PostCard'
+
 import GeneralSection from '@/components/layouts/sections/GeneralSection'
 import PageTitle from '@/components/typography/PageTitle'
 import GeneralBodyText from '@/components/typography/GeneralBodyText'
@@ -13,9 +13,9 @@ const prisma = new PrismaClient()
 export default async function CategoryPage({
   params,
 }: {
-  params: { categoryId: string }
+  params: Promise<{ categoryId: string }>
 }) {
-  const { categoryId } = params
+  const { categoryId } = await params
 
   // Fetch category details
   const category = await prisma.category.findUnique({
@@ -48,11 +48,41 @@ export default async function CategoryPage({
   })
 
   // Transform posts into the shape expected by SmallPostCard.
-  const transformedPosts: PostData[] = posts.map((post) => ({
+  interface OriginalPost {
+    title: string
+    description: string
+    publishedAt: Date | null
+    featuredImage: string | null
+    category?: {
+      id: string
+      name: string
+    } | null
+    tags: {
+      id: string
+      name: string
+    }[]
+    slug: string
+  }
+
+  interface TransformedPost {
+    title: string
+    description: string
+    publishedAt: string
+    imageUrl: string
+    categoryName: string
+    categoryId?: string
+    tags: {
+      id: string
+      name: string
+    }[]
+    slug: string
+  }
+
+  const transformedPosts: TransformedPost[] = posts.map((post: OriginalPost) => ({
     title: post.title,
     description: post.description,
     publishedAt: post.publishedAt
-      ? new Date(post.publishedAt).toLocaleDateString('en-US', {
+      ? post.publishedAt.toLocaleDateString('en-US', {
           month: '2-digit',
           day: '2-digit',
           year: 'numeric',
@@ -61,7 +91,7 @@ export default async function CategoryPage({
     imageUrl: post.featuredImage || 'https://via.placeholder.com/800',
     categoryName: post.category?.name || 'Uncategorized',
     categoryId: post.category?.id,
-    tags: post.tags.map((t) => ({ id: t.id, name: t.name })),
+    tags: post.tags.map((t: { id: string; name: string }) => ({ id: t.id, name: t.name })),
     slug: post.slug,
   }))
 

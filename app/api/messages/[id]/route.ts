@@ -4,12 +4,12 @@ import { prisma } from '@/lib/prisma'
 
 export async function PATCH(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
+  // Await the params since the type expects a Promise
+  const { id } = await params
   try {
-    const { id } = params
     const body = await request.json()
-    // Update fields as needed (e.g., mark message as read)
     const updatedMessage = await prisma.message.update({
       where: { id },
       data: { read: body.read },
@@ -26,10 +26,10 @@ export async function PATCH(
 
 export async function DELETE(
   request: Request,
-  { params }: { params: { id: string } }
-) {
+  { params }: { params: Promise<{ id: string }> }
+): Promise<NextResponse> {
+  const { id } = await params
   try {
-    const { id } = params
     await prisma.message.delete({
       where: { id },
     })

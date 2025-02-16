@@ -1,22 +1,29 @@
 // app/blog/[slug]/page.tsx
+
+import { notFound } from 'next/navigation'
+import { prisma } from '@/lib/prisma'
+import sanitizeHtml from 'sanitize-html'
 import Image from 'next/image'
 import Link from 'next/link'
-import { notFound } from 'next/navigation'
-import sanitizeHtml from 'sanitize-html'
 import GeneralSection from '@/components/layouts/sections/GeneralSection'
 import SimilarPostsSection from '@/components/layouts/sections/SimilarPostsSection'
-import { prisma } from '@/lib/prisma'
 import ShareContainer from '@/components/layouts/containers/ShareContainer'
 import ReadingProgressIndicator from '@/components/ui/ReadingProgressIndicator'
 
-// Generate metadata for each blog post, including social sharing properties.
+// Force dynamic behavior if needed
+export const dynamic = 'force-dynamic'
+// or: export const dynamicParams = true
+
+// Metadata generation
 export async function generateMetadata({
   params,
 }: {
-  params: { slug: string }
+  params: Promise<{ slug: string }>
 }) {
+  const { slug } = await params
+
   const post = await prisma.post.findUnique({
-    where: { slug: params.slug },
+    where: { slug },
     select: { title: true, description: true, featuredImage: true },
   })
 
@@ -40,28 +47,31 @@ export async function generateMetadata({
   }
 }
 
-export default async function PostPage({
+// Optional interface for tags
+interface Tag {
+  id: string
+  name: string
+}
+
+// Main page component
+export default async function Page({
   params,
 }: {
-  params: { slug: string }
+  params: Promise<{ slug: string }>
 }) {
-  const { slug } = params
+  const { slug } = await params
 
   const post = await prisma.post.findUnique({
     where: { slug },
     select: {
       id: true,
       title: true,
-      description: true, // Added this line to fix the error
+      description: true,
       content: true,
       publishedAt: true,
       featuredImage: true,
-      category: {
-        select: { id: true, name: true },
-      },
-      tags: {
-        select: { id: true, name: true },
-      },
+      category: { select: { id: true, name: true } },
+      tags: { select: { id: true, name: true } },
     },
   })
 
@@ -70,7 +80,6 @@ export default async function PostPage({
   }
 
   const sanitizedContent = sanitizeHtml(post.content)
-
   const formattedDate = post.publishedAt
     ? new Date(post.publishedAt).toLocaleDateString('en-US', {
         month: '2-digit',
@@ -83,28 +92,28 @@ export default async function PostPage({
     <>
       <ReadingProgressIndicator />
       <GeneralSection>
-        <article className='my-40 max-w-7xl mx-auto px-6 md:px-8 lg:px-16'>
-          <h1 className='text-3xl font-bold my-4 capitalize'>{post.title}</h1>
+        <article className="my-40 max-w-7xl mx-auto px-6 md:px-8 lg:px-16">
+          <h1 className="text-3xl font-bold my-4 capitalize">{post.title}</h1>
 
           {post.featuredImage && (
-            <div className='relative w-full h-96 mb-4'>
+            <div className="relative w-full h-96 mb-4">
               <Image
                 src={post.featuredImage}
                 alt={post.title}
                 fill
-                className='object-cover'
+                className="object-cover"
               />
             </div>
           )}
 
-          <p className='text-sm text-text2 mb-4'>{formattedDate}</p>
-          <div className='my-4 flex flex-wrap justify-between items-center gap-4'>
+          <p className="text-sm text-text2 mb-4">{formattedDate}</p>
+          <div className="my-4 flex flex-wrap justify-between items-center gap-4">
             {post.category && (
-              <p className='mb-2'>
+              <p className="mb-2">
                 Category:{' '}
                 <Link
                   href={`/categories/${post.category.id}`}
-                  className='text-primary transition-all duration-200 hover:text-secondary hover:underline'
+                  className="text-primary hover:text-secondary underline"
                 >
                   {post.category.name}
                 </Link>
@@ -116,12 +125,12 @@ export default async function PostPage({
               description={post.description}
             />
             {post.tags.length > 0 && (
-              <div className='flex flex-wrap gap-2'>
-                {post.tags.map((tag) => (
+              <div className="flex flex-wrap gap-2">
+                {post.tags.map((tag: Tag) => (
                   <Link
                     key={tag.id}
                     href={`/tags/${tag.id}`}
-                    className='px-2 py-1 text-xs bg-primary text-bg2 rounded hover:bg-secondary transition-all duration-200'
+                    className="px-2 py-1 text-xs bg-primary text-bg2 rounded hover:bg-secondary transition-all duration-200"
                   >
                     {tag.name}
                   </Link>
@@ -130,14 +139,15 @@ export default async function PostPage({
             )}
           </div>
           <div
-            className='prose mb-4 bg-bg2 p-8 max-w-4xl mx-auto shadow-lg rounded-md leading-6 flex flex-col gap-4'
+            className="prose mb-4 bg-bg2 p-8 max-w-4xl mx-auto shadow-lg rounded-md leading-6 flex flex-col gap-4"
             dangerouslySetInnerHTML={{ __html: sanitizedContent }}
           />
         </article>
+
         <SimilarPostsSection
           currentPostId={post.id}
           currentCategoryId={post.category ? post.category.id : null}
-          currentTagIds={post.tags.map((tag) => tag.id)}
+          currentTagIds={post.tags.map((tag: Tag) => tag.id)}
         />
       </GeneralSection>
     </>

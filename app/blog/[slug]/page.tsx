@@ -11,9 +11,9 @@ import ShareContainer from '@/components/layouts/containers/ShareContainer'
 import ReadingProgressIndicator from '@/components/ui/ReadingProgressIndicator'
 import SubscribeContainer from '@/components/layouts/containers/SubscribeContainer'
 
-// Force dynamic behavior if needed
+
 export const dynamic = 'force-dynamic'
-// or: export const dynamicParams = true
+
 
 // Metadata generation
 export async function generateMetadata({

@@ -22,11 +22,16 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>
 }) {
   const { slug } = await params
-
-  const post = await prisma.post.findUnique({
-    where: { slug },
-    select: { title: true, description: true, featuredImage: true },
-  })
+  let post
+  try {
+    post = await prisma.post.findUnique({
+      where: { slug },
+      select: { title: true, description: true, featuredImage: true },
+    })
+  } catch (error) {
+    console.error('Error generating metadata for post:', error)
+    // You might log this error and continue with fallback values
+  }
 
   const defaultDescription =
     'Escape from Eden is a blog about looking at the world in a post-Christian life.'
@@ -47,6 +52,7 @@ export async function generateMetadata({
     },
   }
 }
+
 
 // Optional interface for tags
 interface Tag {

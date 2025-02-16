@@ -104,7 +104,7 @@ export default function PostsTable() {
           </button>
         </div>
       )}
-      {/* Edit Post Modal */}
+    
       {editModalOpen && selectedPost && (
         <EditPostModal
           open={editModalOpen}

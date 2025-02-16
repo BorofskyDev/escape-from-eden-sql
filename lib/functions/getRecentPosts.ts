@@ -1,4 +1,6 @@
 // lib/functions/getRecentPosts.ts
+
+
 export interface RecentPost {
   id: string
   title: string
@@ -21,7 +23,7 @@ export async function getRecentPosts(): Promise<RecentPost[]> {
     const data = await res.json()
     return data.posts // Now each post has { category: {id, name}, ... }
   } catch (error) {
-    console.error('Error in getRecentPosts:', error)
+    console.error('Error fetching posts:', error)
     return []
   }
 }

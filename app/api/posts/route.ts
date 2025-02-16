@@ -5,7 +5,6 @@ import { prisma } from '@/lib/prisma'
 // GET endpoint for fetching posts with pagination (unchanged)
 export async function GET(request: Request) {
   try {
-    console.log('DATABASE_URL in production:', process.env.DATABASE_URL)
     const { searchParams } = new URL(request.url)
     const page = Number(searchParams.get('page')) || 1
     const limit = Number(searchParams.get('limit')) || 10
@@ -42,11 +41,21 @@ export async function GET(request: Request) {
     }
 
     return NextResponse.json({ posts, hasNextPage, total })
-  } catch (error) {
-    console.error('Error fetching posts:', error)
-    return NextResponse.json({ error: 'Error fetching posts' }, { status: 500 })
+  } catch (error: unknown) {
+    let errorMessage = 'Error fetching posts'
+    if (error instanceof Error) {
+      errorMessage = error.message
+    }
+    // Log the error message only.
+    console.error('Error fetching posts:', errorMessage)
+    // Return a JSON response with a proper object payload.
+    return new NextResponse(JSON.stringify({ error: errorMessage }), {
+      status: 500,
+      headers: { 'Content-Type': 'application/json' },
+    })
   }
 }
+
 
 // POST endpoint for creating posts (unchanged)
 export async function POST(request: Request) {

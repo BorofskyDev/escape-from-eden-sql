@@ -93,28 +93,28 @@ export default async function Page({
     <>
       <ReadingProgressIndicator />
       <GeneralSection>
-        <article className="my-40 max-w-7xl mx-auto px-6 md:px-8 lg:px-16">
-          <h1 className="text-3xl font-bold my-4 capitalize">{post.title}</h1>
+        <article className='my-40 max-w-7xl mx-auto px-6 md:px-8 lg:px-16'>
+          <h1 className='text-3xl font-bold my-4 capitalize'>{post.title}</h1>
 
           {post.featuredImage && (
-            <div className="relative w-full h-96 mb-4">
+            <div className='relative w-full h-96 mb-4'>
               <Image
                 src={post.featuredImage}
                 alt={post.title}
                 fill
-                className="object-cover"
+                className='object-cover'
               />
             </div>
           )}
 
-          <p className="text-sm text-text2 mb-4">{formattedDate}</p>
-          <div className="my-4 flex flex-wrap justify-between items-center gap-4">
+          <p className='text-sm text-text2 mb-4'>{formattedDate}</p>
+          <div className='my-4 flex flex-wrap justify-between items-center gap-4'>
             {post.category && (
-              <p className="mb-2">
+              <p className='mb-2'>
                 Category:{' '}
                 <Link
                   href={`/categories/${post.category.id}`}
-                  className="text-primary hover:text-secondary underline"
+                  className='text-primary hover:text-secondary underline'
                 >
                   {post.category.name}
                 </Link>
@@ -126,12 +126,12 @@ export default async function Page({
               description={post.description}
             />
             {post.tags.length > 0 && (
-              <div className="flex flex-wrap gap-2">
+              <div className='flex flex-wrap gap-2'>
                 {post.tags.map((tag: Tag) => (
                   <Link
                     key={tag.id}
                     href={`/tags/${tag.id}`}
-                    className="px-2 py-1 text-xs bg-primary text-bg2 rounded hover:bg-secondary transition-all duration-200"
+                    className='px-2 py-1 text-xs bg-primary text-bg2 rounded hover:bg-secondary transition-all duration-200'
                   >
                     {tag.name}
                   </Link>
@@ -140,11 +140,11 @@ export default async function Page({
             )}
           </div>
           <div
-            className="prose mb-4 bg-bg2 p-8 max-w-4xl mx-auto shadow-lg rounded-md leading-6 flex flex-col gap-4"
+            className='prose mb-4 bg-bg2 p-8 max-w-4xl mx-auto shadow-lg rounded-md leading-6 flex flex-col gap-4'
             dangerouslySetInnerHTML={{ __html: sanitizedContent }}
           />
         </article>
-            <SubscribeContainer />
+        <SubscribeContainer />
         <SimilarPostsSection
           currentPostId={post.id}
           currentCategoryId={post.category ? post.category.id : null}

@@ -9,7 +9,7 @@ import GeneralSection from '@/components/layouts/sections/GeneralSection'
 import SimilarPostsSection from '@/components/layouts/sections/SimilarPostsSection'
 import ShareContainer from '@/components/layouts/containers/ShareContainer'
 import ReadingProgressIndicator from '@/components/ui/ReadingProgressIndicator'
-import SubscribeContainer from '@/components/layouts/containers/SubscribeContainer'
+// import SubscribeContainer from '@/components/layouts/containers/SubscribeContainer'
 
 
 export const dynamic = 'force-dynamic'
@@ -150,7 +150,7 @@ export default async function Page({
             dangerouslySetInnerHTML={{ __html: sanitizedContent }}
           />
         </article>
-        <SubscribeContainer />
+        {/* <SubscribeContainer /> */}
         <SimilarPostsSection
           currentPostId={post.id}
           currentCategoryId={post.category ? post.category.id : null}

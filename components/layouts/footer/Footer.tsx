@@ -28,6 +28,15 @@ export default function Footer() {
             </ul>
           </div>
 
+          {/* Social Media Column */}
+          <div className='mb-6 md:mb-0'>
+            <p>
+              Designed and developed by{' '}
+              <a href='https://joelborofsky.com' target='_blank'>
+                JBSky Dev
+              </a>{' '}
+            </p>
+          </div>
           {/* Legal Disclosures Column */}
           <div>
             <h3 className='font-bold mb-2'>Legal</h3>

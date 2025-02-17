@@ -32,10 +32,10 @@ export default function LoginForm() {
   }
 
   return (
-    <div className='flex items-center justify-center min-h-screen bg-gray-50'>
+    <div className='flex items-center justify-center min-h-screen bg-bg1'>
       <form
         onSubmit={handleSubmit}
-        className='max-w-md w-full space-y-4 p-6 bg-white shadow-md rounded'
+        className='max-w-md w-full space-y-4 p-6 bg-bg2 shadow-md rounded'
       >
         <h1 className='text-2xl font-bold'>Login</h1>
         {error && <p className='text-red-500'>{error}</p>}

@@ -4,6 +4,7 @@ import Providers from './providers'
 import { Playfair_Display, Open_Sans } from 'next/font/google'
 import Navbar from '@/components/layouts/header/Navbar'
 import Footer from '@/components/layouts/footer/Footer'
+import { Analytics } from '@vercel/analytics/react'
 
 const playfair = Playfair_Display({
   display: 'swap',
@@ -34,6 +35,7 @@ export default function RootLayout({
     <html lang='en' suppressHydrationWarning>
       <body suppressHydrationWarning className={`${playfair.variable} ${openSans.variable} antialiased`}>
         <Providers>
+          <Analytics />
           <Navbar />
           {children}
           <Footer />

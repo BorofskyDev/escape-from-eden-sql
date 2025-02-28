@@ -31,28 +31,49 @@ export default function CitationReaderModal({
 }: CitationReaderModalProps) {
   if (!open) return null
 
-  // Example render logic for each field
+  // Updated render logic for each field:
   const renderField = (field: CitationField) => {
-    let content = field.value
-    // apply format
-    if (field.format === 'bold') {
-      content = `<strong>${content}</strong>`
-    } else if (field.format === 'italic') {
-      content = `<em>${content}</em>`
-    } else if (field.format === 'underline') {
-      content = `<u>${content}</u>`
+    // Try to parse the field value as JSON
+    let parsedLink: { title?: string; href?: string } | null = null
+    try {
+      parsedLink = JSON.parse(field.value)
+    } catch {
+      parsedLink = null
     }
-    
-    return (
-      <span key={field.name} dangerouslySetInnerHTML={{ __html: content }} />
-    )
-    // You could also append punctuation in the same span or a separate element
+
+    if (parsedLink && parsedLink.href && parsedLink.title) {
+      // If it's a valid link object, render an anchor element
+      return (
+        <a
+          key={field.name}
+          href={parsedLink.href}
+          target='_blank'
+          rel='noopener noreferrer'
+          className='text-primary underline'
+        >
+          {parsedLink.title}
+        </a>
+      )
+    } else {
+      // Otherwise, render the field value with formatting if needed
+      let content = field.value
+      if (field.format === 'bold') {
+        content = `<strong>${content}</strong>`
+      } else if (field.format === 'italic') {
+        content = `<em>${content}</em>`
+      } else if (field.format === 'underline') {
+        content = `<u>${content}</u>`
+      }
+
+      return (
+        <span key={field.name} dangerouslySetInnerHTML={{ __html: content }} />
+      )
+    }
   }
 
   return (
     <Modal open={true} onClose={onClose}>
       <h2 className='text-lg font-bold mb-2'>Citation #{citationIndex + 1}</h2>
-      
       <div className='space-x-1'>
         {citationData.fields.map((field, i) => (
           <React.Fragment key={i}>

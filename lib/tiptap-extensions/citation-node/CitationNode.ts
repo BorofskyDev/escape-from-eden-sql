@@ -111,34 +111,42 @@ export const CitationNode = Node.create({
   },
 
   // How the node appears inline in the editor UI
-  renderHTML({ node, HTMLAttributes }) {
-    const data = (node.attrs as { citationData: CitationData }).citationData
-    let displayText: string = '[CITATION]'
+ renderHTML({ node, HTMLAttributes }) {
+  const data = (node.attrs as { citationData: CitationData }).citationData
+  let content: string | [string, Record<string, unknown>, string] = '[CITATION]'
 
-    if (data.fields && data.fields.length > 0) {
-      const firstField = data.fields[0]
-      if (firstField.type === 'link') {
-        try {
-          // Parse the value which should be a JSON string containing { title, href }
-          const linkData = JSON.parse(firstField.value)
-          // Create a clickable link. Note that downstream processing must allow HTML.
-          displayText = `<a href="${linkData.href}" target="_blank" rel="noopener noreferrer">${linkData.title}</a>`
-        } catch {
-          displayText = `[CITE: ${firstField.value || '???'}]`
-        }
-      } else {
-        displayText = `[CITE: ${firstField.value || '???'}]`
+  if (data.fields && data.fields.length > 0) {
+    const firstField = data.fields[0]
+    if (firstField.type === 'link') {
+      try {
+        const linkData = JSON.parse(firstField.value)
+        // Instead of returning an HTML string, return a nested array for an <a> element.
+        content = [
+          'a',
+          {
+            href: linkData.href,
+            target: '_blank',
+            rel: 'noopener noreferrer'
+          },
+          linkData.title
+        ]
+      } catch {
+        content = `[CITE: ${firstField.value || '???'}]`
       }
-    } else if (data.styleName) {
-      displayText = `[CITE: ${data.styleName}]`
+    } else {
+      content = `[CITE: ${firstField.value || '???'}]`
     }
+  } else if (data.styleName) {
+    content = `[CITE: ${data.styleName}]`
+  }
 
-    return [
-      'span',
-      mergeAttributes(HTMLAttributes, { class: 'tiptap-citation-node' }),
-      displayText,
-    ]
-  },
+  return [
+    'span',
+    mergeAttributes(HTMLAttributes, { class: 'tiptap-citation-node' }),
+    content
+  ]
+},
+
 
   // Our custom Tiptap commands
   addCommands() {

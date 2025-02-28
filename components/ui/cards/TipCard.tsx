@@ -17,7 +17,7 @@ export default function TipCard() {
       <h2 className='text-2xl font-header mb-4 text-text1 capitalize'>
         Help me stay independent
       </h2>
-      <p className='mb-4 text-text2'>
+      <p className='mb-4 px-8 text-text2'>
         If you like the quality of content, please feel free to contribute
         something. Any little bit is appreciated. The more I earn from this, the
         more that will free me up to do more research and bring higher quality

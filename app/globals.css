@@ -47,4 +47,87 @@
 }
 
 
+.editorCanvas h1 {
+  margin: 1rem auto;
+  font-size: 2.75rem;
+  line-height: 2rem;
+  font-weight: 800;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.editorCanvas h2 {
+  font-size: 2.5rem;
+  line-height: 1.75rem;
+  font-weight: 700;
+  text-transform: capitalize;
+  text-align: center;
+}
+
+.editorCanvas h3 {
+  font-size: 2rem;
+  line-height: 1.5rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.editorCanvas h4 {
+  font-size: 1.5rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.editorCanvas h5 {
+  font-size: 1.25rem;
+  line-height: 1rem;
+  font-weight: 400;
+  text-transform: capitalize;
+  @apply font-body;
+}
+
+.editorCanvas h6 {
+  font-size: 1rem;
+  line-height: 1rem;
+  font-weight: 300;
+  text-transform: capitalize;
+  @apply font-body;
+
+}
+
+.editorCanvas p {
+  margin: 1rem 0;
+  line-height: 2rem;
+}
+
+
+
+
+.editorCanvas ul {
+  list-style: disc;
+  margin-left: 1.5rem;
+}
+
+.editorCanvas ol {
+  list-style: decimal;
+  margin-left: 1.5rem;
+}
+
+.editorCanvas blockquote {
+  border-left: 4px solid #ccc;
+  padding-left: 1rem;
+  color: var(--text2);
+  font-style: italic;
+}
+
+.editorCanvas a {
+  color: var(--primary);
+  text-decoration: underline;
+  transition: color 0.2s;
+}
+
+.editorCanvas a:hover {
+  color: var(--secondary);
+}
+
 

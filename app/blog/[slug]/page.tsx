@@ -10,6 +10,7 @@ import SimilarPostsSection from '@/components/layouts/sections/SimilarPostsSecti
 import ShareContainer from '@/components/layouts/containers/ShareContainer'
 import ReadingProgressIndicator from '@/components/ui/ReadingProgressIndicator'
 import TipCard from '@/components/ui/cards/TipCard'
+import BlogPostReaderContent from '@/components/reader/BlogPostContent'
 // import SubscribeContainer from '@/components/layouts/containers/SubscribeContainer'
 
 
@@ -87,7 +88,14 @@ export default async function Page({
     notFound()
   }
 
-  const sanitizedContent = sanitizeHtml(post.content)
+  const sanitizedContent = sanitizeHtml(post.content, {
+    allowedTags: sanitizeHtml.defaults.allowedTags.concat(['span']),
+    allowedAttributes: {
+      ...sanitizeHtml.defaults.allowedAttributes,
+      span: ['data-citation', 'class'],
+      a: ['href', 'title', 'target', 'rel'],
+    },
+  })
   const formattedDate = post.publishedAt
     ? new Date(post.publishedAt).toLocaleDateString('en-US', {
         month: '2-digit',
@@ -100,7 +108,7 @@ export default async function Page({
     <>
       <ReadingProgressIndicator />
       <GeneralSection>
-        <article className='my-40 max-w-7xl mx-auto px-6 md:px-8 lg:px-16'>
+        <article className='articleContent my-40 max-w-7xl mx-auto px-6 md:px-8 lg:px-16'>
           <h1 className='text-3xl font-bold my-4 capitalize'>{post.title}</h1>
 
           {post.featuredImage && (
@@ -146,10 +154,9 @@ export default async function Page({
               </div>
             )}
           </div>
-          <div
-            className='prose mb-4 bg-bg2 p-8 max-w-4xl mx-auto shadow-lg rounded-md leading-6 flex flex-col gap-4'
-            dangerouslySetInnerHTML={{ __html: sanitizedContent }}
-          />
+          <div className='prose mb-4 bg-bg2 p-8 max-w-4xl mx-auto shadow-lg rounded-md leading-6 flex flex-col gap-4'>
+            <BlogPostReaderContent html={sanitizedContent} />
+          </div>
         </article>
         <TipCard />
         {/* <SubscribeContainer /> */}

@@ -90,7 +90,7 @@ export default function Modal({ open, onClose, children, origin }: ModalProps) {
             {/* Scrollable modal panel */}
             <div
               onClick={handleModalClick}
-              className='relative bg-bg2 rounded shadow-xl p-6 w-full max-w-md 
+              className='relative bg-bg2 mx-10 rounded shadow-xl p-6 w-full max-w-5xl 
                          max-h-[calc(100vh-4rem)] overflow-y-auto'
             >
               {/* Close Button */}

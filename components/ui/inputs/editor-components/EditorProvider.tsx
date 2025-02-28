@@ -6,6 +6,7 @@ import React, {
   type ChangeEvent,
 } from 'react'
 import { useEditor, Editor} from '@tiptap/react'
+import { CitationNode } from '@/lib/tiptap-extensions/citation-node/CitationNode'
 import StarterKit from '@tiptap/starter-kit'
 import LinkExtension from '@tiptap/extension-link'
 import ImageExtension from '@tiptap/extension-image'
@@ -43,6 +44,7 @@ export function EditorProvider({
       StarterKit,
       LinkExtension.configure({ openOnClick: false }),
       ImageExtension,
+      CitationNode
     ],
     content: initialHTML || '<p></p>',
     editorProps: {

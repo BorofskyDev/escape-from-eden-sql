@@ -8,44 +8,45 @@
     @apply font-body;
     background-color: var(--bg1);
   }
-  
+
   /* Make all headers use Playfair Display (header) */
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply font-header;
   }
-  
+
   /* Global link styles */
   a {
-    
     font-family: var(--font-open-sans); /* ensure links use Open Sans */
     transition: color 0.2s;
   }
-  
-  
 }
 
 /* Light mode variables (default) */
 :root {
-  --bg1: #EBEDF5;
-  --bg2: #FAFAFA;
-  --text1: #0A0A0A;
+  --bg1: #ebedf5;
+  --bg2: #fafafa;
+  --text1: #0a0a0a;
   --text2: #141414;
-  --primary: #100E7D;
-  --secondary: #6E0C52;
-  --accent: #74B59C;
+  --primary: #100e7d;
+  --secondary: #6e0c52;
+  --accent: #74b59c;
 }
 
 /* Dark mode variables */
 .dark {
   --bg1: #141414;
-  --bg2: #1A1A1A;
-  --text1: #F8F7FA;
-  --text2: #E1DFEB;
-  --primary: #72AFF7;
-  --secondary: #CB90F0;
-  --accent: #90F0C7;
+  --bg2: #1a1a1a;
+  --text1: #f8f7fa;
+  --text2: #e1dfeb;
+  --primary: #72aff7;
+  --secondary: #cb90f0;
+  --accent: #90f0c7;
 }
-
 
 .editorCanvas h1 {
   margin: 1rem auto;
@@ -92,16 +93,12 @@
   font-weight: 300;
   text-transform: capitalize;
   @apply font-body;
-
 }
 
 .editorCanvas p {
   margin: 1rem 0;
   line-height: 2rem;
 }
-
-
-
 
 .editorCanvas ul {
   list-style: disc;
@@ -130,4 +127,51 @@
   color: var(--secondary);
 }
 
+.articleContent h1 {
+  @apply text-3xl font-extrabold leading-9  uppercase text-center;
+}
 
+.articleContent h1, 
+.articleContent h2,
+.articleContent h3,
+.articleContent h4,
+.articleContent h5,
+.articleContent h6 {
+  @apply my-4 mx-auto text-center;
+}
+
+.articleContent h2 {
+  @apply text-3xl font-extrabold leading-7 uppercase text-center;
+}
+
+.articleContent p {
+  margin-bottom: 1.25rem;
+  line-height: 1.7;
+  /* etc. */
+}
+
+.articleContent ul {
+  list-style: disc;
+  margin-left: 1.5rem;
+}
+
+.articleContent ol {
+  list-style: decimal;
+  margin-left: 1.5rem;
+}
+
+.articleContent blockquote {
+  @apply border-l-4 border-primary pl-4 italic text-text2;
+ 
+  color: var(--text2);
+}
+
+.articleContent a {
+  color: var(--primary);
+  text-decoration: underline;
+  transition: color 0.2s;
+}
+
+.articleContent a:hover {
+  color: var(--secondary);
+}

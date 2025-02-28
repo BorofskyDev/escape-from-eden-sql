@@ -9,7 +9,7 @@ import GeneralSection from '@/components/layouts/sections/GeneralSection'
 import SimilarPostsSection from '@/components/layouts/sections/SimilarPostsSection'
 import ShareContainer from '@/components/layouts/containers/ShareContainer'
 import ReadingProgressIndicator from '@/components/ui/ReadingProgressIndicator'
-// import TipCard from '@/components/ui/cards/TipCard'
+import TipCard from '@/components/ui/cards/TipCard'
 // import SubscribeContainer from '@/components/layouts/containers/SubscribeContainer'
 
 
@@ -151,7 +151,7 @@ export default async function Page({
             dangerouslySetInnerHTML={{ __html: sanitizedContent }}
           />
         </article>
-        {/* <TipCard /> */}
+        <TipCard />
         {/* <SubscribeContainer /> */}
         <SimilarPostsSection
           currentPostId={post.id}

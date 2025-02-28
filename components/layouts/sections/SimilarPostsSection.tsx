@@ -1,10 +1,9 @@
 
 
-import { PrismaClient } from '@prisma/client'
+import {prisma} from '@/lib/prisma'
 import SmallPostCard from '@/components/ui/cards/posts/SmallPostCard'
 import { PostData } from '@/components/ui/cards/posts/PostCard'
 
-const prisma = new PrismaClient()
 
 interface SimilarPostsProps {
   currentPostId: string

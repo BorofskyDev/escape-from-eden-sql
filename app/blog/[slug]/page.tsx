@@ -13,7 +13,7 @@ import TipCard from '@/components/ui/cards/TipCard'
 // import SubscribeContainer from '@/components/layouts/containers/SubscribeContainer'
 
 
-export const dynamic = 'force-dynamic'
+// export const dynamic = 'force-dynamic'
 
 
 // Metadata generation

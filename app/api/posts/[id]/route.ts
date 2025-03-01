@@ -9,9 +9,9 @@ import { sendNewPostNotification } from '@/lib/notifications/sendPostEmail'
  */
 export async function GET(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
-  const { id } = params
+  const { id } = await params
   try {
     const post = await prisma.post.findUnique({
       where: { id },
@@ -125,9 +125,9 @@ export async function PATCH(
  */
 export async function DELETE(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string } >}
 ): Promise<NextResponse> {
-  const { id } = params
+  const { id } = await params
   try {
     const deletedPost = await prisma.post.delete({
       where: { id },

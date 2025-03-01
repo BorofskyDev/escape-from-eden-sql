@@ -45,7 +45,7 @@ export default function Footer() {
                 <Link href='/privacy-policy'>Privacy Policy</Link>
               </li>
               <li>
-                <Link href='/cookies'>Cookies</Link>
+                <Link href='/cookies-policy'>Cookies</Link>
               </li>
               <li>
                 <Link href='/terms'>Terms and Agreement</Link>

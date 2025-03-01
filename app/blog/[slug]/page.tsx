@@ -11,7 +11,7 @@ import ShareContainer from '@/components/layouts/containers/ShareContainer'
 import ReadingProgressIndicator from '@/components/ui/ReadingProgressIndicator'
 import TipCard from '@/components/ui/cards/TipCard'
 import BlogPostReaderContent from '@/components/reader/BlogPostContent'
-// import SubscribeContainer from '@/components/layouts/containers/SubscribeContainer'
+import SubscribeContainer from '@/components/layouts/containers/SubscribeContainer'
 
 
 // export const dynamic = 'force-dynamic'
@@ -168,7 +168,7 @@ export default async function Page({
           </div>
         </article>
         <TipCard />
-        {/* <SubscribeContainer /> */}
+        <SubscribeContainer />
         <SimilarPostsSection
           currentPostId={post.id}
           currentCategoryId={post.category ? post.category.id : null}

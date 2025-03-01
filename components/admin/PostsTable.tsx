@@ -1,4 +1,3 @@
-// components/admin/PostsTable.tsx
 'use client'
 
 import { useState } from 'react'
@@ -28,11 +27,9 @@ export default function PostsTable() {
 
     try {
       await deletePost(post.id)
-      // Option 1: refetch the posts list after deletion
       if (refetch) {
         refetch()
       }
-      // Option 2: remove the deleted post from state (if you're managing it locally)
     } catch (err: unknown) {
       if (err instanceof Error) {
         console.error('Failed to delete post:', err.message)
@@ -76,7 +73,7 @@ export default function PostsTable() {
                   />
                 </td>
                 <td className='border p-2 capitalize'>{post.title}</td>
-                <td className='border p-2'>
+                <td className={`border p-2 ${post.published ? 'bg-secondary text-bg1' : ''}`}>
                   {post.published ? 'Published' : 'Draft'}
                 </td>
                 <td className='border p-2'>{formatDate(post.updatedAt)}</td>
@@ -93,18 +90,35 @@ export default function PostsTable() {
           </tbody>
         </table>
       )}
-      {/* Pagination: "Next" button */}
-      {hasNextPage && !loading && (
-        <div className='flex justify-end mt-4'>
+
+      {/* Pagination controls: Always rendered when not loading */}
+      {!loading && (
+        <div className='flex justify-between mt-4'>
           <button
-            onClick={() => setPage((prev) => prev + 1)}
-            className='bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600'
+            onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
+            disabled={page === 1}
+            className={`bg-primary text-bg1 px-4 py-2 rounded transition-all duration-200 ${
+              page === 1
+                ? 'cursor-not-allowed opacity-50'
+                : 'hover:bg-secondary'
+            }`}
+          >
+            Prev
+          </button>
+          <button
+            onClick={() => hasNextPage && setPage((prev) => prev + 1)}
+            disabled={!hasNextPage}
+            className={`bg-primary text-bg1 px-4 py-2 rounded transition-all duration-200 ${
+              !hasNextPage
+                ? 'cursor-not-allowed opacity-50'
+                : 'hover:bg-secondary'
+            }`}
           >
             Next
           </button>
         </div>
       )}
-    
+
       {editModalOpen && selectedPost && (
         <EditPostModal
           open={editModalOpen}

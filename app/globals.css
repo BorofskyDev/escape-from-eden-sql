@@ -28,8 +28,8 @@
 
 /* Light mode variables (default) */
 :root {
-  --bg1: #ebedf5;
-  --bg2: #fafafa;
+  --bg1: #fcfcfc;
+  --bg2: #ebedf5;
   --text1: #0a0a0a;
   --text2: #141414;
   --primary: #100e7d;
@@ -131,20 +131,13 @@
   @apply text-sm font-semibold text-secondary;
 }
 
-.articleContent h1 {
-  @apply text-3xl font-extrabold leading-9 my-8 uppercase text-center;
-}
-
-.articleContent h2 {
-  @apply my-7 text-3xl font-extrabold leading-7 uppercase text-center;
-}
 
 .articleContent h3 {
-  @apply my-16 text-2xl px-2 py-6 font-bold leading-6 uppercase text-center border border-primary rounded-md;
+  @apply my-16 text-2xl px-2 py-6 font-bold leading-6 uppercase text-center border-b border-primary ;
 }
 
 .articleContent h4 {
-  @apply w-full md:w-3/4 lg:w-1/2 my-12 mx-auto text-xl py-4 px-6 font-bold leading-5 capitalize text-center border border-secondary rounded-lg;
+  @apply w-full md:w-3/4 lg:w-1/2 my-12 mx-auto text-xl py-4 px-6 font-bold leading-5 capitalize text-center border-b border-secondary;
 }
 
 .articleContent h5 {

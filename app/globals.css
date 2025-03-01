@@ -127,26 +127,38 @@
   color: var(--secondary);
 }
 
-.articleContent h1 {
-  @apply text-3xl font-extrabold leading-9  uppercase text-center;
+.editorCanvas .footnote {
+  @apply text-sm font-semibold text-secondary;
 }
 
-.articleContent h1, 
-.articleContent h2,
-.articleContent h3,
-.articleContent h4,
-.articleContent h5,
-.articleContent h6 {
-  @apply my-4 mx-auto text-center;
+
+.articleContent h1 {
+  @apply text-3xl font-extrabold leading-9 my-8 uppercase text-center;
 }
 
 .articleContent h2 {
-  @apply text-3xl font-extrabold leading-7 uppercase text-center;
+  @apply my-7 text-3xl font-extrabold leading-7 uppercase text-center ;
+}
+
+.articleContent h3 {
+  @apply my-16 text-2xl py-6 font-bold leading-6 uppercase text-center border border-primary rounded-md;
+}
+
+.articleContent h4 {
+  @apply w-1/2 my-12 mx-auto text-xl py-4 px-6 font-bold leading-5 capitalize text-center border border-secondary rounded-lg;
+}
+
+.articleContent h5 {
+  @apply w-1/4 my-8 text-lg py-4 font-bold leading-4 capitalize border-b border-primary;
+}
+
+.articleContent h6 {
+  @apply my-4 text-base font-bold leading-4 capitalize;
 }
 
 .articleContent p {
   margin-bottom: 1.25rem;
-  line-height: 1.7;
+  line-height: 1.9;
   /* etc. */
 }
 
@@ -161,7 +173,7 @@
 }
 
 .articleContent blockquote {
-  @apply border-l-4 border-primary pl-4 italic text-text2;
+  @apply border-l-4 mx-auto border-primary px-16 italic text-text2;
  
   color: var(--text2);
 }
@@ -172,6 +184,12 @@
   transition: color 0.2s;
 }
 
+.articleContent a:hover, 
+.articleContent a:focus {
+  color: var(--secondary);
+}
+
 .articleContent a:hover {
   color: var(--secondary);
 }
+

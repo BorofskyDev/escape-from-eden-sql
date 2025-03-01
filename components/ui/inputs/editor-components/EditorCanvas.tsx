@@ -11,7 +11,7 @@ export default function EditorCanvas() {
   return (
     <EditorContent
       editor={editor}
-      className='editorCanvas border rounded py-4 px-10 h-dvh overflow-auto'
+      className='editorCanvas footnote border rounded py-4 px-10 h-dvh overflow-auto'
     />
   )
 }

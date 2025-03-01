@@ -92,10 +92,16 @@ export default async function Page({
     allowedTags: sanitizeHtml.defaults.allowedTags.concat(['span']),
     allowedAttributes: {
       ...sanitizeHtml.defaults.allowedAttributes,
-      span: ['data-citation', 'class'],
+      span: [
+        'data-footnote',
+        'data-footnote-title',
+        'data-footnote-content',
+        'class',
+      ],
       a: ['href', 'title', 'target', 'rel'],
     },
   })
+
   const formattedDate = post.publishedAt
     ? new Date(post.publishedAt).toLocaleDateString('en-US', {
         month: '2-digit',
@@ -146,9 +152,12 @@ export default async function Page({
                   <Link
                     key={tag.id}
                     href={`/tags/${tag.id}`}
-                    className='px-2 py-1 text-xs bg-primary text-bg2 rounded hover:bg-secondary transition-all duration-200'
+                    className='px-2 py-1 text-xs bg-primary rounded hover:bg-secondary shadow-md hover:shadow-xl transition-all duration-200'
                   >
+                  <span className="text-bg1 font-semibold">
                     {tag.name}
+
+                  </span>
                   </Link>
                 ))}
               </div>

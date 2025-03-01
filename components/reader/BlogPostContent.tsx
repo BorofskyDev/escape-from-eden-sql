@@ -1,62 +1,63 @@
 'use client'
-import React, { useState, useMemo, useEffect } from 'react'
+
+import React, { useState, useMemo } from 'react'
 import parse, { Element } from 'html-react-parser'
-import CitationReaderModal, {
-  CitationData,
-} from '@/components/modals/CitationReaderModal'
+import FootnoteReaderModal from '@/components/modals/FootnoteReaderModal'
+
+interface FootnoteData {
+  title: string
+  content: string
+}
 
 interface BlogPostReaderContentProps {
-  html: string // sanitized HTML
+  html: string
 }
 
 export default function BlogPostReaderContent({
   html,
 }: BlogPostReaderContentProps) {
-  const [citations, setCitations] = useState<CitationData[]>([])
   const [activeIndex, setActiveIndex] = useState<number | null>(null)
 
-  // Extract citations with useEffect
-  useEffect(() => {
-    const foundCitations: CitationData[] = []
+  // Extract all footnotes into an array.
+  const footnotes = useMemo(() => {
+    const result: FootnoteData[] = []
     parse(html, {
       replace: (domNode) => {
         if (
           domNode instanceof Element &&
           domNode.name === 'span' &&
-          domNode.attribs?.['data-citation']
+          'data-footnote' in domNode.attribs
         ) {
-          try {
-            const data: CitationData = JSON.parse(
-              domNode.attribs['data-citation']
-            )
-            foundCitations.push(data)
-          } catch {
-            foundCitations.push({ fields: [] })
-          }
+          const title = domNode.attribs['data-footnote-title'] || ''
+          const content = domNode.attribs['data-footnote-content'] || ''
+          result.push({ title, content })
         }
       },
     })
-    setCitations(foundCitations)
+    return result
   }, [html])
 
-  // Transform content – we only do element replacement here without side effects
+  // Replace each footnote node with a superscript number.
   const transformedContent = useMemo(() => {
-    let citationCounter = 0
+    let counter = 0
     return parse(html, {
       replace: (domNode) => {
         if (
           domNode instanceof Element &&
           domNode.name === 'span' &&
-          domNode.attribs?.['data-citation']
+          'data-footnote' in domNode.attribs
         ) {
-          const index = citationCounter
-          citationCounter++
+          const index = counter
+          counter++
           return (
             <sup
+              key={index}
               style={{
                 cursor: 'pointer',
+                fontSize: '0.75rem',
+                verticalAlign: 'super',
                 color: 'var(--primary)',
-                marginLeft: '2px',
+                marginLeft: '1px',
               }}
               onClick={() => setActiveIndex(index)}
               onMouseEnter={(e) =>
@@ -77,11 +78,11 @@ export default function BlogPostReaderContent({
   return (
     <div>
       {transformedContent}
-      {activeIndex !== null && citations[activeIndex] && (
-        <CitationReaderModal
+      {activeIndex !== null && footnotes[activeIndex] && (
+        <FootnoteReaderModal
           open={true}
-          citationIndex={activeIndex}
-          citationData={citations[activeIndex]}
+          footnoteIndex={activeIndex}
+          footnoteData={footnotes[activeIndex]}
           onClose={() => setActiveIndex(null)}
         />
       )}

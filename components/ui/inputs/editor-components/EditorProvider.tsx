@@ -1,19 +1,12 @@
-'use client'
-
-import React, {
-  createContext,
-  useContext,
-  type ChangeEvent,
-} from 'react'
-import { useEditor, Editor} from '@tiptap/react'
-import { CitationNode } from '@/lib/tiptap-extensions/citation-node/CitationNode'
+import React, { createContext, useContext, type ChangeEvent } from 'react'
+import { useEditor, Editor } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import LinkExtension from '@tiptap/extension-link'
 import ImageExtension from '@tiptap/extension-image'
+import { FootnoteNode } from '@/lib/tiptap-extensions/footnote-node/footnoteNode'
 
 interface EditorContextProps {
   editor: Editor | null
-  // Potentially put callbacks for image upload or link insertion here
   handleAddImage: (e: ChangeEvent<HTMLInputElement>) => void
   handleAddLink: () => void
 }
@@ -44,7 +37,7 @@ export function EditorProvider({
       StarterKit,
       LinkExtension.configure({ openOnClick: false }),
       ImageExtension,
-      CitationNode
+      FootnoteNode, // use the simplified node here
     ],
     content: initialHTML || '<p></p>',
     editorProps: {
@@ -58,7 +51,6 @@ export function EditorProvider({
     },
   })
 
-  // If you prefer, you can keep file input logic inside the provider, or move it to a dedicated component
   const handleAddImage = (e: ChangeEvent<HTMLInputElement>) => {
     if (editor) {
       const files = e.target.files

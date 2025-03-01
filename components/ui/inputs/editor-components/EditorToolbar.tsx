@@ -1,13 +1,13 @@
+// EditorToolbar.tsx
 'use client'
 
 import React, { useState, useRef } from 'react'
 import { useEditorContext } from './EditorProvider'
-import CitationAuthorModal from '@/components/modals/CitationAuthorModal'
-import { CitationData } from '@/lib/types/citationFieldTypes'
+import FootnoteModal from '@/components/modals/FootnoteModal'
 import { EditorState } from '@tiptap/pm/state'
 import { Node as PMNode } from 'prosemirror-model'
 
-function getCitationNodeInSelection(
+function getFootnoteNodeInSelection(
   state: EditorState,
   nodeName: string
 ): { pos: number; node: PMNode } | null {
@@ -22,61 +22,59 @@ function getCitationNodeInSelection(
   return foundNode
 }
 
-interface SavedStyles {
-  [styleLabel: string]: { id: string; name: string; type: 'text' | 'link' }[]
-}
-
 export default function EditorToolbar() {
   const { editor, handleAddImage, handleAddLink } = useEditorContext()
-  const fileInputRef = useRef<HTMLInputElement>(null)
 
-  // Control the citation modal
-  const [showCitationModal, setShowCitationModal] = useState(false)
+  const [showFootnoteModal, setShowFootnoteModal] = useState(false)
   const [isEditing, setIsEditing] = useState(false)
-  const [initialData, setInitialData] = useState<CitationData | undefined>(
+  const [initialTitle, setInitialTitle] = useState<string | undefined>(
     undefined
   )
-
-  // "Saved styles" that are only for this particular post (session-level).
-  const [savedStyles, setSavedStyles] = useState<SavedStyles>({})
+  const [initialContent, setInitialContent] = useState<string | undefined>(
+    undefined
+  )
+  const fileInputRef = useRef<HTMLInputElement>(null)
 
   if (!editor) return null
 
   const focusEditor = () => editor.chain().focus()
 
-  const handleNewCitation = () => {
+  const handleNewFootnote = () => {
     setIsEditing(false)
-    // Force the modal to be blank
-    setInitialData(undefined)
-    setShowCitationModal(true)
+    setInitialTitle(undefined)
+    setInitialContent(undefined)
+    setShowFootnoteModal(true)
   }
 
-  const handleEditCitation = () => {
-    const found = getCitationNodeInSelection(editor.state, 'citation')
+  const handleEditFootnote = () => {
+    const found = getFootnoteNodeInSelection(editor.state, 'footnote')
     if (!found) {
-      alert('No citation node found in selection to edit!')
+      alert('No footnote node found in selection to edit!')
       return
     }
-    const nodeData = (found.node.attrs as { citationData: CitationData })
-      .citationData
+    const nodeTitle = found.node.attrs.title
+    const nodeContent = found.node.attrs.content
     setIsEditing(true)
-    setInitialData(nodeData)
-    setShowCitationModal(true)
+    setInitialTitle(nodeTitle)
+    setInitialContent(nodeContent)
+    setShowFootnoteModal(true)
   }
 
-  const handleSubmitCitation = (data: CitationData) => {
+  const handleSubmitFootnote = (title: string, content: string) => {
     focusEditor()
     if (isEditing) {
-      editor.chain().updateCitation({ citationData: data }).run()
+      editor.commands.updateAttributes('footnote', { title, content })
     } else {
-      editor.chain().addCitation({ citationData: data }).run()
+      editor
+        .chain()
+        .insertContent({
+          type: 'footnote',
+          attrs: { title, content },
+        })
+        .insertContent(' ')
+        .run()
     }
-    setShowCitationModal(false)
-  }
-
-  // If the user saves a new style in the modal, update local state
-  const handleUpdateStyles = (updated: SavedStyles) => {
-    setSavedStyles(updated)
+    setShowFootnoteModal(false)
   }
 
   return (
@@ -205,22 +203,6 @@ export default function EditorToolbar() {
         style={{ display: 'none' }}
       />
 
-      {/* Citation Buttons */}
-      <button
-        type='button'
-        onClick={handleNewCitation}
-        className='px-2 py-1 border rounded text-sm hover:bg-gray-200'
-      >
-        New Citation
-      </button>
-      <button
-        type='button'
-        onClick={handleEditCitation}
-        className='px-2 py-1 border rounded text-sm hover:bg-gray-200'
-      >
-        Edit Citation
-      </button>
-
       {/* Link */}
       <button
         type='button'
@@ -230,15 +212,32 @@ export default function EditorToolbar() {
         Link
       </button>
 
-      {/* Citation Modal */}
-      <CitationAuthorModal
-        open={showCitationModal}
-        onClose={() => setShowCitationModal(false)}
-        initialData={initialData}
-        onSubmitCitation={handleSubmitCitation}
-        savedStyles={savedStyles} // pass our local post-level styles
-        onUpdateStyles={handleUpdateStyles}
-      />
+      {/* Footnote Buttons */}
+      <button
+        type='button'
+        onClick={handleNewFootnote}
+        className='px-2 py-1 border rounded text-sm hover:bg-gray-200'
+      >
+        New Footnote
+      </button>
+      <button
+        type='button'
+        onClick={handleEditFootnote}
+        className='px-2 py-1 border rounded text-sm hover:bg-gray-200'
+      >
+        Edit Footnote
+      </button>
+
+      {/* Include FootnoteModal */}
+      {showFootnoteModal && (
+        <FootnoteModal
+          open={showFootnoteModal}
+          onClose={() => setShowFootnoteModal(false)}
+          initialTitle={initialTitle}
+          initialContent={initialContent}
+          onSubmitFootnote={handleSubmitFootnote}
+        />
+      )}
     </div>
   )
 }

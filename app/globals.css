@@ -131,25 +131,24 @@
   @apply text-sm font-semibold text-secondary;
 }
 
-
 .articleContent h1 {
   @apply text-3xl font-extrabold leading-9 my-8 uppercase text-center;
 }
 
 .articleContent h2 {
-  @apply my-7 text-3xl font-extrabold leading-7 uppercase text-center ;
+  @apply my-7 text-3xl font-extrabold leading-7 uppercase text-center;
 }
 
 .articleContent h3 {
-  @apply my-16 text-2xl py-6 font-bold leading-6 uppercase text-center border border-primary rounded-md;
+  @apply my-16 text-2xl px-2 py-6 font-bold leading-6 uppercase text-center border border-primary rounded-md;
 }
 
 .articleContent h4 {
-  @apply w-1/2 my-12 mx-auto text-xl py-4 px-6 font-bold leading-5 capitalize text-center border border-secondary rounded-lg;
+  @apply w-full md:w-3/4 lg:w-1/2 my-12 mx-auto text-xl py-4 px-6 font-bold leading-5 capitalize text-center border border-secondary rounded-lg;
 }
 
 .articleContent h5 {
-  @apply w-1/4 my-8 text-lg py-4 font-bold leading-4 capitalize border-b border-primary;
+  @apply w-1/2 md:w-1/4 my-8 text-lg py-4 font-bold leading-4 capitalize border-b border-primary;
 }
 
 .articleContent h6 {
@@ -173,8 +172,8 @@
 }
 
 .articleContent blockquote {
-  @apply border-l-4 mx-auto border-primary px-16 italic text-text2;
- 
+  @apply border-l-4 mx-auto border-primary px-4 md:px-6 lg:px-8 italic text-text2;
+
   color: var(--text2);
 }
 
@@ -184,7 +183,7 @@
   transition: color 0.2s;
 }
 
-.articleContent a:hover, 
+.articleContent a:hover,
 .articleContent a:focus {
   color: var(--secondary);
 }
@@ -192,4 +191,3 @@
 .articleContent a:hover {
   color: var(--secondary);
 }
-

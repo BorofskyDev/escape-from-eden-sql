@@ -17,11 +17,12 @@ export default function TipCard() {
       <h2 className='text-2xl font-header mb-4 text-text1 capitalize'>
         Help me stay independent
       </h2>
-      <p className='mb-4 px-8 text-text2'>
-        If you like the quality of content, please feel free to contribute
-        something. Any little bit is appreciated. The more I earn from this, the
-        more that will free me up to do more research and bring higher quality
-        articles.
+      <p className='mb-4 px-8 text-sm italic text-text2'>
+        You&apos;ll notice there are no ads, no sign up, just the site. I own
+        the database and site code, so this is 100% independent. But doing that
+        costs money. If you like what you&apos;ve read here and want to help,
+        feel free to contribute whatever you can. Any amount will be
+        appreciated. Thank you.
       </p>
       <label htmlFor='donation-amount' className='mb-2 text-sm text-text2'>
         Enter an amount (USD):

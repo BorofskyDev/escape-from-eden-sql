@@ -9,6 +9,7 @@ import ManageTagsModal from '@/components/modals/ManageTagsModal'
 import GeneralSection from '@/components/layouts/sections/GeneralSection'
 import PageTitle from '@/components/typography/PageTitle'
 import MessagesList from '@/components/admin/MessageList'
+import Link from 'next/link'
 
 export default function AdminPage() {
   const [open, setOpen] = useState(false)
@@ -64,6 +65,12 @@ export default function AdminPage() {
           >
             Manage Tags
           </button>
+          <Link
+            href='/admin/subscribers'
+            className='bg-primary px-4 py-2 text-bg1 rounded transition-all duration-200 hover:bg-secondary'
+          >
+            Manage Subscribers
+          </Link>
         </div>
         <PostsTable />
       </section>

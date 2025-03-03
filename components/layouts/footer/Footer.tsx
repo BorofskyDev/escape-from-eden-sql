@@ -53,6 +53,9 @@ export default function Footer() {
               <li>
                 <Link href='/accessibility'>Accessibility Statement</Link>
               </li>
+              <li>
+                <Link href='/copyright-notice'>Copyright Notice</Link>
+              </li>
             </ul>
           </div>
         </div>

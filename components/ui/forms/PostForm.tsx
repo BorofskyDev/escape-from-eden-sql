@@ -103,6 +103,8 @@ export default function PostForm({
           ? new Date(publishDate).toISOString()
           : new Date().toISOString()
       }
+      console.log('Submitting publish date', publishDate)
+      console.log('Final published at', finalPublishedAt)
 
       const slug = generateSlug(title)
 
@@ -208,7 +210,10 @@ export default function PostForm({
             <input
               type='datetime-local'
               value={publishDate}
-              onChange={(e) => setPublishDate(e.target.value)}
+              onChange={(e) => {
+                console.log('New Publish Date:', e.target.value)
+                setPublishDate(e.target.value)
+              }}
               className='border rounded p-1'
             />
             <button

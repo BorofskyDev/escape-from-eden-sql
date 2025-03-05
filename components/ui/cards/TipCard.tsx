@@ -5,11 +5,31 @@ import FormField from '../inputs/FormField'
 
 export default function TipCard() {
   const [amount, setAmount] = useState('')
+  const [loading, setLoading] = useState(false)
 
-  // Placeholder handler - you'll replace this with an API call later
-  const handleTip = () => {
-    console.log(`User wants to tip: $${amount}`)
-    // In the future, send 'amount' to an API route that creates a PaymentIntent or handles payment
+  const handleTip = async () => {
+    setLoading(true)
+    try {
+      const res = await fetch('/api/tip', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ amount }),
+      })
+      const data = await res.json()
+      if (!res.ok) {
+        alert(data.error || 'Something went wrong')
+        return
+      }
+      // Redirect to the Stripe Checkout page
+      window.location.href = data.url
+    } catch (error) {
+      console.error('Error:', error)
+      alert('An error occurred. Please try again.')
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -37,8 +57,9 @@ export default function TipCard() {
       <button
         onClick={handleTip}
         className='bg-primary text-bg1 my-4 py-2 px-6 rounded hover:bg-secondary transition-colors duration-200 hover:shadow-lg'
+        disabled={loading}
       >
-        Tip
+        {loading ? 'Processing...' : 'Tip'}
       </button>
     </div>
   )

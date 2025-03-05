@@ -47,6 +47,7 @@ export async function GET(
  * Updates a post and, if the post is being published (transitioning from unpublished to published),
  * sends an email notification to all subscribers.
  */
+// app/api/posts/[id]/route.ts
 export async function PATCH(
   request: Request,
   { params }: { params: Promise<{ id: string }> }
@@ -60,11 +61,12 @@ export async function PATCH(
       content,
       featuredImage,
       published,
+      publishedAt, // Extract publishedAt from the payload
       categoryId,
       tagIds,
     } = body
 
-    // 1. Retrieve the existing post to check its published status.
+    // Retrieve the existing post to check its published status.
     const existingPost = await prisma.post.findUnique({
       where: { id },
       select: { published: true, publishedAt: true },
@@ -74,16 +76,21 @@ export async function PATCH(
       return NextResponse.json({ error: 'Post not found' }, { status: 404 })
     }
 
-    // 2. Determine if the post is transitioning from unpublished to published.
-    // Ensure that published is a boolean. If it might be sent as a string (e.g., "true"), coerce it.
+    // Determine if the post is transitioning from unpublished to published.
     const isNowPublished = published === true || published === 'true'
     const wasUnpublished = !existingPost.published
 
-    // 3. Set publishedAt if the post is being published now for the first time.
+    // Calculate the new publishedAt:
+    // If the post is being published for the first time, use the incoming value (if provided)
+    // or default to the current time; otherwise, keep the existing value.
     const newPublishedAt =
-      wasUnpublished && isNowPublished ? new Date() : existingPost.publishedAt
+      wasUnpublished && isNowPublished
+        ? publishedAt
+          ? new Date(publishedAt)
+          : new Date()
+        : existingPost.publishedAt
 
-    // 4. Update the post.
+    // Update the post.
     const updatedPost = await prisma.post.update({
       where: { id },
       data: {
@@ -106,8 +113,15 @@ export async function PATCH(
       },
     })
 
-    // 5. If the post was just published, trigger the notification.
-    if (wasUnpublished && isNowPublished) {
+    // Only trigger the notification if:
+    // 1. The post is transitioning from unpublished to published.
+    // 2. The scheduled publishedAt is in the past (or now).
+    if (
+      wasUnpublished &&
+      isNowPublished &&
+      newPublishedAt instanceof Date &&
+      newPublishedAt.getTime() <= Date.now()
+    ) {
       await sendNewPostNotification(id)
     }
 

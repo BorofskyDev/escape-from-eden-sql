@@ -3,15 +3,22 @@ import { NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 
 // GET endpoint for fetching posts with pagination (unchanged)
+
 export async function GET(request: Request) {
   try {
-    const { searchParams } = new URL(request.url)
-    const page = Number(searchParams.get('page')) || 1
-    const limit = Number(searchParams.get('limit')) || 10
+    const url = new URL(request.url)
+    const page = Number(url.searchParams.get('page')) || 1
+    const limit = Number(url.searchParams.get('limit')) || 10
     const skip = (page - 1) * limit
 
+    // Only include posts that are published and have a publishedAt date in the past (or now)
+    const whereClause = {
+      published: true,
+      publishedAt: { lte: new Date() },
+    }
+
     const posts = await prisma.post.findMany({
-      where: { published: true },
+      where: whereClause,
       skip,
       take: limit + 1,
       orderBy: [{ publishedAt: 'desc' }],
@@ -32,23 +39,19 @@ export async function GET(request: Request) {
       },
     })
 
-    const total = await prisma.post.count({ where: { published: true } })
+    const total = await prisma.post.count({ where: whereClause })
 
     let hasNextPage = false
     if (posts.length > limit) {
       hasNextPage = true
-      posts.pop() // remove the extra post
+      posts.pop() // remove the extra post used to check for next page
     }
 
     return NextResponse.json({ posts, hasNextPage, total })
   } catch (error: unknown) {
-    let errorMessage = 'Error fetching posts'
-    if (error instanceof Error) {
-      errorMessage = error.message
-    }
-    // Log the error message only.
+    const errorMessage =
+      error instanceof Error ? error.message : 'Error fetching posts'
     console.error('Error fetching posts:', errorMessage)
-    // Return a JSON response with a proper object payload.
     return new NextResponse(JSON.stringify({ error: errorMessage }), {
       status: 500,
       headers: { 'Content-Type': 'application/json' },
@@ -71,6 +74,8 @@ export async function POST(request: Request) {
       slug,
       categoryId,
       tagIds,
+      published,
+      publishedAt, // now we're expecting this from the payload
     } = body
 
     if (!title || !description || !content || !slug) {
@@ -90,7 +95,9 @@ export async function POST(request: Request) {
         content,
         featuredImage: featuredImage || null,
         slug,
-        published: false,
+        published: Boolean(published),
+        // Set publishedAt only if the post is marked as published
+        publishedAt: published ? publishedAt || new Date().toISOString() : null,
         category: categoryId ? { connect: { id: categoryId } } : undefined,
         tags:
           tagIds && Array.isArray(tagIds) && tagIds.length > 0

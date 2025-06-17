@@ -5,7 +5,7 @@
 import React, { useState } from 'react'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
-import ThemeToggleBtn from '@/components/ui/buttons/ThemeToggle'
+import ThemeToggleBtn from '@/components/ui/common/buttons/ThemeToggle'
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
@@ -16,7 +16,10 @@ export default function Navbar() {
     <header className='w-full fixed top-0 z-50 bg-bg1 shadow'>
       <div className='max-w-7xl mx-auto px-6 md:px-8 lg:px-16 py-4 flex items-center justify-between'>
         {/* Site Title */}
-        <Link href='/' className='text-primary font-bold capitalize font-header text-xl'>
+        <Link
+          href='/'
+          className='text-primary font-bold capitalize font-header text-xl'
+        >
           Escape from Eden
         </Link>
 
@@ -94,7 +97,7 @@ export default function Navbar() {
               >
                 Home
               </Link>
-              
+
               <Link
                 href='/search'
                 onClick={() => setIsOpen(false)}
@@ -102,7 +105,7 @@ export default function Navbar() {
               >
                 Search
               </Link>
-              
+
               <Link
                 href='/about'
                 onClick={() => setIsOpen(false)}

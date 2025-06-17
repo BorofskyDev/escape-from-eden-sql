@@ -5,8 +5,8 @@ import CategoryDropdown from '@/components/ui/dropdowns/CategoryDropdown'
 import SmallPostCard from '@/components/ui/cards/posts/SmallPostCard'
 
 import GeneralSection from '@/components/layouts/sections/GeneralSection'
-import PageTitle from '@/components/typography/PageTitle'
-import GeneralBodyText from '@/components/typography/GeneralBodyText'
+import PageTitle from '@/components/ui/common/typography/PageTitle'
+import GeneralBodyText from '@/components/ui/common/typography/GeneralBodyText'
 const prisma = new PrismaClient()
 
 // This page is an async server component.
@@ -78,35 +78,41 @@ export default async function CategoryPage({
     slug: string
   }
 
-  const transformedPosts: TransformedPost[] = posts.map((post: OriginalPost) => ({
-    title: post.title,
-    description: post.description,
-    publishedAt: post.publishedAt
-      ? post.publishedAt.toLocaleDateString('en-US', {
-          month: '2-digit',
-          day: '2-digit',
-          year: 'numeric',
-        })
-      : '',
-    imageUrl: post.featuredImage || 'https://via.placeholder.com/800',
-    categoryName: post.category?.name || 'Uncategorized',
-    categoryId: post.category?.id,
-    tags: post.tags.map((t: { id: string; name: string }) => ({ id: t.id, name: t.name })),
-    slug: post.slug,
-  }))
+  const transformedPosts: TransformedPost[] = posts.map(
+    (post: OriginalPost) => ({
+      title: post.title,
+      description: post.description,
+      publishedAt: post.publishedAt
+        ? post.publishedAt.toLocaleDateString('en-US', {
+            month: '2-digit',
+            day: '2-digit',
+            year: 'numeric',
+          })
+        : '',
+      imageUrl: post.featuredImage || 'https://via.placeholder.com/800',
+      categoryName: post.category?.name || 'Uncategorized',
+      categoryId: post.category?.id,
+      tags: post.tags.map((t: { id: string; name: string }) => ({
+        id: t.id,
+        name: t.name,
+      })),
+      slug: post.slug,
+    })
+  )
 
   return (
     <GeneralSection>
       <header className='mb-8'>
         <PageTitle>{category.name}</PageTitle>
         {category.description && (
-          <GeneralBodyText className='text-center'>{category.description}</GeneralBodyText>
+          <GeneralBodyText className='text-center'>
+            {category.description}
+          </GeneralBodyText>
         )}
       </header>
 
-      <div className="w-full text-center mb-20">
-      <CategoryDropdown currentCategoryId={category.id} />
-
+      <div className='w-full text-center mb-20'>
+        <CategoryDropdown currentCategoryId={category.id} />
       </div>
 
       {/* Posts grid: 1 column on mobile, 2 on tablet, 3 on desktop */}

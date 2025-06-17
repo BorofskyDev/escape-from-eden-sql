@@ -7,7 +7,7 @@ import PostsTable from '@/components/admin/PostsTable'
 import ManageCategoriesModal from '@/components/modals/ManageCategoriesModal'
 import ManageTagsModal from '@/components/modals/ManageTagsModal'
 import GeneralSection from '@/components/layouts/sections/GeneralSection'
-import PageTitle from '@/components/typography/PageTitle'
+import PageTitle from '@/components/ui/common/typography/PageTitle'
 import MessagesList from '@/components/admin/MessageList'
 import Link from 'next/link'
 

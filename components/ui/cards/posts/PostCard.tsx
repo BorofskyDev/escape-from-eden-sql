@@ -69,7 +69,7 @@ export default function PostCard({ post, variant }: PostCardProps) {
   return (
     <div className={containerClass}>
       <div className={imageContainerClass}>
-        <Image src={imageUrl} alt={title} fill className='object-cover' />
+        <Image src={imageUrl} alt={title} height={200} width={200} />
       </div>
 
       <div className={contentContainerClass}>

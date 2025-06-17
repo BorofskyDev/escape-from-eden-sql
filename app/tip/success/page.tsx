@@ -1,5 +1,5 @@
 import GeneralSection from '@/components/layouts/sections/GeneralSection'
-import PageTitle from '@/components/typography/PageTitle'
+import PageTitle from '@/components/ui/common/typography/PageTitle'
 
 export default function TipSuccess() {
   return (

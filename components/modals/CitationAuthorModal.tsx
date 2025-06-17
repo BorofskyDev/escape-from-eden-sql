@@ -5,8 +5,12 @@ import Modal from './Modal'
 import { v4 as uuidv4 } from 'uuid'
 
 // Import your new types + row
-import { CitationField, CitationData, SavedStyles } from '@/lib/types/citationFieldTypes'
-import CitationFieldEditorRow from '../ui/inputs/editor-components/CitationFieldEditorRow'
+import {
+  CitationField,
+  CitationData,
+  SavedStyles,
+} from '@/lib/types/citationFieldTypes'
+import CitationFieldEditorRow from '../ui/common/inputs/editor-components/CitationFieldEditorRow'
 
 interface CitationAuthorModalProps {
   open: boolean

@@ -3,7 +3,7 @@
 
 import React, { useState } from 'react'
 import { AnimatePresence } from 'framer-motion'
-import CopyLinkButton from '@/components/ui/buttons/CopyLinkButton'
+import CopyLinkButton from '@/components/ui/common/buttons/CopyLinkButton'
 import ShareModal from '@/components/modals/ShareModal'
 
 interface ShareContainerProps {

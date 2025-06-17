@@ -16,13 +16,11 @@
 @mixin heading-style($level) {
   @if $level == 1 {
     @include heading(
-      var(--page-header-margin),
-      var(--font-heading),
-      var(--fw-900),
+      var(--margin-center),
+      var(--fw-black),
       var(--fs-900),
-      var(--lh-60)
+      var(--lh-900),
     );
-
     min-width: 100%;
     text-align: center;
   }
@@ -30,7 +28,6 @@
   @if $level == 2 {
     @include heading(
       var(--section-header-margin),
-      var(--font-heading),
       var(--fw-800),
       var(--fs-800),
       var(--lh-10)
@@ -44,7 +41,6 @@
   @if $level == 3 {
     @include heading(
       var(--sub-section-header-margin),
-      var(--font-heading),
       var(--fw-700),
       var(--fs-700),
       var(--lh-2)
@@ -54,7 +50,6 @@
   @if $level == 4 {
     @include heading(
       var(--container-header-margin),
-      var(--font-heading),
       var(--fw-600),
       var(--fs-600),
       var(--lh-30)
@@ -65,7 +60,6 @@
   @if $level == 5 {
     @include heading(
       var(--container-medium-margin),
-      var(--font-heading),
       var(--fw-600),
       var(--fs-500),
       var(--lh-3)
@@ -75,7 +69,6 @@
   @if $level == 6 {
     @include heading(
       var(--container-small-margin),
-      var(--font-heading),
       var(--fw-500),
       var(--fs-400),
       var(--lh-2)

@@ -3,7 +3,7 @@
 
 import React, { useState, useEffect } from 'react'
 import Modal from './Modal'
-import CustomRTE from '@/components/ui/inputs/CustomRTE'
+import CustomRTE from '@/components/ui/common/inputs/CustomRTE'
 
 interface FootnoteModalProps {
   open: boolean

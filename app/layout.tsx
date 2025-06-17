@@ -4,7 +4,7 @@ import { playfair, atkinsonNext } from '@/app/fonts'
 import Navbar from '@/components/layouts/header/Navbar'
 import Footer from '@/components/layouts/footer/Footer'
 import { Analytics } from '@vercel/analytics/react'
-import './globals.css'
+// import './globals.css'
 import '@/styles/index.scss'
 
 

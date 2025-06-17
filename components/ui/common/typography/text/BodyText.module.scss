@@ -1,0 +1,22 @@
+@use '@/styles/abstracts/mixins' as *;
+
+.text {
+    &--body {
+        @include text-style(1);
+    }
+
+    &--body-sm {
+        @include text-style(2);
+    }
+
+    &--body-lg {
+        @include text-style(3);
+    }
+
+    &--lead {
+        @include text-style(4);
+    }
+    &--accent {
+        @include text-style(5);
+    }
+}

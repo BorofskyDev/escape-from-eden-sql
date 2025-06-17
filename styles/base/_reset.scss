@@ -22,6 +22,10 @@ dd {
   margin: 0;
 }
 
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-playfair-display);
+}
+
 html {
   overflow-x: hidden;
 }
@@ -32,10 +36,10 @@ body {
   margin: var(--margin-page);
   text-rendering: optimizeSpeed;
   line-height: 1.5;
-  background-color: var(--color-bg-primary);
-  color: var(--color-text);
-//   font-family: var(--font-body);
-  font-size: var(--fs-base);
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font-atkinson-next);
+  font-size: var(--fs-300);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   transition: var(--transition-main);

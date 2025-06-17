@@ -5,7 +5,7 @@ import Link from 'next/link'
 import SmallPostCard from '@/components/ui/cards/posts/SmallPostCard'
 import { PostData } from '@/components/ui/cards/posts/PostCard'
 import GeneralSection from '@/components/layouts/sections/GeneralSection'
-import PageTitle from '@/components/typography/PageTitle'
+import PageTitle from '@/components/ui/common/typography/PageTitle'
 
 const prisma = new PrismaClient()
 
@@ -102,8 +102,6 @@ export default async function TagPage({
     slug: post.slug,
   }))
 
- 
-
   return (
     <GeneralSection>
       {/* Permanent Page Title */}
@@ -125,8 +123,6 @@ export default async function TagPage({
           </Link>
         ))}
       </div>
-
-     
 
       {/* Posts Grid */}
       {transformedPosts.length > 0 ? (

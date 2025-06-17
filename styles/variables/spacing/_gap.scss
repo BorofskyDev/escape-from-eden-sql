@@ -1,0 +1,14 @@
+@use '@/styles/abstracts/functions' as *;
+@use '@/styles/abstracts/mixins' as *;
+
+:root {
+  --gap-heading: #{px-to-rem(32)};
+
+  @include breakpoint(md) {
+    --gap-heading: #{px-to-rem(48)};
+  }
+
+  @include breakpoint(lg) {
+    --gap-heading: #{px-to-rem(64)};
+  }
+}

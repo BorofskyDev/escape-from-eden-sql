@@ -1,0 +1,5 @@
+@use '@/styles/abstracts/functions' as *;
+
+:root {
+    --section-max-width: #{px-to-rem(1280)};
+}

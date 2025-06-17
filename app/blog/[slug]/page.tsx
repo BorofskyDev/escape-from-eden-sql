@@ -10,7 +10,7 @@ import SimilarPostsSection from '@/components/layouts/sections/SimilarPostsSecti
 import ShareContainer from '@/components/layouts/containers/ShareContainer'
 import ReadingProgressIndicator from '@/components/ui/ReadingProgressIndicator'
 import TipCard from '@/components/ui/cards/TipCard'
-import BlogPostReaderContent from '@/components/reader/BlogPostContent'
+import BlogPostReaderContent from '@/components/ui/reader/BlogPostContent'
 import SubscribeContainer from '@/components/layouts/containers/SubscribeContainer'
 
 

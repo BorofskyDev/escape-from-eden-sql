@@ -1,0 +1,17 @@
+@use '@/styles/abstracts/functions' as *;
+@use '@/styles/abstracts/mixins' as *;
+
+:root {
+  --section-padding-x: #{px-to-rem(24)};
+  --section-padding-y: #{px-to-rem(40)};
+
+  @include breakpoint(md) {
+    --section-padding-x: #{px-to-rem(32)};
+    --section-padding-y: #{px-to-rem(48)};
+  }
+
+  @include breakpoint(lg) {
+    --section-padding-x: #{px-to-rem(48)};
+    --section-padding-y: #{px-to-rem(64)};
+  }
+}

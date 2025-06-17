@@ -1,8 +1,10 @@
 'use client' // It's a client component because it handles form state & fetch
 
 import { useState, FormEvent } from 'react'
+import styles from './SubscribeContainer.module.scss'
+import { BodyText, Heading } from '@/components/ui/common'
 
-export default function SubscribeContainer() {
+export function SubscribeContainer() {
   const [email, setEmail] = useState('')
   const [loading, setLoading] = useState(false)
   const [message, setMessage] = useState('')
@@ -39,16 +41,16 @@ export default function SubscribeContainer() {
   }
 
   return (
-    <div className='max-w-md mx-auto my-8 bg-bg2 shadow-md rounded p-6'>
-      <h2 className='text-xl font-bold mb-4'>Subscribe </h2>
-      <p className='text-text2 mb-4'>
+    <div className={styles.subscribeContainer}>
+      <Heading as='h3' size='container'>Subscribe</Heading>
+      <BodyText>
         I&apos;ll only email you when a new post is created. I also do not sell your data.
-      </p>
+      </BodyText>
 
-      <form onSubmit={handleSubscribe} className='flex flex-col space-y-4'>
+      <form onSubmit={handleSubscribe} className={styles.subscribeContainer__form}>
         <input
           type='email'
-          className='border border-primary rounded p-2 focus:outline-none focus:ring-2 focus:ring-blue-400'
+          className={styles.generalInput}
           placeholder='Enter your email'
           value={email}
           onChange={(e) => setEmail(e.target.value)}
@@ -58,8 +60,8 @@ export default function SubscribeContainer() {
 
         <button
           type='submit'
-          className={`bg-primary text-bg1 py-2 px-4 rounded hover:bg-secondary transition-colors ${
-            loading ? 'opacity-75 cursor-not-allowed' : ''
+          className={`${styles.actionButton} ${
+            loading ? styles.actionButton__disabled : ''
           }`}
           disabled={loading}
         >

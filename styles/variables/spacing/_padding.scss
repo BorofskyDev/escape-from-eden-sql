@@ -5,6 +5,14 @@
   --section-padding-x: #{px-to-rem(24)};
   --section-padding-y: #{px-to-rem(40)};
 
+  --container-padding-sm: #{px-to-rem(8)};
+  --container-padding-md: #{px-to-rem(16)};
+  --container-padding-lg: #{px-to-rem(24)};
+
+  --button-padding-sm: #{px-to-rem(8)} #{px-to-rem(16)};
+  --button-padding-md: #{px-to-rem(12)} #{px-to-rem(24)};
+  --button-padding-lg: #{px-to-rem(16)} #{px-to-rem(32)};
+
   @include breakpoint(md) {
     --section-padding-x: #{px-to-rem(32)};
     --section-padding-y: #{px-to-rem(48)};
@@ -13,5 +21,13 @@
   @include breakpoint(lg) {
     --section-padding-x: #{px-to-rem(48)};
     --section-padding-y: #{px-to-rem(64)};
+
+    --container-padding-sm: #{px-to-rem(16)};
+    --container-padding-md: #{px-to-rem(24)};
+    --container-padding-lg: #{px-to-rem(32)};
+
+    --button-padding-sm: #{px-to-rem(12)} #{px-to-rem(24)};
+    --button-padding-md: #{px-to-rem(16)} #{px-to-rem(32)};
+    --button-padding-lg: #{px-to-rem(20)} #{px-to-rem(40)};
   }
 }

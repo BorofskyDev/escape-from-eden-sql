@@ -11,11 +11,9 @@ import ShareContainer from '@/components/layouts/containers/ShareContainer'
 import ReadingProgressIndicator from '@/components/ui/ReadingProgressIndicator'
 import TipCard from '@/components/ui/cards/TipCard'
 import BlogPostReaderContent from '@/components/ui/reader/BlogPostContent'
-import SubscribeContainer from '@/components/layouts/containers/SubscribeContainer'
-
+import SubscribeContainer from '@/components/layouts/containers/subscribe-container/SubscribeContainer'
 
 // export const dynamic = 'force-dynamic'
-
 
 // Metadata generation
 export async function generateMetadata({
@@ -54,7 +52,6 @@ export async function generateMetadata({
     },
   }
 }
-
 
 // Optional interface for tags
 interface Tag {
@@ -154,10 +151,7 @@ export default async function Page({
                     href={`/tags/${tag.id}`}
                     className='px-2 py-1 text-xs bg-primary rounded hover:bg-secondary shadow-md hover:shadow-xl transition-all duration-200'
                   >
-                  <span className="text-bg1 font-semibold">
-                    {tag.name}
-
-                  </span>
+                    <span className='text-bg1 font-semibold'>{tag.name}</span>
                   </Link>
                 ))}
               </div>

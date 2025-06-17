@@ -1,9 +1,8 @@
 import RecentPostsSection from '../../sections/RecentPostsSection'
 import AboutSection from '../../sections/AboutSection'
 import AllPostsSection from '../../sections/AllPostsSection'
-import SubscribeContainer from '../../containers/SubscribeContainer'
 import { BodyText, Heading } from '@/components/ui/common'
-import { GeneralSection, Page } from '@/components/layouts'
+import { GeneralSection, Page, SubscribeContainer } from '@/components/layouts'
 import styles from './SplashPageComponent.module.scss'
 
 export function SplashPageComponent() {

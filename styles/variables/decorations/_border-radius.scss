@@ -1,0 +1,14 @@
+@use '@/styles/abstracts/functions' as *;
+
+:root {
+    --br-100: #{px-to-rem(2)};
+    --br-200: #{px-to-rem(4)};
+    --br-300: #{px-to-rem(6)};
+    --br-400: #{px-to-rem(8)};
+    --br-500: #{px-to-rem(10)};
+    --br-600: #{px-to-rem(12)};
+    --br-700: #{px-to-rem(14)};
+    --br-800: #{px-to-rem(16)};
+    --br-900: #{px-to-rem(18)};
+    --br-full: #{px-to-rem(9999)};
+}

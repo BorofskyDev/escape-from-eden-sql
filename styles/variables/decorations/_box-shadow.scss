@@ -1,0 +1,11 @@
+@use '@/styles/abstracts/functions' as *;
+
+:root {
+    --shadow-100: #{px-to-rem(2)} #{px-to-rem(2)} 0 #000;
+    --shadow-200: #{px-to-rem(4)} #{px-to-rem(4)} 0 #000;
+    --shadow-300: #{px-to-rem(6)} #{px-to-rem(6)} 0 #000;
+    --shadow-400: #{px-to-rem(8)} #{px-to-rem(8)} 0 #000;
+    --shadow-500: #{px-to-rem(10)} #{px-to-rem(10)} 0 #000;
+    --shadow-600: #{px-to-rem(12)} #{px-to-rem(12)} 0 #000;
+    --shadow-700: #{px-to-rem(14)} #{px-to-rem(14)} 0 #000;
+}

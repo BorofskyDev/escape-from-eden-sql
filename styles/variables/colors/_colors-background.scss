@@ -1,11 +1,19 @@
 :root {
-    --bg: var(--light-100);
-    --bg-secondary: var(--light-200);
-    --bg-tertiary: var(--blue-100);
+    --bg: hsl(var(--light-100));
+    --bg-secondary: hsl(var(--light-200));
+    --bg-tertiary: hsl(var(--blue-100));
+    --bg-accent: hsl(var(--aqua-100));
+
+    --bg-button: hsl(var(--blue-300));
+    --bg-button-hover: hsl(var(--aqua-100));
 }
 
 [data-theme='dark'] {
-    --bg: var(--dark-100);
-    --bg-secondary: var(--dark-200);
-    --bg-tertiary: var(--blue-900);
+    --bg: hsl(var(--dark-100));
+    --bg-secondary: hsl(var(--dark-200));
+    --bg-tertiary: hsl(var(--blue-900));
+    --bg-accent: hsl(var(--aqua-900));
+
+    --bg-button: hsl(var(--blue-700));
+    --bg-button-hover: hsl(var(--aqua-900));
 }

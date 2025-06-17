@@ -4,11 +4,18 @@
 :root {
   --gap-heading: #{px-to-rem(32)};
 
+  --element-gap-sm: #{px-to-rem(8)};
+  --element-gap-md: #{px-to-rem(16)};
+  --element-gap-lg: #{px-to-rem(24)};
+
   @include breakpoint(md) {
     --gap-heading: #{px-to-rem(48)};
   }
 
   @include breakpoint(lg) {
     --gap-heading: #{px-to-rem(64)};
+    --element-gap-sm: #{px-to-rem(12)};
+    --element-gap-md: #{px-to-rem(20)};
+    --element-gap-lg: #{px-to-rem(32)};
   }
 }

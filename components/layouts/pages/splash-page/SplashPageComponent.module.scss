@@ -1,12 +1,7 @@
 @use '@/styles/abstracts/mixins' as *;
 
 .splashPage {
-
-    &__heading {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: var(--gap-heading);
-    }
+  &__heading {
+    @include flex-center(column, var(--gap-heading));
+  }
 }

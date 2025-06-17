@@ -50,11 +50,10 @@
   @if $level == 4 {
     @include heading(
       var(--container-header-margin),
-      var(--fw-600),
+      var(--fw-semibold),
       var(--fs-600),
-      var(--lh-30)
+      var(--lh-600)
     );
-    font-style: italic;
   }
 
   @if $level == 5 {

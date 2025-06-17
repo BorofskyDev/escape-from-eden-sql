@@ -1,0 +1,48 @@
+@use '@/styles/abstracts/mixins' as *;
+@use '@/styles/abstracts/functions' as *;
+
+/* ---------- base ---------- */
+.actionButton {
+  padding: var(--button-padding-sm);
+  border: var(--border-4);
+  border-radius: var(--br-800);
+  font-weight: var(--fw-black);
+  text-transform: capitalize;
+  font-size: var(--fs-400);
+  transition: var(--transition-main);
+  @include focused;
+}
+
+/* ---------- variants ---------- */
+.primary {
+  background-color: var(--bg-button);
+  box-shadow: var(--shadow-300);
+
+  &:hover,
+  &:focus-visible {
+    background-color: var(--bg-button-hover);
+    box-shadow: var(--shadow-500);
+    transform: scale(1.05);
+  }
+}
+
+.secondary {
+  background-color: var(--bg-tertiary);
+  box-shadow: var(--shadow-200);
+}
+
+.caution {
+  background-color: var(--bg-warning);
+  color: var(--text-on-warning);
+}
+
+.delete {
+  background-color: var(--bg-danger);
+  color: var(--text-on-danger);
+}
+
+.disabled {
+  background-color: var(--bg-disabled);
+  cursor: not-allowed;
+  opacity: 0.6;
+}

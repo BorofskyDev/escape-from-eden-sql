@@ -1,0 +1,15 @@
+@use '@/styles/abstracts/mixins' as *;
+@use '@/styles/abstracts/functions' as *;
+
+.generalInput {
+  padding: var(--container-padding-sm);
+  border: var(--border-2);
+  border-radius: var(--br-800);
+  box-shadow: var(--shadow-200);
+  background-color: var(--bg-accent);
+  font-size: var(--fs-300);
+  text-align: center;
+  transition: var(--transition-main);
+
+  @include focused;
+}

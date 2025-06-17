@@ -1,8 +1,9 @@
-'use client' // It's a client component because it handles form state & fetch
+'use client'
 
 import { useState, FormEvent } from 'react'
 import styles from './SubscribeContainer.module.scss'
-import { BodyText, Heading } from '@/components/ui/common'
+import { BodyText, GeneralInput, Heading } from '@/components/ui/common'
+import ActionButton from '@/components/ui/common/buttons/action-button/ActionButton'
 
 export function SubscribeContainer() {
   const [email, setEmail] = useState('')
@@ -26,13 +27,12 @@ export function SubscribeContainer() {
       })
 
       if (!res.ok) {
-        // Attempt to parse error message
         const data = await res.json()
         throw new Error(data.error || 'Failed to subscribe')
       }
 
       setMessage('Subscribed successfully! Check your inbox soon.')
-      setEmail('') // reset field
+      setEmail('')
     } catch (err) {
       setError((err as Error).message)
     } finally {
@@ -42,15 +42,20 @@ export function SubscribeContainer() {
 
   return (
     <div className={styles.subscribeContainer}>
-      <Heading as='h3' size='container'>Subscribe</Heading>
+      <Heading as='h3' size='container'>
+        Subscribe
+      </Heading>
       <BodyText>
-        I&apos;ll only email you when a new post is created. I also do not sell your data.
+        I&apos;ll only email you when a new post is created. I also do not sell
+        your data.
       </BodyText>
 
-      <form onSubmit={handleSubscribe} className={styles.subscribeContainer__form}>
-        <input
+      <form
+        onSubmit={handleSubscribe}
+        className={styles.subscribeContainer__form}
+      >
+        <GeneralInput
           type='email'
-          className={styles.generalInput}
           placeholder='Enter your email'
           value={email}
           onChange={(e) => setEmail(e.target.value)}
@@ -58,15 +63,9 @@ export function SubscribeContainer() {
           disabled={loading}
         />
 
-        <button
-          type='submit'
-          className={`${styles.actionButton} ${
-            loading ? styles.actionButton__disabled : ''
-          }`}
-          disabled={loading}
-        >
+        <ActionButton type='submit' variant={loading ? 'disabled' : 'primary'}>
           {loading ? 'Subscribing...' : 'Subscribe'}
-        </button>
+        </ActionButton>
       </form>
 
       {error && <p className='text-red-500 mt-4'>{error}</p>}

@@ -21,7 +21,7 @@ export default {
       },
       fontFamily: {
         header: ['var(--font-playfair)', 'serif'],
-        body: ['var(--font-open-sans)', 'sans-serif'],
+        body: ['var(--font-atkinson-next)', 'sans-serif'],
       },
     },
   },

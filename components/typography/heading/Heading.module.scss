@@ -1,0 +1,30 @@
+@use '@/styles/mixins' as *;
+
+.heading {
+    
+
+    &--page {
+        @include heading-style(1);
+    }
+
+    &--section {
+        @include heading-style(2);
+    }
+
+    &--section-sub {
+        @include heading-style(3);
+    }
+
+    &--container {
+        @include heading-style(4)
+    }
+
+    &--md {
+        @include heading-style(5);
+    }
+
+    &--sm {
+        @include heading-style(6);
+    }
+
+}

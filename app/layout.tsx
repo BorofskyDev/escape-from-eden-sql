@@ -1,24 +1,13 @@
-import './globals.css'
 import type { Metadata } from 'next'
 import Providers from './providers'
-import { Playfair_Display, Open_Sans } from 'next/font/google'
+import { playfair, atkinsonNext } from '@/app/fonts'
 import Navbar from '@/components/layouts/header/Navbar'
 import Footer from '@/components/layouts/footer/Footer'
 import { Analytics } from '@vercel/analytics/react'
+import './globals.css'
+import '@/styles/index.scss'
 
-const playfair = Playfair_Display({
-  display: 'swap',
-  variable: '--font-playfair',
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700', '800', '900'],
-})
 
-const openSans = Open_Sans({
-  display: 'swap',
-  variable: '--font-open-sans',
-  subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700', '800'],
-})
 
 export const metadata: Metadata = {
   title: 'Escape from Eden',
@@ -33,7 +22,7 @@ export default function RootLayout({
   // This is a Server Component by default
   return (
     <html lang='en' suppressHydrationWarning>
-      <body suppressHydrationWarning className={`${playfair.variable} ${openSans.variable} antialiased`}>
+      <body suppressHydrationWarning className={`${playfair.variable} ${atkinsonNext.variable} antialiased`}>
         <Providers>
           <Analytics />
           <Navbar />

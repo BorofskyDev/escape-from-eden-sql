@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 @layer base {
-  /* Set the body to use Open Sans (body) by default */
+  
   body {
     @apply font-body;
     background-color: var(--bg1);
@@ -21,7 +21,7 @@
 
   /* Global link styles */
   a {
-    font-family: var(--font-open-sans); /* ensure links use Open Sans */
+    font-family: var(--font-atkinson-next); 
     transition: color 0.2s;
   }
 }

@@ -44,6 +44,7 @@
     "react-google-recaptcha": "^3.1.0",
     "react-google-recaptcha-v3": "^1.10.1",
     "sanitize-html": "^2.14.0",
+    "sass": "^1.89.2",
     "stripe": "^17.7.0"
   },
   "devDependencies": {

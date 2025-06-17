@@ -1,0 +1,29 @@
+@function convert-px($px-value, $unit: 'rem') {
+  $px-number: if(
+    type-of($px-value) == 'number' and unit($px-value) == 'px',
+    $px-value / 1px,
+    $px-value
+  );
+
+  @if $unit == 'rem' {
+    @return ($px-number / 16) * 1rem;
+  } @else if $unit == 'em' {
+    @return ($px-number / 16) * 1em;
+  } @else if $unit == 'ch' {
+    @return ($px-number / 16 / 0.5) * 1ch;
+  } @else {
+    @error "Unsupported unit: #{$unit}. Use 'rem', 'em', or 'ch'.";
+  }
+}
+
+@function px-to-rem($px-value) {
+  @return convert-px($px-value, 'rem');
+}
+
+@function px-to-em($px-value) {
+  @return convert-px($px-value, 'em');
+}
+
+@function px-to-ch($px-value) {
+  @return convert-px($px-value, 'ch');
+}

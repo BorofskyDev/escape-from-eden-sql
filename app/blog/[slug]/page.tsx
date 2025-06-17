@@ -5,13 +5,12 @@ import { prisma } from '@/lib/prisma'
 import sanitizeHtml from 'sanitize-html'
 import Image from 'next/image'
 import Link from 'next/link'
-import GeneralSection from '@/components/layouts/sections/GeneralSection'
+import { GeneralSection, SubscribeContainer } from '@/components/layouts'
 import SimilarPostsSection from '@/components/layouts/sections/SimilarPostsSection'
 import ShareContainer from '@/components/layouts/containers/ShareContainer'
 import ReadingProgressIndicator from '@/components/ui/ReadingProgressIndicator'
 import TipCard from '@/components/ui/cards/TipCard'
 import BlogPostReaderContent from '@/components/ui/reader/BlogPostContent'
-import SubscribeContainer from '@/components/layouts/containers/subscribe-container/SubscribeContainer'
 
 // export const dynamic = 'force-dynamic'
 
@@ -110,7 +109,7 @@ export default async function Page({
   return (
     <>
       <ReadingProgressIndicator />
-      <GeneralSection>
+      <GeneralSection id='blog-post'>
         <article className='articleContent my-40 max-w-7xl mx-auto px-6 md:px-8 lg:px-16'>
           <h1 className='text-3xl font-bold my-4 capitalize'>{post.title}</h1>
 

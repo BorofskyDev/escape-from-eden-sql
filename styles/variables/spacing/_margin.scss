@@ -1,3 +1,7 @@
+@use '@/styles/abstracts/functions' as *;
+
 :root {
     --margin-center: 0 auto;
+
+    --section-margin: #{px-to-rem(32)} auto;
 }

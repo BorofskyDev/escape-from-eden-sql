@@ -3,8 +3,7 @@ import { PrismaClient } from '@prisma/client'
 import { notFound } from 'next/navigation'
 import CategoryDropdown from '@/components/ui/dropdowns/CategoryDropdown'
 import SmallPostCard from '@/components/ui/cards/posts/SmallPostCard'
-
-import GeneralSection from '@/components/layouts/sections/GeneralSection'
+import { GeneralSection } from '@/components/layouts'
 import PageTitle from '@/components/ui/common/typography/PageTitle'
 import GeneralBodyText from '@/components/ui/common/typography/GeneralBodyText'
 const prisma = new PrismaClient()
@@ -101,7 +100,7 @@ export default async function CategoryPage({
   )
 
   return (
-    <GeneralSection>
+    <GeneralSection id='category-page'>
       <header className='mb-8'>
         <PageTitle>{category.name}</PageTitle>
         {category.description && (

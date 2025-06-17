@@ -7,6 +7,7 @@ import formatDateUS from '@/lib/functions/formatDateUS'
 import LargePostColumnCard from '@/components/ui/cards/posts/LargePostColumnCard'
 import MediumPostCard from '@/components/ui/cards/posts/MediumPostCard'
 import LargePostRowCard from '@/components/ui/cards/posts/LargePostRowCard'
+import { GeneralSection } from './general-section/GeneralSection'
 
 export default function RecentPostsSection() {
   const [posts, setPosts] = useState<RecentPost[]>([])
@@ -45,7 +46,7 @@ export default function RecentPostsSection() {
   const row4 = transformPost(p4)
 
   return (
-    <section className='my-8'>
+    <GeneralSection id='recent-posts'>
       <h2 className='text-center text-5xl font-header my-10'>Recent Posts</h2>
 
       <div className='flex flex-col gap-6'>
@@ -64,6 +65,6 @@ export default function RecentPostsSection() {
           <LargePostRowCard post={row4} />
         </div>
       </div>
-    </section>
+    </GeneralSection>
   )
 }

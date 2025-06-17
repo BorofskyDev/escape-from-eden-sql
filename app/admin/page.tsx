@@ -6,7 +6,7 @@ import CreatePostModal from '@/components/modals/CreatePostModal'
 import PostsTable from '@/components/admin/PostsTable'
 import ManageCategoriesModal from '@/components/modals/ManageCategoriesModal'
 import ManageTagsModal from '@/components/modals/ManageTagsModal'
-import GeneralSection from '@/components/layouts/sections/GeneralSection'
+import { GeneralSection } from '@/components/layouts'
 import PageTitle from '@/components/ui/common/typography/PageTitle'
 import MessagesList from '@/components/admin/MessageList'
 import Link from 'next/link'
@@ -32,7 +32,7 @@ export default function AdminPage() {
   }
 
   return (
-    <GeneralSection>
+    <GeneralSection id='admin'>
       <PageTitle>Admin Dashboard</PageTitle>
 
       {/* Blog Settings Section */}

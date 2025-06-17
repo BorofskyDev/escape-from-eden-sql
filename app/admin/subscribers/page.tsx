@@ -1,7 +1,7 @@
 // app/admin/subscribers/page.tsx
 import { prisma } from '@/lib/prisma'
 import DeleteSubscriberButton from '@/components/ui/common/buttons/DeleteSubscriberButton'
-import GeneralSection from '@/components/layouts/sections/GeneralSection'
+import { GeneralSection } from '@/components/layouts'
 import PageTitle from '@/components/ui/common/typography/PageTitle'
 
 export default async function SubscribersPage() {
@@ -11,7 +11,7 @@ export default async function SubscribersPage() {
   })
 
   return (
-    <GeneralSection>
+    <GeneralSection id='subscribers'>
       <PageTitle>Subscribers</PageTitle>
       <table>
         <thead>

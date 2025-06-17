@@ -4,7 +4,7 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import SmallPostCard from '@/components/ui/cards/posts/SmallPostCard'
 import { PostData } from '@/components/ui/cards/posts/PostCard'
-import GeneralSection from '@/components/layouts/sections/GeneralSection'
+import { GeneralSection } from '@/components/layouts'
 import PageTitle from '@/components/ui/common/typography/PageTitle'
 
 const prisma = new PrismaClient()
@@ -103,7 +103,7 @@ export default async function TagPage({
   }))
 
   return (
-    <GeneralSection>
+    <GeneralSection id='tag-page'>
       {/* Permanent Page Title */}
       <PageTitle>Tags</PageTitle>
 

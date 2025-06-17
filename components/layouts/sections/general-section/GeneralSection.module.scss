@@ -1,5 +1,5 @@
 @use '@/styles/abstracts/mixins' as *;
 
 .generalSection {
- 
+ margin: var(--section-margin);
 }

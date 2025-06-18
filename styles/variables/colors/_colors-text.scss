@@ -4,3 +4,10 @@
   --link: hsl(var(--blue-700));
   --link-hover: hsl(var(--blue-900));
 }
+
+[data-theme='dark'] {
+  --text: hsl(var(--light-100));
+  --text-secondary: hsl(var(--light-200));
+  --link: hsl(var(--blue-300));
+  --link-hover: hsl(var(--blue-500));
+}

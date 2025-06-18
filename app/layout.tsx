@@ -1,13 +1,11 @@
 import type { Metadata } from 'next'
 import Providers from './providers'
-import { playfair, atkinsonNext } from '@/app/fonts'
+import { playfair, atkinsonNext, atkinsonMono } from '@/app/fonts'
 import Navbar from '@/components/layouts/header/Navbar'
 import Footer from '@/components/layouts/footer/Footer'
 import { Analytics } from '@vercel/analytics/react'
 // import './globals.css'
 import '@/styles/index.scss'
-
-
 
 export const metadata: Metadata = {
   title: 'Escape from Eden',
@@ -22,7 +20,10 @@ export default function RootLayout({
   // This is a Server Component by default
   return (
     <html lang='en' suppressHydrationWarning>
-      <body suppressHydrationWarning className={`${playfair.variable} ${atkinsonNext.variable} antialiased`}>
+      <body
+        suppressHydrationWarning
+        className={`${playfair.variable} ${atkinsonNext.variable} ${atkinsonMono.variable} antialiased`}
+      >
         <Providers>
           <Analytics />
           <Navbar />

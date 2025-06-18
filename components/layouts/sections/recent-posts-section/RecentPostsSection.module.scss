@@ -1,23 +1,29 @@
 @use '@/styles/abstracts/mixins' as *;
 
 .recentPostsSection {
+  @include flex-center(column, var(--element-gap-sm));
 
-&__heading {
-    margin-bottom: var(--section-heading-mb);
+  &__heading {
+    // margin-bottom: var(--section-heading-mb);
     text-align: center;
-}
-
-&__bigAndMedium {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--section-gap);
-
-  @include breakpoint(lg) {
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: repeate(3, 1fr);
-    gap: var(--section-gap);
   }
-}
+
+  &__bigAndMedium {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--section-gap);
+
+    @include breakpoint(lg) {
+      grid-template-columns: 1fr 1fr;
+      // grid-template-rows: repeat(3, 1fr);
+      gap: var(--section-gap);
+    }
+  }
+
+  &__container {
+    width: 100%;
+    @include flex-center(column, var(--section-gap));
+  }
 
   &__bigPost {
     grid-column: 1 / -1;
@@ -35,7 +41,7 @@
 
     @include breakpoint(lg) {
       width: 100%;
-      grid-template-columns: repeat(2, 1fr);
+      // grid-template-columns: repeat(2, 1fr);
       align-items: flex-start;
     }
   }

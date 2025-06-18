@@ -3,6 +3,7 @@
 
 .postCard {
   width: 100%;
+  margin: var(--section-gap) 0;
   display: grid;
   grid-template-columns: 1fr;
   place-content: center;
@@ -24,12 +25,13 @@
 
   &__content {
     padding: var(--container-padding-md);
-    padding-top: var(--container-padding-lg);
+    padding-top: var(--container-padding-sm);
     text-align: center;
     @include flex-center(column, var(--element-gap-md));
   }
 
   &__tags {
+    padding-bottom: var(--container-padding-lg);
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -40,23 +42,48 @@
   &__category {
     @include flex-center(column, var(--element-gap-sm));
   }
-
-  &.medium,
-  &__image {
-  }
 }
 
 .largeColumn {
   @include breakpoint(lg) {
-    flex-direction: row;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr 0.25fr;
+    align-items: flex-start;
+  }
+}
+
+.largeColumn .postCard {
+  &__image {
+    @include breakpoint(lg) {
+      grid-column: 2;
+      grid-row: 1;
+      margin: var(--margin-center);
+    }
+  }
+
+  &__content {
+    @include breakpoint(lg) {
+      grid-column: 1;
+      grid-row: 1 / -1;
+      padding: var(--container-padding-lg);
+      text-align: left;
+    }
+  }
+
+  &__tags,
+  &__category {
+    @include breakpoint(lg) {
+      grid-column: 2;
+      grid-row: 2;
+    }
   }
 }
 
 .medium {
   @include breakpoint(lg) {
-    border: var(--border-4);
-    border-radius: var(--br-400);
-    box-shadow: var(--shadow-400);
+    @include container-wrapper-400;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: 1fr 0.25fr;
     background-color: var(--bg-secondary);
   }
 }
@@ -64,10 +91,65 @@
 .medium .postCard {
   &__image {
     @include breakpoint(lg) {
+      grid-column: 1 / 6;
+      grid-row: 1;
       border-radius: var(--br-100) var(--br-100) 0 0;
       box-shadow: none;
       border: none;
       border-bottom: var(--border-4);
+      border-right: var(--border-4);
+    }
+  }
+
+
+  &__content { 
+    @include breakpoint(lg) {
+      grid-column: 6 / -1;
+      grid-row: 1 / -1;
+      padding: var(--container-padding-lg);
+      text-align: left;
+    }
+  }
+  &__category {
+    @include breakpoint(lg) {
+      grid-column: 1 / 6;
+      grid-row: 2;
+      padding: var(--container-padding-lg);
+      text-align: left;
+      place-self: flex-end;
+    }
+  }
+}
+
+.largeRow {
+  @include breakpoint(lg) {
+    padding: var(--container-padding-lg);
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    @include container-wrapper-400;
+  }
+}
+
+.largeRow .postCard {
+  @include breakpoint(lg) {
+    &__image {
+      grid-column: 1;
+      grid-row: 1;
+    }
+  }
+
+  @include breakpoint(lg) {
+    &__content {
+      grid-column: 2;
+      grid-row: 1 / -1;
+    }
+  }
+
+  @include breakpoint(lg) {
+    &__category,
+    &__tags {
+      grid-column: 1;
+      grid-row: 2;
     }
   }
 }

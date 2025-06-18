@@ -41,6 +41,7 @@ function getPaginationNumbers(current: number, total: number): number[] {
 // Helper to transform a Post from the API into the shape expected by SmallPostCard.
 function transformPost(post: RecentPost): PostData {
   return {
+    id: post.id.toString(),
     title: post.title,
     description: post.description,
     categoryName: post.category?.name ?? 'Uncategorized',

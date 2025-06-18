@@ -9,7 +9,7 @@ interface ProvidersProps {
 
 export default function Providers({ children }: ProvidersProps) {
   return (
-    <ThemeProvider attribute='class' defaultTheme='light'>
+    <ThemeProvider attribute='data-theme' defaultTheme='system' enableSystem>
       <SessionProvider>{children}</SessionProvider>
     </ThemeProvider>
   )

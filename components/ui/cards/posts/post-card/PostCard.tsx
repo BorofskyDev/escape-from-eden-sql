@@ -67,18 +67,16 @@ export function PostCard({ post, variant }: Props) {
         </Heading>
 
         <BodyText className={styles.postCard__desc}>{description}</BodyText>
-
-        <div className={styles.postCard__category}>
-          <Heading as='h3' size='container'>
-            Category:{' '}
-          </Heading>
-          <BodyText>
-            <TextLink href={`/categories/${categoryId ?? 'unknown'}`}>
-              {categoryName}
-            </TextLink>
-          </BodyText>
-        </div>
-
+      </div>
+      <div className={styles.postCard__category}>
+        <Heading as='h3' size='container'>
+          Category:{' '}
+        </Heading>
+        <BodyText>
+          <TextLink href={`/categories/${categoryId ?? 'unknown'}`}>
+            {categoryName}
+          </TextLink>
+        </BodyText>
         <div className={styles.postCard__tags}>
           {tags.map((tag) => (
             <LinkTag

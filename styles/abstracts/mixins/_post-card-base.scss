@@ -1,0 +1,51 @@
+@use './breakpoint' as *;
+@use './flex' as *;
+@use '../functions/convert-px' as *;
+
+@mixin post-card-base {
+  .postCard {
+    width: 100%;
+    margin: var(--section-gap) 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    place-content: center;
+    gap: var(--element-gap-lg);
+
+    &__image {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      border: var(--border-6);
+      border-radius: var(--br-400);
+      box-shadow: var(--shadow-400);
+
+      &__img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    &__content {
+      padding: var(--container-padding-md);
+      padding-top: var(--container-padding-sm);
+      text-align: center;
+      @include flex-center(column, var(--element-gap-md));
+    }
+
+    &__tags {
+      padding-bottom: var(--container-padding-lg);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: var(--element-gap-lg);
+    }
+
+    &__category {
+      @include flex-center(column, var(--element-gap-sm));
+    }
+  }
+}

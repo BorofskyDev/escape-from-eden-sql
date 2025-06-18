@@ -21,7 +21,7 @@ export interface PostData {
   id: string
 }
 
-type Variant = 'small' | 'medium' | 'largeRow' | 'largeColumn'
+type Variant = 'small' | 'medium' | 'largeRow' | 'large'
 
 interface Props {
   post: PostData
@@ -66,8 +66,8 @@ export function PostCard({ post, variant }: Props) {
           </TextLink>
         </Heading>
 
-        <BodyText className={styles.postCard__desc}>{description}</BodyText>
       </div>
+        <BodyText className={styles.postCard__desc}>{description}</BodyText>
       <div className={styles.postCard__category}>
         <Heading as='h3' size='container'>
           Category:{' '}

@@ -10,13 +10,11 @@ import {
   GeneralSection,
 } from '@/components/layouts'
 import {
-  LargePostColumnCard,
+  LargePostCard,
   MediumPostCard,
-  LargePostRowCard,
 } from '@/components/ui/cards/'
 import { Heading } from '@/components/ui/common'
 import styles from './RecentPostsSection.module.scss'
-import { LargePostCard } from '@/components/ui/cards/posts/large-post-card/LargePostCard'
 
 export default function RecentPostsSection() {
   const [posts, setPosts] = useState<RecentPost[]>([])
@@ -67,8 +65,8 @@ export default function RecentPostsSection() {
       <ColContainer className={styles.recentPostsSection__container} >
         <div className={styles.recentPostsSection__bigAndMedium}>
           <div className={styles.recentPostsSection__bigPost}>
+       
             <LargePostCard post={big1} />
-            <LargePostColumnCard post={big1} />
           </div>
 
           <div className={styles.recentPostsSection__mediumPosts}>
@@ -78,7 +76,7 @@ export default function RecentPostsSection() {
         </div>
 
         <div>
-          <LargePostRowCard post={row4} />
+          <LargePostCard post={row4} />
         </div>
       </ColContainer>
     </GeneralSection>

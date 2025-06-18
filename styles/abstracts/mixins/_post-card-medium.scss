@@ -1,0 +1,50 @@
+@use './breakpoint' as *;
+@use './containers' as *;
+@use '../functions/convert-px' as *;
+
+@mixin post-card-medium{
+  .medium {
+    @include breakpoint(lg) {
+      @include container-wrapper-400;
+      grid-template-columns: repeat(12, 1fr);
+      grid-template-rows: 0.75fr 0.25fr;
+      background-color: var(--bg-secondary);
+      padding-bottom: var(--container-padding-lg);
+    }
+  }
+
+  .medium .postCard {
+    &__image {
+      @include breakpoint(lg) {
+        grid-column: 1 / 6;
+        grid-row: 1;
+        border-radius: var(--br-300);
+        max-height: #{px-to-ch(300)};
+      }
+    }
+
+    &__tags {
+      display: none;
+    }
+
+    &__content {
+      @include breakpoint(lg) {
+        grid-column: 6 / 13;
+        grid-row: 1;
+        padding: var(--container-padding-lg);
+        text-align: left;
+      }
+    }
+
+    &__category {
+      display: none;
+    }
+
+    &__desc {
+      grid-column: span 12;
+      @include breakpoint(lg) {
+        grid-row: 2;
+      }
+    }
+  }
+}

@@ -1,0 +1,5 @@
+@use '@/styles/abstracts/mixins' as *;
+
+.aboutSection {
+    @include flex-center(column, var(--element-gap-lg));
+}

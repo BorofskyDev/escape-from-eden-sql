@@ -1,5 +1,5 @@
 export * from './post-card/PostCard'
-export * from './large-post-card/LargePostCard'
+export * from './LargePostCard'
 export * from './LargePostRowCard'
 export * from './MediumPostCard'
 export * from './SmallPostCard'

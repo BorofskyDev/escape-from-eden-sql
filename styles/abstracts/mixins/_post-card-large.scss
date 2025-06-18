@@ -9,7 +9,7 @@
     }
   }
 
-  .large .postCard {
+  .large > .postCard {
     &__image {
       @include breakpoint(lg) {
         grid-column: 2;

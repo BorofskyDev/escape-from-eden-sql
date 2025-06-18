@@ -1,7 +1,7 @@
 // components/ui/cards/LargePostColumnCard.tsx
 'use client'
 
-import { PostCard, PostData } from '../post-card/PostCard'
+import { PostCard, PostData } from './post-card/PostCard'
 
 interface LargePostCardProps {
   post: PostData

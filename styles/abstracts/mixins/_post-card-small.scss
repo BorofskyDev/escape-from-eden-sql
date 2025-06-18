@@ -2,25 +2,27 @@
 @use './containers' as *;
 @use '../functions/convert-px' as *;
 
-@mixin post-card-medium{
-  .medium {
+@mixin post-card-small {
+  .small {
     @include breakpoint(lg) {
       @include container-wrapper-400;
-      grid-template-columns: repeat(12, 1fr);
-      grid-template-rows: 0.75fr 0.25fr;
-      background-color: var(--bg-secondary);
+      max-width: #{px-to-ch(250)};
+      grid-template-columns: 1fr;
+      grid-template-rows: auto;
       padding-bottom: var(--container-padding-lg);
     }
   }
 
-  .medium .postCard {
+  .small .postCard {
     &__image {
       @include breakpoint(lg) {
-        grid-column: 1 / 6;
-        grid-row: 1;
         border-radius: var(--br-300);
         max-height: #{px-to-ch(300)};
       }
+    }
+
+    &__title {
+      font-size: var(--fs-500);
     }
 
     &__tags {
@@ -28,12 +30,8 @@
     }
 
     &__content {
-      @include breakpoint(lg) {
-        grid-column: 6 / 12;
-        grid-row: 1;
-        padding: var(--container-padding-lg);
-        text-align: left;
-      }
+      padding: var(--container-padding-lg);
+      text-align: left;
     }
 
     &__category {
@@ -41,10 +39,7 @@
     }
 
     &__desc {
-      @include breakpoint(lg) {
-        grid-column: span 12;
-        grid-row: 2;
-      }
+      display: none;
     }
   }
 }

@@ -4,36 +4,4 @@
 @include post-card-base;
 @include post-card-large;
 @include post-card-medium;
-
-.largeRow {
-  @include breakpoint(lg) {
-    padding: var(--container-padding-lg);
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-    @include container-wrapper-400;
-  }
-}
-
-.largeRow .postCard {
-  @include breakpoint(lg) {
-    &__image {
-      grid-column: 1;
-      grid-row: 1;
-    }
-  }
-
-  @include breakpoint(lg) {
-    &__content {
-      grid-column: 2;
-      grid-row: 1 / -1;
-    }
-  }
-
-  @include breakpoint(lg) {
-    &__category,
-    &__tags {
-      grid-column: 1;
-      grid-row: 2;
-    }
-  }
-}
+@include post-card-small;

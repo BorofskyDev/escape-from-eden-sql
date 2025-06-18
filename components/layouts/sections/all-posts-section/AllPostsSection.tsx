@@ -6,6 +6,10 @@ import usePaginatedPosts from '@/lib/hooks/usePaginatedPosts'
 import { SmallPostCard } from '@/components/ui/cards/'
 import { PostData } from '@/components/ui/cards/posts/post-card/PostCard'
 import { RecentPost } from '@/lib/functions/getRecentPosts'
+import { GeneralSection } from '@/components/layouts/'
+import { Heading } from '@/components/ui/common'
+import { icons } from '@/lib/icons/icons'
+import styles from './AllPostsSection.module.scss'
 
 const POSTS_PER_PAGE = 6
 
@@ -68,24 +72,28 @@ export default function AllPostsSection() {
   if (posts.length === 0) return <p>No posts found</p>
 
   return (
-    <section className='my-16'>
-      <h2 className='text-center text-5xl font-header my-6'>All Posts</h2>
+    <GeneralSection id='all-posts' className={styles.allPostsSection}>
+      <Heading as='h2' size='section'>
+        All Posts
+      </Heading>
 
       {/* Responsive Grid: 1 column on mobile, 2 columns on tablets, 3 columns on laptops+ */}
-      <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4'>
+      <div className={styles.allPostsSection__grid}>
         {posts.map((post: RecentPost) => (
           <SmallPostCard key={post.slug} post={transformPost(post)} />
         ))}
       </div>
 
-      {/* Pagination Controls */}
-      <div className='flex justify-center items-center mt-6 gap-2'>
+      <div className={styles.pagination}>
         <button
           onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
           disabled={page === 1}
-          className='px-3 py-1 border rounded hover:bg-gray-200 disabled:opacity-50'
+          className={styles.pagination__button}
         >
-          Prev
+          <svg aria-hidden='true' focusable='false' viewBox='0 0 50 50'>
+            <path d={icons.previous} />
+          </svg>
+          <span>Prev</span>
         </button>
         {getPaginationNumbers(page, totalPages).map((p, idx) =>
           p === -1 ? (
@@ -96,8 +104,8 @@ export default function AllPostsSection() {
             <button
               key={idx}
               onClick={() => setPage(p)}
-              className={`px-3 py-1 border rounded hover:bg-secondary transition-all duration-200 ${
-                p === page ? 'bg-primary text-bg1' : ''
+              className={`${styles.pagination__button} ${
+                p === page ? styles.pagination__button__active : ''
               }`}
             >
               {p}
@@ -107,11 +115,14 @@ export default function AllPostsSection() {
         <button
           onClick={() => setPage((prev) => Math.min(prev + 1, totalPages))}
           disabled={page === totalPages}
-          className='px-3 py-1 border rounded hover:bg-gray-200 disabled:opacity-50'
+          className={`${styles.pagination__button} ${styles.pagination__button__next}`}
         >
           Next
+          <svg aria-hidden='true' focusable='false' viewBox='0 0 50 50'>
+            <path d={icons.next} />
+          </svg>
         </button>
       </div>
-    </section>
+    </GeneralSection>
   )
 }

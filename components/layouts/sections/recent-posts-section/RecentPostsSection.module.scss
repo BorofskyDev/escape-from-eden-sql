@@ -15,7 +15,6 @@
 
     @include breakpoint(lg) {
       grid-template-columns: 1fr 1fr;
-      // grid-template-rows: repeat(3, 1fr);
       gap: var(--section-gap);
     }
   }

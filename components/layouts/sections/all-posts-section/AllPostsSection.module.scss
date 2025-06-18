@@ -1,0 +1,59 @@
+@use '@/styles/abstracts/mixins' as *;
+@use '@/styles/abstracts/functions' as *;
+
+.allPostsSection {
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    place-content: center;
+    place-items: center;
+    gap: var(--element-gap-md);
+
+    @include breakpoint(md) {
+      grid-template-columns: repeat(2, 1fr);
+      align-items: stretch;
+      place-items: flex-start;
+    }
+
+    @include breakpoint(lg) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+}
+
+.pagination {
+  @include flex-center(row, var(--element-gap-lg));
+  margin-top: var(--element-gap-lg);
+
+  &__button {
+    padding: var(--button-padding-sm);
+    border: var(--border-3);
+    border-radius: var(--br-700);
+    box-shadow: var(--shadow-200);
+    background-color: var(--bg-button);
+    display: grid;
+    grid-template-columns: #{px-to-ch(44)} 1fr;
+    place-items: center;
+    transition: var(--transition-main);
+
+    &:focus-visible {
+      @include focused;
+    }
+
+    &:hover,
+    &:focus-visible {
+      background-color: var(--bg-button-hover);
+      box-shadow: var(--shadow-600);
+      transform: scale(1.05);
+    }
+
+    &__next {
+        grid-template-columns: 1fr #{px-to-ch(44)};
+    }
+
+    &__active {
+        background-color: var(--bg-secondary);
+        box-shadow: var(--shadow-100);
+    }
+  }
+}

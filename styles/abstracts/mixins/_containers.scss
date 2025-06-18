@@ -3,3 +3,16 @@
     border-radius: var(--br-400);
     box-shadow: var(--shadow-400);
 }
+
+@mixin container-wrapper-300 {
+    border: var(--border-3);
+    border-radius: var(--br-300);
+    box-shadow: var(--shadow-300);
+}
+
+@mixin container-wrapper-200 {
+    border: var(--border-2);
+    border-radius: var(--br-200);
+    box-shadow: var(--shadow-200);
+}
+

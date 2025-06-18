@@ -6,6 +6,9 @@
 
     --bg-button: hsl(var(--blue-300));
     --bg-button-hover: hsl(var(--aqua-100));
+
+    --bg-button-secondary: hsl(var(--aqua-300));
+    --bg-button-secondary-hover: hsl(var(--blue-100));
 }
 
 [data-theme='dark'] {
@@ -16,4 +19,7 @@
 
     --bg-button: hsl(var(--blue-700));
     --bg-button-hover: hsl(var(--aqua-900));
+
+    --bg-button-secondary: hsl(var(--aqua-700));
+    --bg-button-secondary-hover: hsl(var(--blue-900));
 }

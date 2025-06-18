@@ -1,0 +1,16 @@
+@use '@/styles/abstracts/mixins' as *;
+
+.colToRowContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.gap-sm {
+  gap: var(--element-gap-sm);
+}
+.gap-md {
+  gap: var(--element-gap-md);
+}
+.gap-lg {
+  gap: var(--element-gap-lg);
+}

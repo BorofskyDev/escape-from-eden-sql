@@ -1,4 +1,4 @@
-import RecentPostsSection from '../../sections/RecentPostsSection'
+import RecentPostsSection from '../../sections/recent-posts-section/RecentPostsSection'
 import AboutSection from '../../sections/AboutSection'
 import AllPostsSection from '../../sections/AllPostsSection'
 import { BodyText, Heading } from '@/components/ui/common'

@@ -4,12 +4,15 @@
 :root {
   --gap-heading: #{px-to-rem(32)};
 
+  --section-gap: #{px-to-rem(64)};
+
   --element-gap-sm: #{px-to-rem(8)};
   --element-gap-md: #{px-to-rem(16)};
   --element-gap-lg: #{px-to-rem(24)};
 
   @include breakpoint(md) {
     --gap-heading: #{px-to-rem(48)};
+    --section-gap: #{px-to-rem(78)};
   }
 
   @include breakpoint(lg) {
@@ -17,5 +20,7 @@
     --element-gap-sm: #{px-to-rem(12)};
     --element-gap-md: #{px-to-rem(20)};
     --element-gap-lg: #{px-to-rem(32)};
+
+    --section-gap: #{px-to-rem(96)};
   }
 }

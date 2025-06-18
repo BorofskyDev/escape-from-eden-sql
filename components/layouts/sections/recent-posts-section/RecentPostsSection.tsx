@@ -4,10 +4,18 @@
 import { useState, useEffect } from 'react'
 import { getRecentPosts, RecentPost } from '@/lib/functions/getRecentPosts'
 import formatDateUS from '@/lib/functions/formatDateUS'
-import LargePostColumnCard from '@/components/ui/cards/posts/LargePostColumnCard'
-import MediumPostCard from '@/components/ui/cards/posts/MediumPostCard'
-import LargePostRowCard from '@/components/ui/cards/posts/LargePostRowCard'
-import { GeneralSection } from './general-section/GeneralSection'
+
+import {
+  ColContainer,
+  GeneralSection,
+} from '@/components/layouts'
+import {
+  LargePostColumnCard,
+  MediumPostCard,
+  LargePostRowCard,
+} from '@/components/ui/cards/'
+import { Heading } from '@/components/ui/common'
+import styles from './RecentPostsSection.module.scss'
 
 export default function RecentPostsSection() {
   const [posts, setPosts] = useState<RecentPost[]>([])
@@ -46,16 +54,22 @@ export default function RecentPostsSection() {
   const row4 = transformPost(p4)
 
   return (
-    <GeneralSection id='recent-posts'>
-      <h2 className='text-center text-5xl font-header my-10'>Recent Posts</h2>
+    <GeneralSection id='recent-posts' className={styles.recentPostsSection}>
+      <Heading
+        as='h2'
+        size='section'
+        className={styles.recentPostsSection__heading}
+      >
+        Recent Posts
+      </Heading>
 
-      <div className='flex flex-col gap-6'>
-        <div className='flex flex-col gap-6 lg:flex-row'>
-          <div className='lg:w-1/2'>
+      <ColContainer>
+        <div className={styles.recentPostsSection__bigAndMedium}>
+          <div className={styles.recentPostsSection__bigPost}>
             <LargePostColumnCard post={big1} />
           </div>
 
-          <div className='lg:w-1/2 flex flex-col gap-6 justify-between'>
+          <div className={styles.recentPostsSection__mediumPosts}>
             <MediumPostCard post={med2} />
             <MediumPostCard post={med3} />
           </div>
@@ -64,7 +78,7 @@ export default function RecentPostsSection() {
         <div>
           <LargePostRowCard post={row4} />
         </div>
-      </div>
+      </ColContainer>
     </GeneralSection>
   )
 }

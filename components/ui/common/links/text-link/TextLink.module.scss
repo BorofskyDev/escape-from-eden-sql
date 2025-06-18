@@ -1,0 +1,61 @@
+@use '@/styles/abstracts/mixins' as *;
+@use '@/styles/abstracts/functions' as *;
+
+.textLink {
+  display: inline-block;
+  position: relative;
+  max-width: fit-content;
+  padding: #{px-to-em(8)} 0;
+  color: var(--link);
+  font-weight: var(--fw-bold);
+  transition: var(--transition-main);
+  display: flex;
+  overflow: hidden;
+
+  &:hover,
+  &:focus-visible {
+    color: var(--link-hover);
+    transform: scale(1.05);
+    transform-origin: center;
+  }
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    background-color: var(--link);
+    transition: var(--transition-main);
+  }
+
+  &::before {
+    bottom: 0;
+    left: 110%;
+    opacity: 0;
+  }
+
+  &::after {
+    top: 0;
+    right: 110%;
+    opacity: 0;
+  }
+
+  &:hover::before,
+  &:focus-visible::before,
+  &:hover::after,
+  &:focus-visible::after {
+    opacity: 1;
+    background-color: var(--link-hover);
+  }
+
+  &:hover::before,
+  &:focus-visible::before {
+    left: 0;
+  }
+
+  &:hover::after,
+  &:focus-visible::after {
+    right: 0;
+  }
+}

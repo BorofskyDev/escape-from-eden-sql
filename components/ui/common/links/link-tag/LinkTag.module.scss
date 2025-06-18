@@ -1,0 +1,25 @@
+@use '@/styles/abstracts/mixins' as *;
+
+
+
+.linkTag {
+    display: inline-block;
+    padding: var(--button-padding-sm);
+    border: var(--border-3);
+    border-radius: var(--br-800);
+    box-shadow: var(--shadow-200);
+    background-color: var(--bg-button-secondary);
+    font-size: var(--fs-200);
+    font-weight: var(--fw-medium);
+    transition: var(--transition-main);
+
+    &:focus-visible {
+        @include focused;
+    }
+
+    &:hover, &:focus-visible {
+        background-color: var(--bg-button-secondary-hover);
+        box-shadow: var(--shadow-400);
+        transform: var(--scale);
+    }
+}

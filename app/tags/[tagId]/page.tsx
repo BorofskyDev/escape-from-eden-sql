@@ -3,7 +3,7 @@ import { PrismaClient } from '@prisma/client'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import SmallPostCard from '@/components/ui/cards/posts/SmallPostCard'
-import { PostData } from '@/components/ui/cards/posts/PostCard'
+import { PostData } from '@/components/ui/cards/posts/post-card/PostCard'
 import { GeneralSection } from '@/components/layouts'
 import PageTitle from '@/components/ui/common/typography/PageTitle'
 

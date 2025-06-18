@@ -3,8 +3,8 @@
 
 import { useState } from 'react'
 import usePaginatedPosts from '@/lib/hooks/usePaginatedPosts'
-import SmallPostCard from '@/components/ui/cards/posts/SmallPostCard'
-import { PostData } from '@/components/ui/cards/posts/PostCard'
+import { SmallPostCard } from '@/components/ui/cards/'
+import { PostData } from '@/components/ui/cards/posts/post-card/PostCard'
 import { RecentPost } from '@/lib/functions/getRecentPosts'
 
 const POSTS_PER_PAGE = 6

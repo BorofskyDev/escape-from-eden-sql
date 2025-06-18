@@ -27,23 +27,21 @@
 
   @if $level == 2 {
     @include heading(
-      var(--section-header-margin),
-      var(--fw-800),
+      var(--margin-center),
+      var(--fw-extrabold),
       var(--fs-800),
-      var(--lh-10)
+      var(--lh-800)
     );
-
     max-width: fit-content;
-    color: var(--color-text-secondary);
     text-align: center;
   }
 
   @if $level == 3 {
     @include heading(
       var(--sub-section-header-margin),
-      var(--fw-700),
+      var(--fw-bold),
       var(--fs-700),
-      var(--lh-2)
+      var(--lh-700)
     );
   }
 

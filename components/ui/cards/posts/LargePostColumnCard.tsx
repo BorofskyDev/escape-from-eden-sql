@@ -1,13 +1,13 @@
 // components/ui/cards/LargePostColumnCard.tsx
 'use client'
 
-import PostCard, { PostData } from './PostCard'
+import { PostCard, PostData } from './post-card/PostCard'
 
 interface LargePostColumnCardProps {
   post: PostData
 }
 
-export default function LargePostColumnCard({
+export function LargePostColumnCard({
   post,
 }: LargePostColumnCardProps) {
   return <PostCard variant='largeColumn' post={post} />

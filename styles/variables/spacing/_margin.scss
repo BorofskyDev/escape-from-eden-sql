@@ -1,7 +1,20 @@
 @use '@/styles/abstracts/functions' as *;
+@use '@/styles/abstracts/mixins' as *;
 
 :root {
-    --margin-center: 0 auto;
+  --margin-center: 0 auto;
 
-    --section-margin: #{px-to-rem(32)} auto;
+  --section-margin: #{px-to-rem(32)} auto;
+
+  --section-heading-mb: #{px-to-rem(64)};
+
+  @include breakpoint(md) {
+    --section-margin: #{px-to-rem(64)} auto;
+    --section-heading-mb: #{px-to-rem(72)};
+  }
+
+  @include breakpoint(lg) {
+    --section-margin: #{px-to-rem(96)} auto;
+    --section-heading-mb: #{px-to-rem(86)};
+  }
 }

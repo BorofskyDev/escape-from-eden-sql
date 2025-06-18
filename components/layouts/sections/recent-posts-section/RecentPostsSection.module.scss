@@ -1,0 +1,42 @@
+@use '@/styles/abstracts/mixins' as *;
+
+.recentPostsSection {
+
+&__heading {
+    margin-bottom: var(--section-heading-mb);
+    text-align: center;
+}
+
+&__bigAndMedium {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--section-gap);
+
+  @include breakpoint(lg) {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeate(3, 1fr);
+    gap: var(--section-gap);
+  }
+}
+
+  &__bigPost {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    width: 100%;
+  }
+
+  &__mediumPosts {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--element-gap-lg);
+
+    @include breakpoint(lg) {
+      width: 100%;
+      grid-template-columns: repeat(2, 1fr);
+      align-items: flex-start;
+    }
+  }
+}

@@ -1,9 +1,6 @@
-
-
-import {prisma} from '@/lib/prisma'
+import { prisma } from '@/lib/prisma'
 import SmallPostCard from '@/components/ui/cards/posts/SmallPostCard'
-import { PostData } from '@/components/ui/cards/posts/PostCard'
-
+import { PostData } from '@/components/ui/cards/posts/post-card/PostCard'
 
 interface SimilarPostsProps {
   currentPostId: string

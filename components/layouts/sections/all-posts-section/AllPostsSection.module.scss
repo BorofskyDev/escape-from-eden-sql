@@ -2,7 +2,10 @@
 @use '@/styles/abstracts/functions' as *;
 
 .allPostsSection {
+    @include flex-center(column, var(--element-gap-lg));
+    
   &__grid {
+    margin-bottom: #{px-to-em(100)};
     display: grid;
     grid-template-columns: 1fr;
     place-content: center;
@@ -22,8 +25,12 @@
 }
 
 .pagination {
-  @include flex-center(row, var(--element-gap-lg));
-  margin-top: var(--element-gap-lg);
+  @include flex-center(column, var(--element-gap-lg));
+  margin-top: var(--section-heading-mb);
+
+  @include breakpoint(md) {
+    flex-direction: row;
+  }
 
   &__button {
     padding: var(--button-padding-sm);

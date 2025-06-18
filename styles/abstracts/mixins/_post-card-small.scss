@@ -6,10 +6,11 @@
   .small {
     @include breakpoint(lg) {
       @include container-wrapper-400;
+      height: 100%;
       max-width: #{px-to-ch(250)};
       grid-template-columns: 1fr;
       grid-template-rows: auto;
-      padding-bottom: var(--container-padding-lg);
+      padding: 0;
     }
   }
 
@@ -30,7 +31,7 @@
     }
 
     &__content {
-      padding: var(--container-padding-lg);
+      padding: var(--container-padding-sm);
       text-align: left;
     }
 

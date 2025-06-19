@@ -4,9 +4,9 @@
 import React, { useState } from 'react'
 import { AnimatePresence } from 'framer-motion'
 import CopyLinkButton from '@/components/ui/common/buttons/copy-link-button/CopyLinkButton'
-import ShareModal from '@/components/ui/modals/share-modal/ShareModal'
-import styles from './ShareContainerClient.module.scss'
+import { ShareModal } from '@/components/ui/modals'
 import { ActionButton } from '@/components/ui/common'
+import styles from './ShareContainerClient.module.scss'
 
 interface ShareContainerProps {
   url: string

@@ -3,6 +3,7 @@
 import React, { useState, useMemo } from 'react'
 import parse, { Element } from 'html-react-parser'
 import FootnoteReaderModal from '@/components/ui/modals/FootnoteReaderModal'
+import styles from './BlogPostContent.module.scss'
 
 interface FootnoteData {
   title: string
@@ -56,15 +57,15 @@ export default function BlogPostReaderContent({
                 cursor: 'pointer',
                 fontSize: '0.75rem',
                 verticalAlign: 'super',
-                color: 'var(--primary)',
+                color: 'var(--text)',
                 marginLeft: '1px',
               }}
               onClick={() => setActiveIndex(index)}
               onMouseEnter={(e) =>
-                (e.currentTarget.style.color = 'var(--secondary)')
+                (e.currentTarget.style.color = 'var(--text-secondary)')
               }
               onMouseLeave={(e) =>
-                (e.currentTarget.style.color = 'var(--primary)')
+                (e.currentTarget.style.color = 'var(--text)')
               }
             >
               {index + 1}
@@ -76,7 +77,7 @@ export default function BlogPostReaderContent({
   }, [html])
 
   return (
-    <div>
+    <div className={styles.blogPostContent}>
       {transformedContent}
       {activeIndex !== null && footnotes[activeIndex] && (
         <FootnoteReaderModal

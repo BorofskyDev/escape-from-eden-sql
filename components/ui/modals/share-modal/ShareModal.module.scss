@@ -1,0 +1,15 @@
+@use '@/styles/abstracts/mixins' as *;
+@use '@/styles/abstracts/functions' as *;
+
+.shareModal {
+    // 'flex flex-col space-y-4'
+    @include flex-center(column, var(--element-gap-lg));
+
+    &__links {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: var(--element-gap-md);
+    }
+}

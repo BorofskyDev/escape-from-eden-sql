@@ -1,0 +1,62 @@
+@use '@/styles/abstracts/mixins' as *;
+@use '@/styles/abstracts/functions' as *;
+
+.blogPostContent {
+    margin: var(--center-margin);
+    max-width: #{px-to-ch(600)};
+    padding: var(--section-padding-y) var(--section-padding-x);
+    display: flex;
+    flex-direction: column;
+    gap: var(--paragraph-gap);
+
+    & p {
+        @include text-style(1);
+    }
+
+    & blockquote {
+        @include blockquote;
+    }
+
+    & h2 {
+        @include heading-style(2);
+    }
+
+    & h3 {
+       @include heading-style(3);
+    }
+
+    & h4 {
+        @include heading-style(4);
+    }
+
+    & h5 {
+        @include heading-style(5);
+    }
+
+    & h6 {
+        @include heading-style(6);
+    }
+
+    & ul {
+        width: 90%;
+        margin-left: #{px-to-ch(16)};
+        & li {
+            list-style: disc;
+
+        }
+    }
+
+    & ol {
+        width: 90%;
+        margin-left: #{px-to-ch(16)};
+        & li {
+            list-style: decimal;
+
+        }
+    }
+
+    & a {
+        @include link-base;
+    }
+
+}

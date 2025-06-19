@@ -4,7 +4,6 @@ import { playfair, atkinsonNext, atkinsonMono } from '@/app/fonts'
 import Header from '@/components/layouts/header/Header'
 import Footer from '@/components/layouts/footer/Footer'
 import { Analytics } from '@vercel/analytics/react'
-// import './globals.css'
 import '@/styles/index.scss'
 
 export const metadata: Metadata = {

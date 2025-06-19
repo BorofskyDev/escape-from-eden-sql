@@ -23,7 +23,7 @@ interface ModalProps {
  * - A centered scrollable panel if content exceeds viewport
  * - No scrolling on the background (body locked)
  */
-export default function Modal({ open, onClose, children, origin }: ModalProps) {
+export function Modal({ open, onClose, children, origin }: ModalProps) {
   const handleKeyDown = useCallback(
     (e: KeyboardEvent) => {
       if (e.key === 'Escape') {

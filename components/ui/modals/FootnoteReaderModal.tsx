@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import Modal from './modal/Modal'
+import { Modal } from '@/components/ui/modals/'
 
 interface FootnoteData {
   title: string

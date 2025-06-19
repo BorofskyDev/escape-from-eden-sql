@@ -13,7 +13,7 @@ import SimilarPostsSection from '@/components/layouts/sections/similar-posts-sec
 import { ShareContainer } from './post-components'
 import { ReadingProgressIndicator } from '@/components/ui/reader/'
 import TipCard from '@/components/ui/cards/TipCard'
-import BlogPostReaderContent from '@/components/ui/reader/BlogPostContent'
+import BlogPostReaderContent from '@/components/ui/reader/blog-post-content/BlogPostContent'
 import { BodyText, Heading, LinkTag, TextLink } from '@/components/ui/common'
 import styles from './PostPageComponent.module.scss'
 
@@ -115,7 +115,7 @@ export default async function PostPageComponent({
             )}
           </div>
 
-          <div className='prose mb-4 bg-bg2 p-8 max-w-4xl mx-auto shadow-lg rounded-md leading-6 flex flex-col gap-4'>
+          <div className={styles.blogPostContent__body}>
             <BlogPostReaderContent html={sanitizedContent} />
           </div>
         </article>

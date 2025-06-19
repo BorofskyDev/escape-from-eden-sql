@@ -1,0 +1,58 @@
+@use '@/styles/abstracts/mixins' as *;
+@use '@/styles/abstracts/functions' as *;
+
+.articleContent h3 {
+  
+    
+    @include heading-style(3);
+
+}
+  
+  .articleContent h4 {
+   @include heading-style(4);
+  }
+  
+  .articleContent h5 {
+    @include heading-style(5);
+  }
+  
+  .articleContent h6 {
+    @include heading-style(6);
+  }
+  
+  .articleContent p {
+   @include text-style(1)
+  }
+  
+  .articleContent ul {
+    list-style: disc;
+    margin-left: 1.5rem;
+  }
+  
+  .articleContent ol {
+    list-style: decimal;
+    margin-left: 1.5rem;
+  }
+  
+  .articleContent blockquote {
+   // @apply border-l-4 mx-auto border-primary px-4 md:px-6 lg:px-8 italic text-text2;
+    border-left: var(--border-4);
+    margin: var(--margin-center);
+    padding-left: var(--container-padding-sm);
+  }
+  
+  .articleContent a {
+    color: var(--text-link);
+    text-decoration: underline;
+    transition: color 0.2s;
+  }
+  
+  .articleContent a:hover,
+  .articleContent a:focus {
+    color: var(--text-link-hover);
+  }
+  
+  .articleContent a:hover {
+    color: var(--text-link-hover);
+  }
+  

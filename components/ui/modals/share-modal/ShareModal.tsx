@@ -1,8 +1,9 @@
 'use client'
 
 import React from 'react'
-import { motion } from 'framer-motion'
-import Modal from '@/components/ui/modals/modal/Modal'
+import { Modal} from '@/components/ui/modals/'
+import { Heading, TextLink } from '@/components/ui/common'
+import styles from './ShareModal.module.scss'
 
 interface ShareModalProps {
   url: string
@@ -11,7 +12,7 @@ interface ShareModalProps {
   onClose: () => void
 }
 
-const ShareModal: React.FC<ShareModalProps> = ({
+export const ShareModal: React.FC<ShareModalProps> = ({
   url,
   title,
   description,
@@ -28,45 +29,44 @@ const ShareModal: React.FC<ShareModalProps> = ({
 
   return (
     <Modal open onClose={onClose}>
-      <div className='flex flex-col space-y-4'>
-        <h2 className='text-xl font-bold'>Share this post</h2>
-        <div className='flex flex-col space-y-2'>
-          <motion.a
+      <div className={styles.shareModal}>
+        <Heading as='h2' size='section-sub'>Share this post</Heading>
+        <div className={styles.shareModal__links}>
+          <TextLink
             href={facebookShare}
             target='_blank'
             rel='noopener noreferrer'
             className='px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition'
           >
             Share on Facebook
-          </motion.a>
-          <motion.a
+          </TextLink>
+          <TextLink
             href={twitterShare}
             target='_blank'
             rel='noopener noreferrer'
             className='px-4 py-2 bg-blue-400 text-white rounded hover:bg-blue-500 transition'
           >
             Share on Twitter
-          </motion.a>
-          <motion.a
+          </TextLink>
+          <TextLink
             href={linkedInShare}
             target='_blank'
             rel='noopener noreferrer'
             className='px-4 py-2 bg-blue-700 text-white rounded hover:bg-blue-800 transition'
           >
             Share on LinkedIn
-          </motion.a>
-          <motion.a
+          </TextLink>
+          <TextLink
             href={whatsappShare}
             target='_blank'
             rel='noopener noreferrer'
             className='px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 transition'
           >
             Share on WhatsApp
-          </motion.a>
+          </TextLink>
         </div>
       </div>
     </Modal>
   )
 }
 
-export default ShareModal

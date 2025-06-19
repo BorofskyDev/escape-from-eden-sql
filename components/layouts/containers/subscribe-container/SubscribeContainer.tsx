@@ -2,8 +2,12 @@
 
 import { useState, FormEvent } from 'react'
 import styles from './SubscribeContainer.module.scss'
-import { BodyText, GeneralInput, Heading } from '@/components/ui/common'
-import ActionButton from '@/components/ui/common/buttons/action-button/ActionButton'
+import {
+  BodyText,
+  GeneralInput,
+  Heading,
+  ActionButton,
+} from '@/components/ui/common'
 
 export function SubscribeContainer() {
   const [email, setEmail] = useState('')
@@ -55,6 +59,7 @@ export function SubscribeContainer() {
         className={styles.subscribeContainer__form}
       >
         <GeneralInput
+          label='Email'
           type='email'
           placeholder='Enter your email'
           value={email}

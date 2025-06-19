@@ -1,5 +1,5 @@
 import { prisma } from '@/lib/prisma'
-import SmallPostCard from '@/components/ui/cards/posts/SmallPostCard'
+import { SmallPostCard } from '@/components/ui/cards'
 import { PostData } from '@/components/ui/cards/posts/post-card/PostCard'
 
 interface SimilarPostsProps {
@@ -101,6 +101,7 @@ export default async function SimilarPostsSection({
 
   // Transform candidates into PostData shape for the card.
   const transformPost = (post: (typeof candidates)[number]): PostData => ({
+    id: post.id,
     title: post.title,
     description: post.description,
     publishedAt: post.publishedAt

@@ -8,7 +8,7 @@ interface ActionButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode
 }
 
-export default function ActionButton({
+export function ActionButton({
   variant = 'primary',
   className = '',
   disabled,

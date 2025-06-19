@@ -1,0 +1,16 @@
+@use '@/styles/abstracts/mixins' as *;
+@use '@/styles/abstracts/functions' as *;
+
+.contactForm {
+max-width: var(--lg-container-width);
+margin: var(--margin-center);
+padding: var(--container-padding-lg);
+background-color: var(--bg-secondary);
+border: var(--border-6);
+border-radius: var(--br-600);
+box-shadow: var(--shadow-600);
+display: grid;
+grid-template-columns: 1fr;
+gap: var(--element-gap-lg);
+
+}

@@ -1,0 +1,13 @@
+@use '@/styles/abstracts/mixins' as *;
+@use '@/styles/abstracts/functions' as *;
+
+.footerMedia {
+    @include flex-center(column, var(--element-gap-md));
+    text-align: center;
+    
+    &__text {
+        @include flex-center(column, var(--element-gap-md));
+        text-align: center;
+
+    }
+}

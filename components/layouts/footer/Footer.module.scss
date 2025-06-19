@@ -1,0 +1,26 @@
+@use '@/styles/abstracts/mixins' as *;
+
+
+.footer {
+    max-width: var(--section-max-width);
+    margin: var(--margin-center);
+    padding: var(--section-padding-y) var(--section-padding-x);
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    gap: var(--element-gap-xl);
+
+    @include breakpoint(md) {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: auto auto;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+
+    @include breakpoint(lg) {
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: auto;
+        gap: var(--element-gap-lg);
+    }
+}

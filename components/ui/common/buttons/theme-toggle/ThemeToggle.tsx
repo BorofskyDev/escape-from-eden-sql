@@ -4,8 +4,9 @@
 
 import React, { useEffect, useState } from 'react'
 import { useTheme } from 'next-themes'
+import styles from './ThemeToggle.module.scss'
 
-export default function ThemeToggleBtn() {
+export function ThemeToggleBtn() {
   const { theme, setTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
 
@@ -25,9 +26,9 @@ export default function ThemeToggleBtn() {
   return (
     <button
       onClick={toggleTheme}
-      className='px-4 py-2 border border-accent rounded focus:outline-none'
+      className={styles.themeToggleBtn}
     >
-      {theme === 'light' ? 'Dark' : 'Light'}
+      {theme === 'light' ? 'Toggle Dark' : 'Toggle Light'}
     </button>
   )
 }

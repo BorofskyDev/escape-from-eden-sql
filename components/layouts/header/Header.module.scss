@@ -1,0 +1,48 @@
+@use '@/styles/abstracts/mixins' as *;
+@use '@/styles/abstracts/functions' as *;
+
+.header {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 50;
+  background-color: var(--bg);
+
+  &__container {
+    max-width: var(--section-max-width);
+    margin: var(--margin-center);
+    padding: #{px-to-rem(16)} var(--section-padding-x);
+    display: flex;
+    align-items: center;
+    border-bottom: var(--border-2);
+    justify-content: space-between;
+  }
+
+  &__themeToggle {
+    display: none;
+    @include breakpoint(lg) {
+      display: block;
+    }
+  }
+}
+
+
+
+.mobileNav {
+    position: fixed;
+    inset: 0;
+    background-color: var(--bg);
+    display: grid;
+    place-items: center;
+    z-index: 40;
+
+    &__links {
+       
+        @include flex-center(column, var(--element-gap-lg));
+        text-align: center;
+    }
+
+@include breakpoint(lg) {
+    display: none;
+}
+}

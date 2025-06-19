@@ -6,7 +6,7 @@ export function FooterLegal() {
     return (
       <div className={styles.footerLegal}>
         <Heading as='h3' size='container' >Legal</Heading>
-        <ul className='space-y-2'>
+        <ul className={styles.footerLegal__list}>
           <li>
             <TextLink href='/privacy-policy'>Privacy Policy</TextLink>
           </li>

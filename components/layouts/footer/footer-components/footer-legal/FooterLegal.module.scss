@@ -1,0 +1,11 @@
+@use '@/styles/abstracts/mixins' as *;
+@use '@/styles/abstracts/functions' as *;
+
+.footerLegal {
+    @include flex-center(column, var(--element-gap-md));
+
+    &__list {
+        @include flex-center(column, var(--element-gap-sm));
+        text-align: center;
+    }
+}

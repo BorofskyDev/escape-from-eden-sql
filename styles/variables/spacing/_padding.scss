@@ -2,6 +2,8 @@
 @use '@/styles/abstracts/mixins' as *;
 
 :root {
+  --page-padding-y: #{px-to-rem(120)};
+
   --section-padding-x: #{px-to-rem(24)};
   --section-padding-y: #{px-to-rem(40)};
 
@@ -14,11 +16,16 @@
   --button-padding-lg: #{px-to-rem(16)} #{px-to-rem(32)};
 
   @include breakpoint(md) {
+
+    --page-padding-y: #{px-to-rem(140)};
+
     --section-padding-x: #{px-to-rem(32)};
     --section-padding-y: #{px-to-rem(48)};
   }
 
   @include breakpoint(lg) {
+    --page-padding-y: #{px-to-rem(160)};
+
     --section-padding-x: #{px-to-rem(48)};
     --section-padding-y: #{px-to-rem(64)};
 

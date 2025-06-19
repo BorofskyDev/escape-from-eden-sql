@@ -1,0 +1,23 @@
+@use '@/styles/abstracts/mixins' as *;
+
+.themeToggleBtn {
+  padding: var(--button-padding-sm);
+  border: var(--border-4);
+  border-radius: var(--br-800);
+  box-shadow: var(--shadow-200);
+  background-color: var(--bg-button);
+  font-size: var(--fs-200);
+  font-weight: var(--fw-black);
+  transition: var(--transition-main);
+
+  &:focus-visible {
+    @include focused;
+  }
+
+  &:hover,
+  &:focus-visible {
+    background-color: var(--bg-button-hover);
+    box-shadow: var(--shadow-400);
+    transform: scale(1.05);
+  }
+}

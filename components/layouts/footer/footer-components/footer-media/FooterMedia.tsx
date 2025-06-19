@@ -6,7 +6,7 @@ export function FooterMedia() {
     return (
       <div className={styles.footerMedia}>
         <Heading as='h3' size='container'>Social Media</Heading>
-        <BodyText>
+        <BodyText className={styles.footerMedia__text}>
           Designed and developed by{' '}
           <TextLink external href='https://joelborofsky.com' target='_blank'>
             JBSky Dev

@@ -1,9 +1,9 @@
-import { SplashPageComponent } from '@/components/layouts'
+import { Page, SplashPageComponent } from '@/components/layouts'
 
 export default function Home() {
   return (
-    <main>
+    <Page>
       <SplashPageComponent />
-    </main>
+    </Page>
   )
 }

@@ -38,6 +38,8 @@
     border-radius: var(--br-700);
     box-shadow: var(--shadow-200);
     background-color: var(--bg-button);
+    font-size: var(--fs-200);
+    font-weight: var(--fw-bold);
     display: grid;
     grid-template-columns: #{px-to-ch(44)} 1fr;
     place-items: center;

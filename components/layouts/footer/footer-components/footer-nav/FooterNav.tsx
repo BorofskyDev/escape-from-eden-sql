@@ -6,7 +6,7 @@ export function FooterNav() {
     return (
       <div className={styles.footerNav}>
         <Heading as='h3' size='container'>Navigation</Heading>
-        <ul className='space-y-2'>
+        <ul className={styles.footerNav__list}>
           <li>
             <TextLink href='/'>Home</TextLink>
           </li>

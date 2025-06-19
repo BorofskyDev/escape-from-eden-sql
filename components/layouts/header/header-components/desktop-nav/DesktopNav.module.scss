@@ -1,0 +1,10 @@
+@use '@/styles/abstracts/mixins' as *;
+
+.desktopNav {
+    display: none;
+    @include breakpoint(lg) {
+        display: flex;
+        align-items: center;
+        justify-items: space-between;
+    }
+}

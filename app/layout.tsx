@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Providers from './providers'
 import { playfair, atkinsonNext, atkinsonMono } from '@/app/fonts'
-import Navbar from '@/components/layouts/header/Navbar'
+import Header from '@/components/layouts/header/Header'
 import Footer from '@/components/layouts/footer/Footer'
 import { Analytics } from '@vercel/analytics/react'
 // import './globals.css'
@@ -26,7 +26,7 @@ export default function RootLayout({
       >
         <Providers>
           <Analytics />
-          <Navbar />
+          <Header />
           {children}
           <Footer />
         </Providers>

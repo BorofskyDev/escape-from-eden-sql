@@ -1,0 +1,18 @@
+@use '@/styles/abstracts/mixins' as *;
+@use '@/styles/abstracts/functions' as *;
+
+.hamburgerBtn {
+    position: relative;
+    @include flex-center(column, #{px-to-rem(8)});
+    z-index: 50;
+  
+    & span {
+      width: #{px-to-rem(32)};
+      height: #{px-to-rem(2)};
+      background-color: var(--text);
+    }
+  
+    @include breakpoint(lg) {
+      display: none;
+    }
+  }

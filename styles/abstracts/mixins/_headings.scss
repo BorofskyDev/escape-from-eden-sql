@@ -66,9 +66,9 @@
   @if $level == 6 {
     @include heading(
       var(--container-small-margin),
-      var(--fw-500),
+      var(--fw-medium),
       var(--fs-400),
-      var(--lh-2)
+      var(--lh-400)
     );
   }
 }

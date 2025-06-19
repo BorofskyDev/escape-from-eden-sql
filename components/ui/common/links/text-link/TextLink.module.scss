@@ -2,15 +2,27 @@
 @use '@/styles/abstracts/functions' as *;
 
 .textLink {
-  display: inline-block;
   position: relative;
-  max-width: fit-content;
-  padding: #{px-to-em(8)} 0;
+  width: fit-content;
+  padding: #{px-to-em(8)} #{px-to-em(16)};
   color: var(--link);
   font-weight: var(--fw-bold);
   transition: var(--transition-main);
   display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--element-gap-sm);
   overflow: hidden;
+
+  & svg {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: #{px-to-rem(18)};
+    fill: var(--link);
+    stroke: var(--link);
+    transform: rotate(45deg);
+  }
 
   &:hover,
   &:focus-visible {

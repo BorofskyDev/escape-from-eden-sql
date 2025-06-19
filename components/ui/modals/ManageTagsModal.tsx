@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import Modal from './Modal'
+import Modal from './modal/Modal'
 import TagCreator from '@/components/ui/common/inputs/TagCreator'
 import TagManager from '@/components/ui/common/inputs/TagManager'
 

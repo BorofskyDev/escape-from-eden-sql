@@ -1,6 +1,9 @@
 'use client'
 
 import React, { useState } from 'react'
+import { icons } from '@/lib/icons/icons'
+import { Icon } from '@/components/ui/common/'
+import styles from './CopyLinkButton.module.scss'
 
 interface CopyLinkButtonProps {
   url: string
@@ -20,11 +23,13 @@ const CopyLinkButton: React.FC<CopyLinkButtonProps> = ({ url }) => {
   }
 
   return (
-    <button
-      onClick={handleCopy}
-      className='px-4 py-2 bg-primary text-bg1 rounded hover:bg-secondary transition-all duration-200'
-    >
+    <button className={styles.copyLinkButton} onClick={handleCopy}>
       {copied ? 'Copied!' : 'Copy Link'}
+      {copied ? (
+        <Icon className={styles.copyLinkButton__icon} icon={icons.copied} />
+      ) : (
+        <Icon className={styles.copyLinkButton__icon} icon={icons.copyLink} />
+      )}
     </button>
   )
 }

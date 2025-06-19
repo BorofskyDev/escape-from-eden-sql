@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import Modal from '@/components/modals/Modal'
+import Modal from '@/components/ui/modals/modal/Modal'
 import { format } from 'date-fns'
 
 interface Message {

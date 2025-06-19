@@ -5,16 +5,21 @@
   --margin-center: 0 auto;
 
   --section-margin: #{px-to-rem(32)} auto;
+  --section-margin-inline: #{px-to-rem(24)};
 
   --section-heading-mb: #{px-to-rem(64)};
 
   @include breakpoint(md) {
     --section-margin: #{px-to-rem(64)} auto;
     --section-heading-mb: #{px-to-rem(72)};
+
+    --section-margin-inline: #{px-to-rem(32)};
   }
 
   @include breakpoint(lg) {
     --section-margin: #{px-to-rem(96)} auto;
     --section-heading-mb: #{px-to-rem(86)};
+
+    --section-margin-inline: #{px-to-rem(48)};
   }
 }

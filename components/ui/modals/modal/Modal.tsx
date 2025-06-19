@@ -2,6 +2,9 @@
 
 import { ReactNode, useCallback, useEffect } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
+import { Icon } from '@/components/ui/common/'
+import { icons } from '@/lib/icons/icons'
+import styles from './Modal.module.scss'
 
 interface ModalProps {
   open: boolean
@@ -62,7 +65,7 @@ export default function Modal({ open, onClose, children, origin }: ModalProps) {
     <AnimatePresence>
       {open && (
         <motion.div
-          className='fixed inset-0 z-50 overflow-hidden'
+          className={styles.modal}
           // ^ no scroll on the container
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -70,7 +73,7 @@ export default function Modal({ open, onClose, children, origin }: ModalProps) {
         >
           {/* Dark / blurred overlay (fills the entire screen) */}
           <motion.div
-            className='absolute inset-0 bg-black/50 backdrop-blur-sm'
+            className={styles.modal__overlay}
             onClick={handleOverlayClick}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -79,7 +82,7 @@ export default function Modal({ open, onClose, children, origin }: ModalProps) {
 
           {/* Centered container for the modal itself */}
           <motion.div
-            className='absolute inset-0 flex items-center justify-center'
+            className={styles.modal__container}
             style={{ transformOrigin }}
             initial={{ scale: 0.8 }}
             animate={{ scale: 1 }}
@@ -88,18 +91,17 @@ export default function Modal({ open, onClose, children, origin }: ModalProps) {
             onClick={handleOverlayClick}
           >
             {/* Scrollable modal panel */}
-            <div
-              onClick={handleModalClick}
-              className='relative bg-bg2 mx-10 rounded shadow-xl p-6 w-full max-w-5xl 
-                         max-h-[calc(100vh-4rem)] overflow-y-auto'
-            >
+            <div onClick={handleModalClick} className={styles.modal__panel}>
               {/* Close Button */}
               <button
                 type='button'
-                className='absolute top-2 right-2 text-gray-500 hover:text-gray-800'
+                className={styles.modal__closeButton}
                 onClick={onClose}
               >
-                ✕
+                <Icon
+                  icon={icons.close}
+                  className={styles.modal__closeButton__icon}
+                />
               </button>
 
               {children}

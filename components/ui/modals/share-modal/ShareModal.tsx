@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { motion } from 'framer-motion'
-import Modal from '@/components/modals/Modal'
+import Modal from '@/components/ui/modals/modal/Modal'
 
 interface ShareModalProps {
   url: string

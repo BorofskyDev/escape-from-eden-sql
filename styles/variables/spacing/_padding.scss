@@ -10,6 +10,7 @@
   --container-padding-sm: #{px-to-rem(8)};
   --container-padding-md: #{px-to-rem(16)};
   --container-padding-lg: #{px-to-rem(24)};
+  --container-padding-xl: #{px-to-rem(32)};
 
   --button-padding-sm: #{px-to-rem(8)} #{px-to-rem(16)};
   --button-padding-md: #{px-to-rem(12)} #{px-to-rem(24)};
@@ -32,6 +33,7 @@
     --container-padding-sm: #{px-to-rem(16)};
     --container-padding-md: #{px-to-rem(24)};
     --container-padding-lg: #{px-to-rem(32)};
+    --container-padding-xl: #{px-to-rem(40)};
 
     --button-padding-sm: #{px-to-rem(12)} #{px-to-rem(24)};
     --button-padding-md: #{px-to-rem(16)} #{px-to-rem(32)};

@@ -1,7 +1,7 @@
 // components/layouts/containers/ShareContainer.tsx
 import ShareContainerClient from './ShareContainerClient'
 
-export default function ShareContainer(props: {
+export function ShareContainer(props: {
   url: string
   title: string
   description: string

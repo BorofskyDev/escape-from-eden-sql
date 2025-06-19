@@ -1,0 +1,24 @@
+@use '@/styles/abstracts/mixins' as *;
+@use '@/styles/abstracts/functions' as *;
+
+.readingProgressIndicator {
+    // fixed top-0 left-0 right-0 h-2 bg-primary origin-left z-50
+    position: fixed;
+    top: 0;
+    left: #{px-to-rem(44)};
+    right: 0;
+    height: #{px-to-em(10)};
+    max-width: var(--section-max-width);
+    margin-top: #{px-to-rem(68)};
+    margin-inline: auto;
+    background-color: var(--bg-progress-bar);
+    z-index: 500;
+    transform-origin: left;
+
+    @include breakpoint(md){
+        left: #{px-to-rem(52)};
+    }
+    @include breakpoint(lg){
+        left: #{px-to-rem(96)};
+    }
+}

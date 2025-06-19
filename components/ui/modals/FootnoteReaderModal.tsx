@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import Modal from './Modal'
+import Modal from './modal/Modal'
 
 interface FootnoteData {
   title: string
@@ -24,7 +24,6 @@ export default function FootnoteReaderModal({
 
   return (
     <Modal open={true} onClose={onClose}>
-      
       <div
         className='prose'
         dangerouslySetInnerHTML={{ __html: footnoteData.content }}

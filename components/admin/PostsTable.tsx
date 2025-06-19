@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { usePosts, Post } from '@/lib/hooks/usePosts'
 import { formatDate } from '@/lib/functions/formatDate'
-import EditPostModal from '@/components/modals/EditPostModal'
+import EditPostModal from '@/components/ui/modals/EditPostModal'
 import Image from 'next/image'
 import { deletePost } from '@/lib/functions/deletePost'
 
@@ -73,7 +73,11 @@ export default function PostsTable() {
                   />
                 </td>
                 <td className='border p-2 capitalize'>{post.title}</td>
-                <td className={`border p-2 ${post.published ? 'bg-secondary text-bg1' : ''}`}>
+                <td
+                  className={`border p-2 ${
+                    post.published ? 'bg-secondary text-bg1' : ''
+                  }`}
+                >
                   {post.published ? 'Published' : 'Draft'}
                 </td>
                 <td className='border p-2'>{formatDate(post.updatedAt)}</td>

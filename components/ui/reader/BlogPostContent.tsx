@@ -2,7 +2,7 @@
 
 import React, { useState, useMemo } from 'react'
 import parse, { Element } from 'html-react-parser'
-import FootnoteReaderModal from '@/components/modals/FootnoteReaderModal'
+import FootnoteReaderModal from '@/components/ui/modals/FootnoteReaderModal'
 
 interface FootnoteData {
   title: string

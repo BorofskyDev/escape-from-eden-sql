@@ -3,8 +3,10 @@
 
 import React, { useState } from 'react'
 import { AnimatePresence } from 'framer-motion'
-import CopyLinkButton from '@/components/ui/common/buttons/CopyLinkButton'
-import ShareModal from '@/components/modals/ShareModal'
+import CopyLinkButton from '@/components/ui/common/buttons/copy-link-button/CopyLinkButton'
+import ShareModal from '@/components/ui/modals/share-modal/ShareModal'
+import styles from './ShareContainerClient.module.scss'
+import { ActionButton } from '@/components/ui/common'
 
 interface ShareContainerProps {
   url: string
@@ -23,17 +25,12 @@ const ShareContainerClient: React.FC<ShareContainerProps> = ({
   const closeModal = () => setModalOpen(false)
 
   return (
-    <div className='flex items-center space-x-4'>
+    <div className={styles.shareContainer}>
       {/* Copy Link Button */}
       <CopyLinkButton url={url} />
 
       {/* Button to open the modal with more share options */}
-      <button
-        onClick={openModal}
-        className='px-4 py-2 bg-secondary text-bg1 rounded hover:bg-accent transition-all duration-200'
-      >
-        More Share Options
-      </button>
+      <ActionButton onClick={openModal}>More Share Options</ActionButton>
 
       {/* AnimatePresence provides smooth mounting/unmounting for the modal */}
       <AnimatePresence>

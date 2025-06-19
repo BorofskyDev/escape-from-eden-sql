@@ -4,10 +4,14 @@ import { notFound } from 'next/navigation'
 import { prisma } from '@/lib/prisma'
 import sanitizeHtml from 'sanitize-html'
 import Image from 'next/image'
-import { GeneralSection, SubscribeContainer, Page } from '@/components/layouts'
+import {
+  GeneralSection,
+  SubscribeContainer,
+  Page,
+} from '@/components/layouts'
 import SimilarPostsSection from '@/components/layouts/sections/similar-posts-section/SimilarPostsSection'
-import ShareContainer from '@/components/layouts/containers/ShareContainer'
-import ReadingProgressIndicator from '@/components/ui/ReadingProgressIndicator'
+import { ShareContainer } from './post-components'
+import { ReadingProgressIndicator } from '@/components/ui/reader/'
 import TipCard from '@/components/ui/cards/TipCard'
 import BlogPostReaderContent from '@/components/ui/reader/BlogPostContent'
 import { BodyText, Heading, LinkTag, TextLink } from '@/components/ui/common'
@@ -63,38 +67,34 @@ export default async function PostPageComponent({
       <ReadingProgressIndicator />
 
       <GeneralSection id='blog-post'>
-        <article className={styles.blogPost}>
+        <article className={styles.blogPostContent}>
           <Heading as='h1' size='page'>
             {post.title}
           </Heading>
 
           {post.featuredImage && (
-            <div className={styles.blogPost__image}>
+            <div className={styles.blogPostContent__image}>
               <Image
                 src={post.featuredImage}
                 alt={post.title}
                 fill
-                className={styles.blogPost__image__img}
+                className={styles.blogPostContent__image__img}
               />
             </div>
           )}
 
           <BodyText variant='body-sm'>{formattedDate}</BodyText>
 
-          <div className={styles.blogPost__meta}>
+          <div className={styles.blogPostMeta}>
             {post.category && (
-              <div className={styles.blogPost__category}>
+              <div className={styles.blogPostMeta__category}>
                 <Heading as='h3' size='sm'>
                   Category:{' '}
                 </Heading>
-                
-                  <TextLink
-                    href={`/categories/${post.category.id}`}
-                    
-                  >
-                    {post.category.name}
-                  </TextLink>
-               
+
+                <TextLink href={`/categories/${post.category.id}`}>
+                  {post.category.name}
+                </TextLink>
               </div>
             )}
 
@@ -105,14 +105,10 @@ export default async function PostPageComponent({
             />
 
             {post.tags.length > 0 && (
-              <div className='flex flex-wrap gap-2'>
+              <div className={styles.blogPostMeta__tags}>
                 {post.tags.map((tag) => (
-                  <LinkTag
-                    key={tag.id}
-                    href={`/tags/${tag.id}`}
-                    className='px-2 py-1 text-xs bg-primary rounded hover:bg-secondary shadow-md hover:shadow-xl transition-all duration-200'
-                  >
-                    <span className='text-bg1 font-semibold'>{tag.name}</span>
+                  <LinkTag key={tag.id} href={`/tags/${tag.id}`}>
+                    <span>{tag.name}</span>
                   </LinkTag>
                 ))}
               </div>

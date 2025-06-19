@@ -2,7 +2,7 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
-import Modal from './Modal'
+import Modal from './modal/Modal'
 import CustomRTE from '@/components/ui/common/inputs/CustomRTE'
 
 interface FootnoteModalProps {

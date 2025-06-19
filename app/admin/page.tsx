@@ -2,10 +2,10 @@
 
 import { signOut } from 'next-auth/react'
 import { useState } from 'react'
-import CreatePostModal from '@/components/modals/CreatePostModal'
+import CreatePostModal from '@/components/ui/modals/CreatePostModal'
 import PostsTable from '@/components/admin/PostsTable'
-import ManageCategoriesModal from '@/components/modals/ManageCategoriesModal'
-import ManageTagsModal from '@/components/modals/ManageTagsModal'
+import ManageCategoriesModal from '@/components/ui/modals/ManageCategoriesModal'
+import ManageTagsModal from '@/components/ui/modals/ManageTagsModal'
 import { GeneralSection } from '@/components/layouts'
 import PageTitle from '@/components/ui/common/typography/PageTitle'
 import MessagesList from '@/components/admin/MessageList'

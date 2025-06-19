@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
-import Modal from './Modal'
+import Modal from './modal/Modal'
 import { v4 as uuidv4 } from 'uuid'
 
 // Import your new types + row
@@ -10,7 +10,7 @@ import {
   CitationData,
   SavedStyles,
 } from '@/lib/types/citationFieldTypes'
-import CitationFieldEditorRow from '../ui/common/inputs/editor-components/CitationFieldEditorRow'
+import CitationFieldEditorRow from '../common/inputs/editor-components/CitationFieldEditorRow'
 
 interface CitationAuthorModalProps {
   open: boolean

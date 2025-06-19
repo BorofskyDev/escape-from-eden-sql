@@ -1,7 +1,7 @@
 @use '@/styles/abstracts/mixins' as *;
 @use '@/styles/abstracts/functions' as *;
 
-.blogPost {
+.blogPostContent {
   max-width: var(--section-max-width);
   height: 100%;
   margin: var(--center-margin);
@@ -22,18 +22,37 @@
     border-radius: var(--br-200);
     box-shadow: var(--shadow-700);
 
+    @include breakpoint(md) {
+      height: #{px-to-em(360)};
+    }
+
+    @include breakpoint(lg) {
+      height: #{px-to-em(480)};
+    }
+
     &__img {
       width: 100%;
       height: 100%;
       object-position: center;
     }
-
+  }
 }
-&__category {
-  @include flex-center(row, var(--element-gap-sm));
-  text-align: center;
 
-  
-  
-}
+.blogPostMeta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--element-gap-lg);
+
+  &__category {
+    @include flex-center(row, var(--element-gap-sm));
+    text-align: center;
+  }
+
+  &__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--element-gap-md);
+  }
 }

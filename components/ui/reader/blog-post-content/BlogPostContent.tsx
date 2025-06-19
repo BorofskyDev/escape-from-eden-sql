@@ -14,7 +14,7 @@ interface BlogPostReaderContentProps {
   html: string
 }
 
-export default function BlogPostReaderContent({
+export function BlogPostReaderContent({
   html,
 }: BlogPostReaderContentProps) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null)

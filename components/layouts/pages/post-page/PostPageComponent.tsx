@@ -11,9 +11,8 @@ import {
 } from '@/components/layouts'
 import SimilarPostsSection from '@/components/layouts/sections/similar-posts-section/SimilarPostsSection'
 import { ShareContainer } from './post-components'
-import { ReadingProgressIndicator } from '@/components/ui/reader/'
-import TipCard from '@/components/ui/cards/TipCard'
-import BlogPostReaderContent from '@/components/ui/reader/blog-post-content/BlogPostContent'
+import { ReadingProgressIndicator, BlogPostReaderContent } from '@/components/ui/reader/'
+// import TipCard from '@/components/ui/cards/TipCard'
 import { BodyText, Heading, LinkTag, TextLink } from '@/components/ui/common'
 import styles from './PostPageComponent.module.scss'
 
@@ -120,7 +119,7 @@ export default async function PostPageComponent({
           </div>
         </article>
 
-        <TipCard />
+        {/* <TipCard /> */}
         <SubscribeContainer />
 
         <SimilarPostsSection

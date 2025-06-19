@@ -1,0 +1,21 @@
+@use '@/styles/abstracts/mixins' as *;
+@use '@/styles/abstracts/functions' as *;
+
+.similarPostsSection {
+    @include flex-center(column, var(--element-gap-lg));
+
+    &__posts {
+        display: grid;
+        grid-template-columns: 100%;
+        align-items: flex-start;
+        gap: var(--element-gap-md);
+
+        @include breakpoint(md) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        @include breakpoint(lg) {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+}

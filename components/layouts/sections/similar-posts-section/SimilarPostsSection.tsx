@@ -1,6 +1,8 @@
 import { prisma } from '@/lib/prisma'
 import { SmallPostCard } from '@/components/ui/cards'
 import { PostData } from '@/components/ui/cards/posts/post-card/PostCard'
+import styles from './SimilarPostsSection.module.scss'
+import { BodyText, Heading } from '@/components/ui/common'
 
 interface SimilarPostsProps {
   currentPostId: string
@@ -119,16 +121,16 @@ export default async function SimilarPostsSection({
   })
 
   return (
-    <section className='mt-12'>
-      <h2 className='text-2xl font-bold mb-6 text-center'>Similar Posts</h2>
+    <section id='similar-posts' className={styles.similarPostsSection}>
+      <Heading as='h2' size='section'>Similar Posts</Heading>
       {topCandidates.length > 0 ? (
-        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4'>
+        <div className={styles.similarPostsSection__posts}>
           {topCandidates.map((post) => (
             <SmallPostCard key={post.slug} post={transformPost(post)} />
           ))}
         </div>
       ) : (
-        <p className='text-gray-600'>No similar posts found.</p>
+        <BodyText variant='body-sm'>No similar posts found.</BodyText>
       )}
     </section>
   )

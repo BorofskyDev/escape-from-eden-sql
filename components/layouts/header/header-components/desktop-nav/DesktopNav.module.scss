@@ -5,6 +5,7 @@
     @include breakpoint(lg) {
         display: flex;
         align-items: center;
-        justify-items: space-between;
+        justify-items: center;
+        gap: var(--element-gap-md);
     }
 }

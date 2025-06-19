@@ -11,6 +11,8 @@
   --element-gap-lg: #{px-to-rem(24)};
   --element-gap-xl: #{px-to-rem(36)};
 
+  --paragraph-gap: #{px-to-em(32)};
+
   @include breakpoint(md) {
     --gap-heading: #{px-to-rem(48)};
     --section-gap: #{px-to-rem(78)};
@@ -24,5 +26,6 @@
     --element-gap-xl: #{px-to-rem(48)};
 
     --section-gap: #{px-to-rem(96)};
+    --paragraph-gap: #{px-to-em(48)};
   }
 }

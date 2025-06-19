@@ -28,21 +28,3 @@
 
 
 
-.mobileNav {
-    position: fixed;
-    inset: 0;
-    background-color: var(--bg);
-    display: grid;
-    place-items: center;
-    z-index: 40;
-
-    &__links {
-       
-        @include flex-center(column, var(--element-gap-lg));
-        text-align: center;
-    }
-
-@include breakpoint(lg) {
-    display: none;
-}
-}

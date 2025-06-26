@@ -17,18 +17,6 @@ export function generateSlug(name: string): string {
     .replace(/[^a-z0-9-]/g, '')
 }
 
-/**
- * Fetch categories from the API.
- */
-export async function getCategories(): Promise<Category[]> {
-  const res = await fetch('/api/categories')
-  if (!res.ok) {
-    throw new Error('Failed to fetch categories')
-  }
-  return res.json()
-}
-
-// lib/functions/category.ts
 export async function updateCategory(
   id: string,
   payload: { name: string; description?: string }

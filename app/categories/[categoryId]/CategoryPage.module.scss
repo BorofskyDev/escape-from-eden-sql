@@ -1,0 +1,18 @@
+@use '@/styles/abstracts/mixins' as *;
+@use '@/styles/abstracts/functions' as *;
+
+.categoryPage {
+  @include flex-column(var(--section-gap));
+
+  &__header {
+    @include flex-column(var(--element-gap-lg));
+  }
+
+  &__dropdown {
+    align-self: center;
+  }
+
+  &__grid {
+    @include post-grid;
+  }
+}

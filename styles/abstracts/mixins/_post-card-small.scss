@@ -6,11 +6,13 @@
   .small {
     @include breakpoint(lg) {
       @include container-wrapper-400;
-      height: 100%;
+      min-height: #{px-to-ch(300)};
       max-width: #{px-to-ch(250)};
+      display: grid;
       grid-template-columns: 1fr;
       grid-template-rows: auto;
-      padding: 0;
+      padding: var(--container-padding-sm);
+      place-content: center;
       background-color: var(--bg-secondary)
     }
   }
@@ -24,7 +26,7 @@
     }
 
     &__title {
-      font-size: var(--fs-500);
+      font-size: var(--fs-300);
     }
 
     &__tags {
@@ -33,7 +35,7 @@
 
     &__content {
       padding: var(--container-padding-sm);
-      text-align: left;
+      text-align: center;
     }
 
     &__category {

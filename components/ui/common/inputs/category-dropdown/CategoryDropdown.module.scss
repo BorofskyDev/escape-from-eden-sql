@@ -1,0 +1,81 @@
+@use '@/styles/abstracts/mixins' as *;
+@use '@/styles/abstracts/functions' as *;
+
+.categoryDropdown {
+    @include container-wrapper-400;
+    position: relative;
+    padding: var(--button-padding-lg);
+    background-color: var(--bg-secondary);
+    
+    &__label {
+        font-size: var(--fs-300);
+        font-weight: var(--fw-bold);
+        margin-right: #{px-to-em(16)};
+    }
+
+    &__loading {
+        font-size: var(--fs-400);
+        font-weight: var(--fw-bold);
+        text-align: center;
+    }
+
+    &__select {
+        @include container-wrapper-300;
+        padding: var(--button-padding-md);
+        background-color: var(--bg-button);
+        cursor: pointer;
+        transition: var(--transition-main);
+        font-family: var(--font-playfair);
+        font-weight: var(--fw-semibold);
+        font-size: var(--fs-400);
+    
+        &:focus-visible {
+            @include focused;
+        }
+    
+        &:hover, &:focus-visible {
+            background-color: var(--bg-button-hover);
+            box-shadow: var(--shadow-600);
+            transform: scale(1.05);
+        }
+
+    }
+
+    &__options {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        width: 100%;
+        height: #{px-to-em(320)};
+        padding: var(--container-padding-md);
+        transform: translate( -50%, #{px-to-em(160)});
+        background-color: var(--bg-secondary);
+        overflow-y: auto;
+        @include flex-column(var(--element-gap-md));
+        @include container-wrapper-400;
+        z-index: 50;
+    }
+
+    &__option {
+        @include container-wrapper-300;
+        padding: var(--container-padding-sm);
+        background-color: var(--bg-button);
+        text-align: center;
+        font-size: var(--fs-400);
+        font-weight: var(--fw-semibold);
+        cursor: pointer;
+        transition: var(--transition-main);
+
+        &:focus-visible {
+            @include focused;
+        }
+
+        &:hover, &:focus-visible {
+            background-color: var(--bg-button-hover);
+            // box-shadow: var(--shadow-600);
+            transform: scaleY(1.05);
+        }
+    }
+
+
+}

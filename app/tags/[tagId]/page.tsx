@@ -1,141 +1,67 @@
 // app/tags/[tagId]/page.tsx
-import { PrismaClient } from '@prisma/client'
 import { notFound } from 'next/navigation'
-import Link from 'next/link'
-import {SmallPostCard }from '@/components/ui/cards/'
-import { PostData } from '@/components/ui/cards/posts/post-card/PostCard'
-import { GeneralSection } from '@/components/layouts'
-import PageTitle from '@/components/ui/common/typography/PageTitle'
+import { getTag, getAllTags, getPublishedPostsForTag } from '@/lib/functions'
+import { mapPostToCardData } from '@/lib/functions/posts'
+import { Page } from '@/components/layouts'
+import { Heading, LinkTag } from '@/components/ui/common'
+import { SmallPostCard } from '@/components/ui/cards'
+import styles from './TagsPageComponent.module.scss'
 
-const prisma = new PrismaClient()
+
+export const revalidate = 60 // ISR (optional)
 
 export default async function TagPage({
   params,
 }: {
-  params: Promise<{ tagId: string }>
+  params: { tagId: string }
 }) {
-  const { tagId } = await params
+  const { tagId } = params
 
-  // Fetch the current tag information.
-  const tag = await prisma.tag.findUnique({
-    where: { id: tagId },
-    select: {
-      id: true,
-      name: true,
-      slug: true,
-    },
-  })
+  /* --- fetch in parallel ------------------------------------------------ */
+  const [tag, posts, allTags] = await Promise.all([
+    getTag(tagId),
+    getPublishedPostsForTag(tagId),
+    getAllTags(),
+  ])
 
-  if (!tag) {
-    notFound()
-  }
+  if (!tag) notFound()
 
-  // Fetch all published posts associated with this tag.
-  const posts = await prisma.post.findMany({
-    where: {
-      published: true,
-      tags: {
-        some: { id: tagId },
-      },
-    },
-    orderBy: [{ publishedAt: 'desc' }, { updatedAt: 'desc' }],
-    select: {
-      id: true,
-      title: true,
-      description: true,
-      featuredImage: true,
-      publishedAt: true,
-      slug: true,
-      category: { select: { id: true, name: true } },
-      tags: { select: { id: true, name: true } },
-    },
-  })
+  const postCards = posts.map(mapPostToCardData)
 
-  // Fetch all tags for the buttons list.
-  const allTags: TagData[] = await prisma.tag.findMany({
-    where: { deletedAt: null },
-    orderBy: { name: 'asc' },
-    select: { id: true, name: true, slug: true },
-  })
-
-  interface TagData {
-    id: string
-    name: string
-    slug: string
-  }
-
-  // Transform posts into the shape expected by SmallPostCard.
-  interface OriginalCategory {
-    id: string
-    name: string
-  }
-
-  interface OriginalTag {
-    id: string
-    name: string
-  }
-
-  interface OriginalPost {
-    title: string
-    description: string
-    publishedAt: string | Date | null
-    featuredImage?: string | null
-    category?: OriginalCategory | null
-    tags: OriginalTag[]
-    slug: string
-  }
-
-  const transformedPosts: PostData[] = posts.map((post: OriginalPost) => ({
-    title: post.title,
-    description: post.description,
-    publishedAt: post.publishedAt
-      ? new Date(post.publishedAt).toLocaleDateString('en-US', {
-          month: '2-digit',
-          day: '2-digit',
-          year: 'numeric',
-        })
-      : '',
-    imageUrl: post.featuredImage || 'https://via.placeholder.com/800',
-    categoryName: post.category?.name || 'Uncategorized',
-    categoryId: post.category?.id,
-    tags: post.tags.map((t: OriginalTag) => ({ id: t.id, name: t.name })),
-    slug: post.slug,
-  }))
-
+  /* --- UI layer --------------------------------------------------------- */
   return (
-    <GeneralSection id='tag-page'>
+    <Page>
       {/* Permanent Page Title */}
-      <PageTitle>Tags</PageTitle>
+      <Heading as='h1' size='page'>
+        Tags
+      </Heading>
 
       {/* Tag Buttons Row */}
-      <div className='flex flex-wrap gap-2 mb-8 justify-center'>
+      <div className={styles.tagsPageComponent}>
         {allTags.map((t) => (
-          <Link key={t.id} href={`/tags/${t.id}`}>
-            <button
-              className={`px-4 py-2 border rounded hover:bg-gray-200 ${
-                t.id === tagId
-                  ? 'bg-blue-500 text-white'
-                  : 'bg-white text-gray-800'
-              }`}
-            >
-              {t.name}
-            </button>
-          </Link>
+          <LinkTag key={t.id} href={`/tags/${t.id}`} className='mr-2'>
+            {t.name}
+          </LinkTag>
         ))}
       </div>
 
       {/* Posts Grid */}
-      {transformedPosts.length > 0 ? (
-        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4'>
-          {transformedPosts.map((post) => (
-            <SmallPostCard key={post.slug} post={post} />
-          ))}
+      {postCards.length ? (
+        <div className={styles.tagsPageComponent__postContainer}>
+          <Heading as='h2' size='section' className='mb-4'>
+            Posts tagged with <span className='text-blue-600'>{tag.name}</span>
+          </Heading>
+          <div className={styles.tagsPageComponent__grid}>
+            {postCards.map((post) => (
+              <SmallPostCard key={post.slug} post={post} />
+            ))}
+          </div>
         </div>
       ) : (
         <p className='text-center text-gray-600'>
           No posts found for this tag.
         </p>
       )}
-    </GeneralSection>
+    </Page>
   )
 }

@@ -1,0 +1,19 @@
+@use '@/styles/abstracts/mixins' as *;
+@use '@/styles/abstracts/functions' as *;
+
+.tagsPageComponent {
+    margin-top: var(--section-gap);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--element-gap-md);
+
+    &__postContainer {
+        @include flex-center(column, var(--element-gap-md));
+       margin-top: var(--element-gap-xl);
+    }
+
+    &__grid {
+        @include post-grid;
+      }
+
+}

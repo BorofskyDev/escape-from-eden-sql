@@ -5,7 +5,7 @@
 @mixin post-card-base {
   .postCard {
     width: 100%;
-    margin: var(--section-gap) 0;
+    margin: var(--element-gap-lg) 0;
     display: grid;
     grid-template-columns: 1fr;
     place-content: center;

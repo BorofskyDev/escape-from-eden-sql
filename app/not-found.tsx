@@ -1,10 +1,11 @@
 // app/not-found.tsx
 
+import { Page } from "@/components/layouts";
 import Link from "next/link";
 
 export default function NotFound() {
   return (
-    <div className='min-h-screen flex flex-col items-center justify-center p-4 bg-bg2'>
+    <Page>
       <h1 className='text-5xl font-bold mb-4 text-center'>
         Not All Who Wander Are Lost (404)
       </h1>
@@ -20,6 +21,6 @@ export default function NotFound() {
       >
         Go to Home
       </Link>
-    </div>
+    </Page>
   )
 }

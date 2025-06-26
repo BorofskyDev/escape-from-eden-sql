@@ -1,5 +1,28 @@
+@use './breakpoint' as *;
+
 @mixin grid-col($gap) {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: $gap;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $gap;
+}
+
+@mixin post-grid {
+  width: 100%;
+  margin-bottom: #{px-to-em(100)};
+  padding-inline: var(--container-padding-xl);
+  display: grid;
+  grid-template-columns: 100%;
+
+  gap: var(--element-gap-md);
+
+  @include breakpoint(md) {
+    padding-inline: none;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: stretch;
+    place-items: flex-start;
+  }
+
+  @include breakpoint(lg) {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }

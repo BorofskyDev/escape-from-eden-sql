@@ -1,6 +1,6 @@
 'use client'
 
-import Modal from './modal/Modal'
+import { Modal } from './modal/Modal'
 import PostForm from '@/components/ui/forms/PostForm'
 
 interface CreatePostModalProps {

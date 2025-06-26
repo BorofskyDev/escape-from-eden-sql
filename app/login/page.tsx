@@ -1,8 +1,7 @@
-// app/login/page.tsx 
-
+// app/login/page.tsx
 
 import { Suspense } from 'react'
-import LoginForm from '@/components/ui/forms/LoginForm'
+import LoginForm from '@/components/ui/forms/login-form/LoginForm'
 
 export default function LoginPage() {
   return (

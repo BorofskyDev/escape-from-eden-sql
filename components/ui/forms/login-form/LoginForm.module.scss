@@ -1,0 +1,6 @@
+@use '@/styles/abstracts/mixins' as *;
+@use '@/styles/abstracts/functions' as *;
+
+.loginForm {
+    @include flex-center(column, var(--element-gap-lg));
+}

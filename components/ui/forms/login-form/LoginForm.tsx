@@ -3,6 +3,15 @@
 import { FormEvent, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { signIn } from 'next-auth/react'
+import { Page } from '@/components/layouts'
+import {
+  ActionButton,
+  BodyText,
+  GeneralInput,
+  Heading,
+  TextLink,
+} from '@/components/ui/common'
+import styles from './LoginForm.module.scss'
 
 export default function LoginForm() {
   const router = useRouter()
@@ -32,19 +41,18 @@ export default function LoginForm() {
   }
 
   return (
-    <div className='flex items-center justify-center min-h-screen bg-bg1'>
-      <form
-        onSubmit={handleSubmit}
-        className='max-w-md w-full space-y-4 p-6 bg-bg2 shadow-md rounded'
-      >
-        <h1 className='text-2xl font-bold'>Login</h1>
+    <Page>
+      <form onSubmit={handleSubmit} className={styles.loginForm}>
+        <Heading as='h1' size='page'>
+          Login
+        </Heading>
+        <BodyText>Unless you&apos;re me, you shouldn&apos;t be here.</BodyText>
         {error && <p className='text-red-500'>{error}</p>}
 
         <div>
-          <label className='block text-sm font-medium'>Email</label>
-          <input
+          <GeneralInput
+            label='Email'
             type='email'
-            className='mt-1 block w-full border border-gray-300 rounded p-2'
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
@@ -52,23 +60,22 @@ export default function LoginForm() {
         </div>
 
         <div>
-          <label className='block text-sm font-medium'>Password</label>
-          <input
+          <GeneralInput
+            label='Password'
             type='password'
-            className='mt-1 block w-full border border-gray-300 rounded p-2'
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
         </div>
 
-        <button
-          type='submit'
-          className='bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700'
-        >
-          Sign In
-        </button>
+        <ActionButton type='submit' className={styles.submitButton}>
+          Login
+        </ActionButton>
+        <div className={styles.loginForm__forgotPassword}>
+          <TextLink href='/forgot-password'>Forgot Password?</TextLink>
+        </div>
       </form>
-    </div>
+    </Page>
   )
 }

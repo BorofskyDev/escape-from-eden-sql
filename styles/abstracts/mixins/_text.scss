@@ -37,4 +37,9 @@
     @include text(var(--font-decorative), var(--fs-300));
     text-transform: uppercase;
   }
+  @if $level == 6 {
+    @include text($font-size: var(--fs-200), $line-height: var(--lh-200), $font-weight: var(--fw-bold));
+    color: var(--text-error);
+    text-transform: uppercase;
+  }
 }

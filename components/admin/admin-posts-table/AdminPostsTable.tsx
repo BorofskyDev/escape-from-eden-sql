@@ -6,8 +6,10 @@ import { formatDate } from '@/lib/functions/formatDate'
 import EditPostModal from '@/components/ui/modals/EditPostModal'
 import Image from 'next/image'
 import { deletePost } from '@/lib/functions/deletePost'
+import styles from './AdminPostsTable.module.scss'
+import { BodyText, Heading } from '@/components/ui/common'
 
-export default function PostsTable() {
+export function AdminPostsTable() {
   const [page, setPage] = useState(1)
   const { posts, hasNextPage, loading, error, refetch } = usePosts(page)
   const [selectedPost, setSelectedPost] = useState<Post | null>(null)
@@ -41,47 +43,50 @@ export default function PostsTable() {
   }
 
   return (
-    <div className='mt-16'>
-      <h2 className='text-xl font-bold mb-4 text-center'>Posts</h2>
-      {loading && <p>Loading posts...</p>}
-      {error && <p className='text-red-600'>Error: {error.message}</p>}
+    <section id='admin-posts-table' className={styles.adminPostsSection}>
+      <Heading as='h3' size='section'>
+        Posts
+      </Heading>
+      {loading && <BodyText>Loading posts...</BodyText>}
+      {error && <BodyText variant='error'>Error: {error.message}</BodyText>}
       {!loading && !error && (
-        <table className='min-w-full border-collapse '>
+        <table className={styles.table}>
           <thead>
-            <tr className='bg-primary'>
-              <th className='border p-2 text-bg1'>Thumbnail</th>
-              <th className='border p-2 text-bg1'>Title</th>
-              <th className='border p-2 text-bg1'>Status</th>
-              <th className='border p-2 text-bg1'>Last Updated</th>
-              <th className='border p-2 text-bg1'>Actions</th>
+            <tr className={styles.tableHeader}>
+              <th className={styles.tableCell}>Thumbnail</th>
+              <th className={styles.tableCell}>Title</th>
+              <th className={styles.tableCell}>Status</th>
+              <th className={styles.tableCell}>Last Updated</th>
+              <th className={styles.tableCell}>Actions</th>
             </tr>
           </thead>
           <tbody>
             {posts.map((post) => (
               <tr
                 key={post.id}
-                className='cursor-pointer hover:bg-secondary transition-all duration-200 hover:text-bg1'
+                className={styles.tableRow}
                 onClick={() => handleRowClick(post)}
               >
-                <td className='border p-2'>
+                <td className={styles.image}>
                   <Image
                     src={post.featuredImage}
                     alt={post.title}
-                    className='w-16 h-16 object-cover'
+                    objectFit='cover'
+                    layout='responsive'
                     width={1280}
                     height={1060}
                   />
                 </td>
-                <td className='border p-2 capitalize'>{post.title}</td>
+                <td className={styles.rowContainer}>{post.title}</td>
                 <td
-                  className={`border p-2 ${
-                    post.published ? 'bg-secondary text-bg1' : ''
+                  className={`${styles.rowContainer} ${
+                    post.published ? styles.rowContainer__published : ''
                   }`}
                 >
                   {post.published ? 'Published' : 'Draft'}
                 </td>
-                <td className='border p-2'>{formatDate(post.updatedAt)}</td>
-                <td className='border p-2'>
+                <td className={styles.rowContainer}>{formatDate(post.updatedAt)}</td>
+                <td className={styles.rowContainer}>
                   <button
                     onClick={(e) => handleDelete(post, e)}
                     className='bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600'
@@ -133,6 +138,6 @@ export default function PostsTable() {
           }}
         />
       )}
-    </div>
+    </section>
   )
 }

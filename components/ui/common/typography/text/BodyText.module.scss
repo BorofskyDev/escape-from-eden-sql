@@ -19,4 +19,7 @@
     &--accent {
         @include text-style(5);
     }
+    &--error { 
+        @include text-style(6);
+    }
 }

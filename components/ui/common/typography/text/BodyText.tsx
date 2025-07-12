@@ -12,6 +12,7 @@ export type TextVariant =
   | 'label'
   | 'note'
   | 'accent'
+  | 'error'
 
 interface BodyTextProps extends React.HTMLAttributes<HTMLParagraphElement> {
   variant?: TextVariant

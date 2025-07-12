@@ -1,5 +1,6 @@
 import { ButtonHTMLAttributes, ReactNode } from 'react'
 import styles from './ActionButton.module.scss'
+import clsx from 'clsx'
 
 type Variant = 'primary' | 'secondary' | 'caution' | 'delete' | 'disabled'
 
@@ -21,7 +22,11 @@ export function ActionButton({
     <button
       {...rest}
       disabled={isDisabled}
-      className={`${styles.actionButton} ${styles[variant]} ${className}`}
+      className={clsx(
+        styles.actionButton,
+        styles[`actionButton__${variant}`],
+        className
+      )}
     >
       {children}
     </button>

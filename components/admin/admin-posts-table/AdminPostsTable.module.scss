@@ -1,0 +1,44 @@
+@use '@/styles/abstracts/mixins' as *;
+@use '@/styles/abstracts/functions' as *;
+
+.adminPostsTable {
+  margin-top: var(--element-margin-lg);
+
+  .table {
+    border-collapse: collapse;
+    min-width: 100%;
+  }
+}
+.tableHeader {
+  background-color: var(--bg-tertiary);
+
+  .tableCell {
+    padding: var(--container-padding-sm);
+    border: var(--border-1);
+  }
+}
+
+.tableRow {
+  cursor: pointer;
+  transition: var(--transition-main);
+
+  &:hover,
+  &:focus-visible {
+    background-color: var(--bg-secondary);
+  }
+
+  .image {
+    border: var(--border-1);
+  }
+
+  .rowContainer {
+    border: var(--border-1);
+    padding: var(--container-padding-sm);
+    text-transform: capitalize;
+
+    &__published {
+      background-color: var(--bg-button-secondary);
+    }
+  }
+}
+//border p-2 text-bg1

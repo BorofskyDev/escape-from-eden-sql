@@ -11,38 +11,44 @@
   font-size: var(--fs-400);
   transition: var(--transition-main);
   @include focused;
-}
-
-/* ---------- variants ---------- */
-.primary {
-  background-color: var(--bg-button);
-  box-shadow: var(--shadow-300);
-
-  &:hover,
-  &:focus-visible {
-    background-color: var(--bg-button-hover);
-    box-shadow: var(--shadow-500);
-    transform: scale(1.05);
+  
+  &__primary {
+    background-color: var(--bg-button);
+    box-shadow: var(--shadow-300);
+  
+    &:hover,
+    &:focus-visible {
+      background-color: var(--bg-button-hover);
+      box-shadow: var(--shadow-500);
+      transform: scale(1.05);
+    }
   }
-}
+  
+  &__secondary {
+    background-color: var(--bg-secondary);
+    box-shadow: var(--shadow-200);
 
-.secondary {
-  background-color: var(--bg-tertiary);
-  box-shadow: var(--shadow-200);
-}
-
-.caution {
-  background-color: var(--bg-warning);
-  color: var(--text-on-warning);
-}
-
-.delete {
-  background-color: var(--bg-danger);
-  color: var(--text-on-danger);
-}
-
-.disabled {
-  background-color: var(--bg-disabled);
-  cursor: not-allowed;
-  opacity: 0.6;
+    &:hover, &:focus-visible { 
+      background-color: var(--bg);
+      box-shadow: var(--shadow-400);
+      transform: scale(1.05);
+    }
+    
+  }
+  
+  &__caution {
+    background-color: var(--bg-warning);
+    color: var(--text-on-warning);
+  }
+  
+  &__delete {
+    background-color: var(--bg-danger);
+    color: var(--text-on-danger);
+  }
+  
+  &__disabled {
+    background-color: var(--bg-disabled);
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
 }

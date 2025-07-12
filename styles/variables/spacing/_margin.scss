@@ -9,11 +9,21 @@
 
   --section-heading-mb: #{px-to-rem(64)};
 
+  --element-margin-sm: #{px-to-rem(8)};
+  --element-margin-md: #{px-to-rem(16)};
+  --element-margin-lg: #{px-to-rem(24)};
+  --element-margin-xl: #{px-to-rem(36)};
+
   @include breakpoint(md) {
     --section-margin: #{px-to-rem(64)} auto;
     --section-heading-mb: #{px-to-rem(72)};
 
     --section-margin-inline: #{px-to-rem(32)};
+
+    --element-margin-sm: #{px-to-rem(12)};
+    --element-margin-md: #{px-to-rem(20)};
+    --element-margin-lg: #{px-to-rem(32)};
+    --element-margin-xl: #{px-to-rem(48)};
   }
 
   @include breakpoint(lg) {
@@ -21,5 +31,10 @@
     --section-heading-mb: #{px-to-rem(86)};
 
     --section-margin-inline: #{px-to-rem(48)};
+
+    --element-margin-sm: #{px-to-rem(16)};
+    --element-margin-md: #{px-to-rem(24)};
+    --element-margin-lg: #{px-to-rem(40)};
+    --element-margin-xl: #{px-to-rem(64)};
   }
 }

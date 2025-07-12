@@ -1,0 +1,15 @@
+@use '@/styles/abstracts/mixins' as *;
+
+.adminPage {
+  @include flex-center(column, var(--section-gap));
+
+  .blogSettingsSection,
+  .messagesSection {
+    @include flex-center(column, var(--element-gap-xl));
+  }
+
+  .linkList {
+    @include flex-center(row, var(--element-gap-lg));
+    flex-wrap: wrap;
+  }
+}

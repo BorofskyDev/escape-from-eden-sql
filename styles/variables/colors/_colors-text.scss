@@ -3,6 +3,7 @@
   --text-secondary: hsl(var(--dark-200));
   --link: hsl(var(--blue-700));
   --link-hover: hsl(var(--blue-900));
+  --text-error: hsl(var(--red-800));
 }
 
 [data-theme='dark'] {
@@ -10,4 +11,5 @@
   --text-secondary: hsl(var(--light-200));
   --link: hsl(var(--blue-300));
   --link-hover: hsl(var(--blue-100));
+  --text-error: hsl(var(--red-200));
 }

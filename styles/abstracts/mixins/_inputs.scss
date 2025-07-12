@@ -1,0 +1,43 @@
+@use './accessibility' as *;
+
+@mixin label {
+  display: block;
+  font-size: var(--fs-200);
+  font-weight: var(--fw-medium);
+  color: var(--text-secondary);
+}
+
+@mixin input {
+  margin-top: var(--element-margin-sm);
+  display: block;
+  width: 100%;
+  padding: var(--container-padding-sm);
+  border: var(--border-2);
+  border-radius: var(--br-900);
+  box-shadow: var(--shadow-200);
+  background-color: var(--bg-input);
+  font-size: var(--fs-400);
+  font-weight: var(--fw-bold);
+  transition: var(--transition-main);
+
+  &::placeholder {
+    color: var(--text-secondary);
+    font-weight: var(--fw-medium);
+    font-size: var(--fs-200);
+  }
+
+  &:focus-visible {
+    @include focused;
+  }
+
+  &:hover,
+  &:focus-visible {
+    background-color: var(--bg-input-hover);
+    box-shadow: var(--shadow-600);
+    transform: var(--scale);
+  }
+
+  &:active {
+    background-color: var(--bg-input-active);
+  }
+}

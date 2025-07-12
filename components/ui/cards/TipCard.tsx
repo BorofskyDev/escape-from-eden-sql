@@ -1,7 +1,7 @@
 // components/ui/cards/TipCard.tsx
 'use client'
 import { useState } from 'react'
-import FormField from '../common/inputs/FormField'
+import FormField from '../common/inputs/form-field/FormField'
 
 export default function TipCard() {
   const [amount, setAmount] = useState('')

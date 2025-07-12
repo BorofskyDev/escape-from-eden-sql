@@ -1,0 +1,13 @@
+@use '@/styles/abstracts/mixins' as *;
+@use '@/styles/abstracts/functions' as *;
+
+.imageInput {
+  .label {
+    @include label;
+  }
+
+  .fileInput {
+    @include input;
+    text-align: center;
+  }
+}

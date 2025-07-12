@@ -2,6 +2,7 @@
 
 import { useState, ChangeEvent } from 'react'
 import Image from 'next/image'
+import styles from './ImageInput.module.scss'
 
 interface ImageInputProps {
   label?: string
@@ -11,7 +12,7 @@ interface ImageInputProps {
   onImageSelect?: (file: File) => void
 }
 
-export default function ImageInput({
+export function ImageInput({
   label = 'Featured Image',
   width = 300,
   height = 200,
@@ -42,13 +43,13 @@ export default function ImageInput({
   }
 
   return (
-    <div>
-      <label className='block text-sm font-medium text-gray-700'>{label}</label>
+    <div className={styles.imageInput}>
+      <label className={styles.label}>{label}</label>
       <input
         type='file'
         accept='image/*'
         onChange={handleChange}
-        className='mt-1 block w-full'
+        className={styles.fileInput}
       />
       {previewUrl && (
         <div className='mt-2'>
@@ -57,7 +58,9 @@ export default function ImageInput({
             alt='Image Preview'
             width={width}
             height={height}
-            className='rounded'
+            layout='responsive'
+            objectFit='cover'
+            className={styles.image}
           />
         </div>
       )}

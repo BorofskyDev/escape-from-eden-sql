@@ -1,7 +1,7 @@
 // components/ui/inputs/SlugGenerator.tsx
-'use client'
 
-import React from 'react'
+
+import styles from './SlugGenerator.module.scss'
 
 interface SlugGeneratorProps {
   title: string
@@ -15,16 +15,16 @@ function generateSlug(title: string): string {
     .replace(/[^a-z0-9-]/g, '') // Remove all other characters
 }
 
-export default function SlugGenerator({ title }: SlugGeneratorProps) {
+export function SlugGenerator({ title }: SlugGeneratorProps) {
   const slug = generateSlug(title)
   return (
-    <div>
-      <label className='block text-sm font-medium text-text2'>Slug</label>
+    <div className={styles.slugGenerator}>
+      <label className={styles.label}>Slug</label>
       <input
         type='text'
         value={slug}
         readOnly
-        className='mt-1 block w-full border rounded p-2 bg-bg1 cursor-not-allowed'
+        className={styles.userInput}
       />
     </div>
   )

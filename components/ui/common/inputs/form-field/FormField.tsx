@@ -1,7 +1,7 @@
 // components/ui/inputs/FormField.tsx
 'use client'
 
-import React from 'react'
+import styles from './FormField.module.scss'
 
 interface FormFieldProps {
   label: string
@@ -15,7 +15,7 @@ interface FormFieldProps {
   ) => void
 }
 
-export default function FormField({
+export function FormField({
   label,
   placeholder,
   variant = 'input',
@@ -25,11 +25,11 @@ export default function FormField({
   onChange,
 }: FormFieldProps) {
   return (
-    <div>
-      <label className='block text-sm font-medium text-text2'>{label}</label>
+    <div className={styles.formField}>
+      <label className={styles.label}>{label}</label>
       {variant === 'textarea' ? (
         <textarea
-          className='mt-1 block w-full border rounded p-2'
+          className={styles.userInput}
           placeholder={placeholder}
           rows={rows}
           value={value}
@@ -38,7 +38,7 @@ export default function FormField({
       ) : (
         <input
           type={type}
-          className='mt-1 block w-full border rounded p-2'
+          className={styles.userInput}
           placeholder={placeholder}
           value={value}
           onChange={onChange}

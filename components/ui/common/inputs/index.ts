@@ -1,2 +1,6 @@
+export * from './form-field/FormField'
 export * from './general-input/GeneralInput'
+export * from './image-input/ImageInput'
+export * from './rich-text-editor/RichTextEditor'
+export * from './slug-generator/SlugGenerator'
 export * from './text-area-input/TextAreaInput'

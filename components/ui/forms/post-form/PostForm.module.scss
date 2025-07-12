@@ -2,6 +2,6 @@
 @use '@/styles/abstracts/functions' as *;
 
 .postForm {
-    @include flex-center(column, var(element-gap-md));
+    @include flex-center(column, var(--element-gap-lg));
     margin-top: var(--element-margin-lg);
 }

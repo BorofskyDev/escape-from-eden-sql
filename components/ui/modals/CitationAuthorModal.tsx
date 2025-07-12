@@ -10,7 +10,7 @@ import {
   CitationData,
   SavedStyles,
 } from '@/lib/types/citationFieldTypes'
-import CitationFieldEditorRow from '../common/inputs/editor-components/CitationFieldEditorRow'
+import CitationFieldEditorRow from '../common/inputs/rich-text-editor/editor-components/CitationFieldEditorRow'
 
 interface CitationAuthorModalProps {
   open: boolean

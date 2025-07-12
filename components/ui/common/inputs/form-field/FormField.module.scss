@@ -1,0 +1,12 @@
+@use '@/styles/abstracts/mixins' as *;
+@use '@/styles/abstracts/functions' as *;
+
+.formField {
+  .label {
+    @include label;
+  }
+
+  .userInput {
+    @include input;
+  }
+}

@@ -1,15 +1,17 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import FormField from '@/components/ui/common/inputs/FormField'
-import SlugGenerator from '@/components/ui/common/inputs/SlugGenerator'
-import ImageInput from '@/components/ui/common/inputs/ImageInput'
-import RichTextEditor from '@/components/ui/common/inputs/RichTextEditor'
 import CategorySelector from '@/components/ui/common/inputs/CategorySelector'
 import TagSelector from '@/components/ui/common/inputs/TagSelector'
 import { uploadImage } from '@/lib/functions/uploadImage'
 import { createPost } from '@/lib/functions/createPost'
 import { updatePost } from '@/lib/functions/updatePost'
+import {
+  FormField,
+  SlugGenerator,
+  ImageInput,
+  RichTextEditor,
+} from '@/components/ui/common/'
 import styles from './PostForm.module.scss'
 
 export interface PostFormData {

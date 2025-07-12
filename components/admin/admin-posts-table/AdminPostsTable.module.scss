@@ -40,5 +40,14 @@
       background-color: var(--bg-button-secondary);
     }
   }
+
+  .deleteButton {
+    background-color: var(--bg-warning);
+  }
 }
-//border p-2 text-bg1
+
+.paginationControls {
+  margin-top: var(--element-margin-xl);
+  display: flex;
+  justify-content: space-between;
+}

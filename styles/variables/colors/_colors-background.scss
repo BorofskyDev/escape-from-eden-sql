@@ -7,6 +7,8 @@
     --bg-button: hsl(var(--blue-300));
     --bg-button-hover: hsl(var(--aqua-100));
 
+    --bg-warning: hsl(var(--red-300));
+
     --bg-button-secondary: hsl(var(--aqua-300));
     --bg-button-secondary-hover: hsl(var(--blue-100));
 
@@ -24,4 +26,6 @@
 
     --bg-button-secondary: hsl(var(--aqua-800));
     --bg-button-secondary-hover: hsl(var(--blue-900));
+
+    --bg-warning: hsl(var(--red-700));
 }

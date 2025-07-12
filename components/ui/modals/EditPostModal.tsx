@@ -1,7 +1,9 @@
 'use client'
 
 import Modal from './modal/Modal'
-import PostForm, { PostFormData } from '@/components/ui/forms/PostForm'
+import PostForm, {
+  PostFormData,
+} from '@/components/ui/forms/post-form/PostForm'
 
 interface EditPostModalProps {
   open: boolean

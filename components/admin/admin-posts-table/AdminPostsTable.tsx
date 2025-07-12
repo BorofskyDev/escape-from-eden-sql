@@ -7,7 +7,8 @@ import EditPostModal from '@/components/ui/modals/EditPostModal'
 import Image from 'next/image'
 import { deletePost } from '@/lib/functions/deletePost'
 import styles from './AdminPostsTable.module.scss'
-import { BodyText, Heading } from '@/components/ui/common'
+import { ActionButton, BodyText, Heading } from '@/components/ui/common'
+import clsx from 'clsx'
 
 export function AdminPostsTable() {
   const [page, setPage] = useState(1)
@@ -86,10 +87,9 @@ export function AdminPostsTable() {
                   {post.published ? 'Published' : 'Draft'}
                 </td>
                 <td className={styles.rowContainer}>{formatDate(post.updatedAt)}</td>
-                <td className={styles.rowContainer}>
+                <td className={clsx(styles.rowContainer, styles.deleteButton)}>
                   <button
                     onClick={(e) => handleDelete(post, e)}
-                    className='bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600'
                   >
                     Delete
                   </button>
@@ -102,29 +102,21 @@ export function AdminPostsTable() {
 
       {/* Pagination controls: Always rendered when not loading */}
       {!loading && (
-        <div className='flex justify-between mt-4'>
-          <button
+        <div className={styles.paginationControls}>
+          <ActionButton
             onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
             disabled={page === 1}
-            className={`bg-primary text-bg1 px-4 py-2 rounded transition-all duration-200 ${
-              page === 1
-                ? 'cursor-not-allowed opacity-50'
-                : 'hover:bg-secondary'
-            }`}
+            
           >
             Prev
-          </button>
-          <button
+          </ActionButton>
+          <ActionButton
             onClick={() => hasNextPage && setPage((prev) => prev + 1)}
             disabled={!hasNextPage}
-            className={`bg-primary text-bg1 px-4 py-2 rounded transition-all duration-200 ${
-              !hasNextPage
-                ? 'cursor-not-allowed opacity-50'
-                : 'hover:bg-secondary'
-            }`}
+            
           >
             Next
-          </button>
+          </ActionButton>
         </div>
       )}
 

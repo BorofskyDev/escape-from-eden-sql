@@ -47,7 +47,7 @@
   }
   
   &__disabled {
-    background-color: var(--bg-disabled);
+    background-color: none;
     cursor: not-allowed;
     opacity: 0.6;
   }

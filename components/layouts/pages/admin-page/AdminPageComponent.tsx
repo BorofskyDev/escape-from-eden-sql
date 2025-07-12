@@ -2,12 +2,17 @@
 
 import { signOut } from 'next-auth/react'
 import { useState } from 'react'
-import CreatePostModal from '@/components/ui/modals/CreatePostModal'
 import ManageCategoriesModal from '@/components/ui/modals/ManageCategoriesModal'
 import ManageTagsModal from '@/components/ui/modals/ManageTagsModal'
 import { Page } from '@/components/layouts'
+import { CreatePostModal } from '@/components/ui/modals'
 import MessagesList from '@/components/admin/MessageList'
-import { ActionButton, BodyText, Heading, LinkTag } from '@/components/ui/common'
+import {
+  ActionButton,
+  BodyText,
+  Heading,
+  LinkTag,
+} from '@/components/ui/common'
 import styles from './AdminPageComponent.module.scss'
 import { AdminPostsTable } from '@/components/admin'
 
@@ -58,23 +63,16 @@ export function AdminPageComponent() {
           <ActionButton
             variant='secondary'
             onClick={() => setManageCategoriesOpen(true)}
-           
           >
             Manage Categories
           </ActionButton>
           <ActionButton
             variant='secondary'
             onClick={() => setManageTagsOpen(true)}
-           
           >
             Manage Tags
           </ActionButton>
-          <LinkTag
-            href='/admin/subscribers'
-           
-          >
-            Manage Subscribers
-          </LinkTag>
+          <LinkTag href='/admin/subscribers'>Manage Subscribers</LinkTag>
         </div>
         <AdminPostsTable />
       </section>
@@ -91,9 +89,8 @@ export function AdminPageComponent() {
       {/* Sign Out Button at the end */}
       <div className='flex justify-end'>
         <ActionButton
-        variant='caution'
+          variant='caution'
           onClick={() => signOut({ callbackUrl: '/' })}
-          
         >
           Sign Out
         </ActionButton>

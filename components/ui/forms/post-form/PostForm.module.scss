@@ -1,0 +1,7 @@
+@use '@/styles/abstracts/mixins' as *;
+@use '@/styles/abstracts/functions' as *;
+
+.postForm {
+    @include flex-center(column, var(element-gap-md));
+    margin-top: var(--element-margin-lg);
+}

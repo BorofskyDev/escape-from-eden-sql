@@ -1,7 +1,8 @@
 'use client'
 
-import { Modal } from './modal/Modal'
-import PostForm from '@/components/ui/forms/PostForm'
+import { Modal } from '../modal/Modal'
+import { Heading } from '@/components/ui/common'
+import {PostForm} from '@/components/ui/forms/post-form/PostForm'
 
 interface CreatePostModalProps {
   open: boolean
@@ -9,14 +10,16 @@ interface CreatePostModalProps {
   origin?: { x: number; y: number }
 }
 
-export default function CreatePostModal({
+export function CreatePostModal({
   open,
   onClose,
   origin,
 }: CreatePostModalProps) {
   return (
     <Modal open={open} onClose={onClose} origin={origin}>
-      <h2 className='text-xl font-semibold mt-6 mb-4'>Create a New Post</h2>
+      <Heading as='h2' size='section'>
+        Create a New Post
+      </Heading>
       <PostForm
         mode='create'
         // No initialData because it's a fresh post

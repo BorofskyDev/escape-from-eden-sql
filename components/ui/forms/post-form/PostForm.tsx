@@ -10,6 +10,7 @@ import TagSelector from '@/components/ui/common/inputs/TagSelector'
 import { uploadImage } from '@/lib/functions/uploadImage'
 import { createPost } from '@/lib/functions/createPost'
 import { updatePost } from '@/lib/functions/updatePost'
+import styles from './PostForm.module.scss'
 
 export interface PostFormData {
   [key: string]: unknown
@@ -31,7 +32,7 @@ interface PostFormProps {
   onSuccess?: () => void // optional callback if you want to refresh a list
 }
 
-export default function PostForm({
+export function PostForm({
   mode,
   initialData,
   onClose,
@@ -141,7 +142,7 @@ export default function PostForm({
   }
 
   return (
-    <div className='h-full flex flex-col gap-4'>
+    <div className={styles.postForm}>
       {/* Title */}
       <FormField
         label='Title'

@@ -2,8 +2,7 @@
 
 import React from 'react'
 import { EditorProvider } from './editor-components/EditorProvider'
-import EditorToolbar from './editor-components/EditorToolbar'
-import EditorCanvas from './editor-components/editor-canvas/EditorCanvas'
+import { EditorCanvas, EditorToolbar } from './editor-components'
 
 interface RichTextEditorProps {
   onChange?: (html: string) => void

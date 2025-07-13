@@ -1,0 +1,19 @@
+@use '@/styles/abstracts/mixins' as *;
+@use '@/styles/abstracts/functions' as *;
+
+.editorToolbar {
+  @include flex-center(column, var(--element-gap-md));
+  margin: var(--element-margin-lg) auto;
+  padding: var(--container-padding-md);
+  border: var(--border-1);
+  border-radius: var(--br-400);
+  background-color: var(--bg);
+
+  .toolbarButtons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--element-gap-md);
+  }
+
+
+}

@@ -4,7 +4,7 @@ import { EditorContent } from '@tiptap/react'
 import { useEditorContext } from '../EditorProvider'
 import styles from './EditorCanvas.module.scss'
 
-export default function EditorCanvas() {
+export function EditorCanvas() {
   const { editor } = useEditorContext()
 
   if (!editor) return null

@@ -22,8 +22,6 @@ export function CreatePostModal({
       </Heading>
       <PostForm
         mode='create'
-        // No initialData because it's a fresh post
-        onClose={onClose}
       />
     </Modal>
   )

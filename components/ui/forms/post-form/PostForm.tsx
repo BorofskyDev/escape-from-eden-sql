@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { useRouter } from 'next/navigation'
 import CategorySelector from '@/components/ui/common/inputs/CategorySelector'
 import TagSelector from '@/components/ui/common/inputs/TagSelector'
 import { uploadImage } from '@/lib/functions/uploadImage'
@@ -30,14 +31,12 @@ export interface PostFormData {
 interface PostFormProps {
   mode: 'create' | 'edit'
   initialData?: PostFormData
-  onClose: () => void
   onSuccess?: () => void // optional callback if you want to refresh a list
 }
 
 export function PostForm({
   mode,
   initialData,
-  onClose,
   onSuccess,
 }: PostFormProps) {
   // Local state for fields
@@ -66,6 +65,8 @@ export function PostForm({
       : ''
   )
   const [loading, setLoading] = useState<boolean>(false)
+
+  const router = useRouter()
 
   // ⬇️ Add this effect to sync new `initialData` with state
   useEffect(() => {
@@ -132,7 +133,7 @@ export function PostForm({
       }
 
       if (onSuccess) onSuccess()
-      onClose()
+     router.push('/admin')
     } catch (error) {
       console.error(
         mode === 'create' ? 'Error creating post:' : 'Error updating post:',
@@ -236,7 +237,7 @@ export function PostForm({
       <div className='flex justify-end gap-2 mt-4'>
         <button
           className='bg-gray-300 text-gray-700 py-2 px-4 rounded hover:bg-gray-400'
-          onClick={onClose}
+          onClick={() => router.push('/admin')}
           disabled={loading}
           type='button'
         >

@@ -1,4 +1,5 @@
 export * from './admin-page/AdminPageComponent'
 export * from './about-page/AboutPageComponent'
+export * from './create-post-page/CreatePostPage'
 export * from './page/Page'
 export * from './splash-page/SplashPageComponent'

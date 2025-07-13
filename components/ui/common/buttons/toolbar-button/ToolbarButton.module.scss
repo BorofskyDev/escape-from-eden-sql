@@ -1,0 +1,22 @@
+@use '@/styles/abstracts/mixins' as *;
+@use '@/styles/abstracts/functions' as *;
+
+.toolbarButton {
+    padding: var(--container-padding-xs);
+    border: var(--border-1);
+    border-radius: var(--br-200);
+    background-color: var(--bg-secondary);
+    box-shadow: var(--shadow-200);
+    transition: var(--transition-main);
+
+    &:focus-visible {
+      @include focused;
+    }
+
+    &:hover,
+    &:focus-visible {
+      background-color: var(--bg-tertiary);
+      transform: var(--scale);
+      box-shadow: var(--shadow-400);
+    }
+  }

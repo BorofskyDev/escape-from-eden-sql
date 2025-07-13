@@ -5,7 +5,6 @@ import { useState } from 'react'
 import ManageCategoriesModal from '@/components/ui/modals/ManageCategoriesModal'
 import ManageTagsModal from '@/components/ui/modals/ManageTagsModal'
 import { Page } from '@/components/layouts'
-import { CreatePostModal } from '@/components/ui/modals'
 import MessagesList from '@/components/admin/MessageList'
 import {
   ActionButton,
@@ -13,28 +12,12 @@ import {
   Heading,
   LinkTag,
 } from '@/components/ui/common'
-import styles from './AdminPageComponent.module.scss'
 import { AdminPostsTable } from '@/components/admin'
+import styles from './AdminPageComponent.module.scss'
 
 export function AdminPageComponent() {
-  const [open, setOpen] = useState(false)
-  const [modalOrigin, setModalOrigin] = useState<
-    { x: number; y: number } | undefined
-  >(undefined)
-
-  // States for the new modals:
   const [manageCategoriesOpen, setManageCategoriesOpen] = useState(false)
   const [manageTagsOpen, setManageTagsOpen] = useState(false)
-
-  function handleOpen(e: React.MouseEvent) {
-    const rect = (e.target as HTMLElement).getBoundingClientRect()
-    const origin = {
-      x: rect.left + rect.width / 2,
-      y: rect.top + rect.height / 2,
-    }
-    setModalOrigin(origin)
-    setOpen(true)
-  }
 
   return (
     <Page className={styles.adminPage}>
@@ -48,17 +31,7 @@ export function AdminPageComponent() {
           Blog Settings
         </Heading>
         <div className={styles.linkList}>
-          <ActionButton
-            onClick={handleOpen}
-            className='bg-primary px-4 py-2 text-bg1 rounded transition-all duration-200 hover:bg-secondary'
-          >
-            Create New Post
-          </ActionButton>
-          <CreatePostModal
-            open={open}
-            onClose={() => setOpen(false)}
-            origin={modalOrigin}
-          />
+          <LinkTag href='/admin/create-post'>Create New Post</LinkTag>
 
           <ActionButton
             variant='secondary'

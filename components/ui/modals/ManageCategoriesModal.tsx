@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import Modal from './modal/Modal'
+import { Modal } from './modal/Modal'
 import CategoryCreator from '@/components/ui/common/inputs/CategoryCreator'
 import CategoryManager from '@/components/ui/common/inputs/CategoryManager'
 

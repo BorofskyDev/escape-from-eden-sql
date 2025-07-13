@@ -1,10 +1,5 @@
 // lib/functions/category.ts
-export interface Category {
-  id: string
-  name: string
-  slug: string
-  description?: string
-}
+import { Category } from "@prisma/client"
 
 /**
  * Helper to generate a slug from a name.
@@ -17,20 +12,7 @@ export function generateSlug(name: string): string {
     .replace(/[^a-z0-9-]/g, '')
 }
 
-/**
- * Fetch categories from the API.
- */
-export async function getCategories(): Promise<Category[]> {
-  const res = await fetch('/api/categories')
-  if (!res.ok) {
-    throw new Error('Failed to fetch categories')
-  }
-  return res.json()
-}
 
-/**
- * Creates a new category via the API.
- */
 export async function createCategory(
   name: string,
   description?: string

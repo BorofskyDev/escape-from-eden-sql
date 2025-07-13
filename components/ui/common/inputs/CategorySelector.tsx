@@ -1,8 +1,8 @@
-// components/ui/inputs/CategorySelector.tsx
 'use client'
 
 import { useState, useEffect, ChangeEvent } from 'react'
-import { getCategories, Category } from '@/lib/functions/category'
+import { Category } from '@prisma/client'
+import { getCategories } from '@/lib/functions/categories'
 import CategoryCreator from './CategoryCreator'
 
 interface CategorySelectorProps {
@@ -36,25 +36,23 @@ export default function CategorySelector({
     const id = e.target.value
     setSelectedCategoryId(id)
     const cat = categories.find((c) => c.id === id) || null
-    if (onSelect) {
-      onSelect(cat)
-    }
+    onSelect?.(cat)
   }
 
-  const handleCategoryCreated = (newCat: Category) => {
-    setCategories((prev) => [...prev, newCat])
-    setSelectedCategoryId(newCat.id)
-    if (onSelect) {
-      onSelect(newCat)
-    }
-    setCreating(false)
-  }
+ const handleCategoryCreated = (newCat: Category) => {
+   const category = newCat
+   setCategories((prev) => [...prev, category])
+   setSelectedCategoryId(category.id)
+   onSelect?.(category)
+   setCreating(false)
+ }
 
   return (
     <div>
       <label className='block text-sm font-medium text-gray-700'>
         Category
       </label>
+
       {categories.length === 0 ? (
         <div className='mt-1 text-sm text-gray-500'>
           No categories have been created.
@@ -73,6 +71,7 @@ export default function CategorySelector({
           ))}
         </select>
       )}
+
       <div className='mt-2'>
         {creating ? (
           <CategoryCreator

@@ -2,7 +2,8 @@
 'use client'
 
 import { useState } from 'react'
-import { createCategory, Category } from '@/lib/functions/createCategory'
+import { Category } from '@prisma/client'
+import { createCategory } from '@/lib/functions/createCategory'
 
 interface CategoryCreatorProps {
   onCategoryCreated: (newCategory: Category) => void

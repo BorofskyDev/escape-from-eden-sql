@@ -1,4 +1,5 @@
 export * from './category-management'
+export * from './category-manager/CategoryManager'
 export * from './form-field/FormField'
 export * from './general-input/GeneralInput'
 export * from './image-input/ImageInput'

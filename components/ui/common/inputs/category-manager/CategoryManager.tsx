@@ -1,15 +1,19 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { Category } from '@prisma/client'
+import { updateCategory, deleteCategory } from '@/lib/functions/category'
 import {
-  getCategories,
- 
-  updateCategory,
-  deleteCategory,
-  Category,
-} from '@/lib/functions/category'
+  ActionButton,
+  BodyText,
+  GeneralInput,
+  Heading,
+  TextAreaInput,
+} from '@/components/ui/common'
+import { getCategories } from '@/lib/functions'
+import styles from './CategoryManager.module.scss'
 
-export default function CategoryManager() {
+export function CategoryManager() {
   const [categories, setCategories] = useState<Category[]>([])
   const [editingId, setEditingId] = useState<string | null>(null)
   const [editName, setEditName] = useState<string>('')
@@ -21,7 +25,11 @@ export default function CategoryManager() {
     async function fetchCats() {
       try {
         const cats = await getCategories()
-        setCategories(cats)
+        const mappedCats = cats.map((cat) => ({
+          ...cat,
+          description: cat.description ?? null,
+        }))
+        setCategories(mappedCats)
       } catch (err) {
         console.error('Error fetching categories:', err)
         setError('Failed to load categories.')
@@ -43,7 +51,15 @@ export default function CategoryManager() {
         description: editDescription,
       })
       setCategories((prev) =>
-        prev.map((cat) => (cat.id === id ? updated : cat))
+        prev.map((cat) =>
+          cat.id === id
+            ? {
+                ...cat,
+                name: updated.name,
+                description: updated.description ?? null,
+              }
+            : cat
+        )
       )
       setEditingId(null)
       setEditName('')
@@ -66,61 +82,60 @@ export default function CategoryManager() {
   }
 
   return (
-    <div>
-      <h3 className='text-lg font-bold mb-2'>Manage Categories</h3>
+    <div className={styles.categoryManager}>
+      <Heading as='h4' size='md'>
+        Manage Categories
+      </Heading>
       {error && <p className='text-red-500'>{error}</p>}
-      <ul className='space-y-2'>
+      <ul className={styles.categoryList}>
         {categories.map((cat) => (
-          <li key={cat.id} className='flex items-center gap-2'>
+          <li key={cat.id} className={styles.categoryItem}>
             {editingId === cat.id ? (
               <>
-                <input
+                <GeneralInput
+                  label='Category Name'
                   type='text'
                   value={editName}
                   onChange={(e) => setEditName(e.target.value)}
                   className='border rounded p-1'
                   placeholder='Category name'
                 />
-                <input
-                  type='text'
+                <TextAreaInput
+                  label='Category Description'
                   value={editDescription}
                   onChange={(e) => setEditDescription(e.target.value)}
                   className='border rounded p-1'
                   placeholder='Category description (optional)'
                 />
-                <button
-                  onClick={() => handleSave(cat.id)}
-                  className='bg-blue-500 text-white px-2 py-1 rounded'
-                >
+                <ActionButton onClick={() => handleSave(cat.id)}>
                   Save
-                </button>
-                <button
+                </ActionButton>
+                <ActionButton
                   onClick={() => setEditingId(null)}
-                  className='text-gray-500'
+                  variant='secondary'
                 >
                   Cancel
-                </button>
+                </ActionButton>
               </>
             ) : (
               <>
-                <div className='flex-1'>
-                  <p className='font-semibold'>{cat.name}</p>
-                  {cat.description && (
-                    <p className='text-sm text-gray-600'>{cat.description}</p>
-                  )}
+                <div className={styles.categoryDetails}>
+                  <Heading as='h5' size='sm'>
+                    {cat.name}
+                  </Heading>
+                  {cat.description && <BodyText>{cat.description}</BodyText>}
                 </div>
-                <button
-                  onClick={() => handleEditClick(cat)}
-                  className='text-blue-500 hover:underline'
-                >
-                  Edit
-                </button>
-                <button
-                  onClick={() => handleDelete(cat.id)}
-                  className='text-red-500 hover:underline'
-                >
-                  Delete
-                </button>
+                <div className={styles.actions}>
+                  <ActionButton onClick={() => handleEditClick(cat)}>
+                    Edit
+                  </ActionButton>
+                  <ActionButton
+                    variant='delete'
+                    onClick={() => handleDelete(cat.id)}
+                  >
+                    Delete
+                  </ActionButton>
+                </div>
               </>
             )}
           </li>

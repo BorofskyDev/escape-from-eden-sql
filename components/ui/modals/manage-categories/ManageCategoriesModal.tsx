@@ -1,9 +1,9 @@
 'use client'
 
 import { useState } from 'react'
-import { Modal } from './modal/Modal'
-import CategoryCreator from '@/components/ui/common/inputs/category-management/category-creator/CategoryCreator'
-import CategoryManager from '@/components/ui/common/inputs/CategoryManager'
+import { Modal } from '../modal/Modal'
+import { CategoryCreator, Heading, CategoryManager } from '@/components/ui/common'
+import styles from './ManageCategoriesModal.module.scss'
 
 interface ManageCategoriesModalProps {
   open: boolean
@@ -18,7 +18,7 @@ export default function ManageCategoriesModal({
 
   return (
     <Modal open={open} onClose={onClose}>
-      <h2 className='text-xl font-bold mb-4'>Manage Categories</h2>
+      <Heading as='h2' size='container'>Manage Categories</Heading>
 
       <CategoryCreator
         onCategoryCreated={() => {
@@ -26,7 +26,7 @@ export default function ManageCategoriesModal({
         }}
         onCancel={onClose}
       />
-      <div className='mt-4'>
+      <div className={styles.categoryManagerContainer}>
         <CategoryManager key={refreshKey} />
       </div>
     </Modal>

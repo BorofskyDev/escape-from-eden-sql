@@ -1,0 +1,27 @@
+@use '@/styles/abstracts/mixins' as *;
+@use '@/styles/abstracts/functions' as *;
+
+.categoryManager {
+  @include flex-center(column, var(--element-gap-lg));
+
+  .categoryList {
+    @include flex-center(column, var(--element-gap-md));
+    align-items: flex-start;
+    width: 100%;
+    max-width: var(--lg-container-width);
+    margin: 0 auto;
+
+    .categoryItem {
+      @include flex-center(column, var(--element-gap-sm));
+    }
+
+    .categoryDetails {
+        @include flex-center(column, var(--element-gap-sm));
+        align-items: flex-start;
+    }
+
+    .actions {
+        @include flex-center(row, var(--element-gap-xl));
+    }
+  }
+}

@@ -2,17 +2,16 @@
 'use client'
 
 import { useState } from 'react'
-import { createTag, Tag} from '@/lib/functions/tag'
+import { createTag, Tag } from '@/lib/functions/tag'
+import { GeneralInput, ActionButton } from '@/components/ui/common'
+import styles from './TagCreator.module.scss'
 
 interface TagCreatorProps {
   onTagCreated: (newTag: Tag) => void
   onCancel: () => void
 }
 
-export default function TagCreator({
-  onTagCreated,
-  onCancel,
-}: TagCreatorProps) {
+export function TagCreator({ onTagCreated, onCancel }: TagCreatorProps) {
   const [newTagName, setNewTagName] = useState<string>('')
 
   const handleCreateTag = async () => {
@@ -28,28 +27,26 @@ export default function TagCreator({
   }
 
   return (
-    <div className='flex gap-2 mt-2'>
-      <input
+    <div className={styles.tagCreator}>
+      <GeneralInput
+        label='Tag Name'
         type='text'
         placeholder='New tag name'
         value={newTagName}
         onChange={(e) => setNewTagName(e.target.value)}
         className='block w-full border rounded p-2'
       />
-      <button
+      <ActionButton
         onClick={handleCreateTag}
-        className='bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700'
-        type='button'
       >
         Save
-      </button>
-      <button
+      </ActionButton>
+      <ActionButton
         onClick={onCancel}
-        className='mt-2 text-blue-600 hover:underline'
-        type='button'
+        variant='secondary'
       >
         Cancel
-      </button>
+      </ActionButton>
     </div>
   )
 }

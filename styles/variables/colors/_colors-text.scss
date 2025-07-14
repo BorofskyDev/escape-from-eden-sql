@@ -2,6 +2,7 @@
   --text: hsl(var(--dark-100));
   --text-secondary: hsl(var(--dark-200));
   --text-alt: hsl(var(--aqua-800));
+  --text-opposite: hsl(var(--light-100));
   --link: hsl(var(--blue-700));
   --link-hover: hsl(var(--blue-900));
   --text-error: hsl(var(--red-800));
@@ -11,6 +12,7 @@
   --text: hsl(var(--light-100));
   --text-secondary: hsl(var(--light-200));
   --text-alt: hsl(var(--aqua-200));
+  --text-opposite: hsl(var(--dark-100));
   --link: hsl(var(--blue-300));
   --link-hover: hsl(var(--blue-100));
   --text-error: hsl(var(--red-200));

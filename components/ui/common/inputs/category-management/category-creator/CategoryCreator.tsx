@@ -4,13 +4,15 @@
 import { useState } from 'react'
 import { Category } from '@prisma/client'
 import { createCategory } from '@/lib/functions/createCategory'
+import { ActionButton, GeneralInput } from '@/components/ui/common'
+import styles from './CategoryCreator.module.scss'
 
 interface CategoryCreatorProps {
   onCategoryCreated: (newCategory: Category) => void
   onCancel: () => void
 }
 
-export default function CategoryCreator({
+export function CategoryCreator({
   onCategoryCreated,
   onCancel,
 }: CategoryCreatorProps) {
@@ -30,36 +32,38 @@ export default function CategoryCreator({
   }
 
   return (
-    <div className='flex flex-col gap-2 mt-2'>
-      <input
+    <div className={styles.categoryCreator}>
+      <GeneralInput
         type='text'
+        label='Category Name'
         placeholder='New category name'
         value={name}
         onChange={(e) => setName(e.target.value)}
         className='block w-full border rounded p-2'
       />
-      <input
+      <GeneralInput
+        label='Description (optional)'
         type='text'
-        placeholder='Category description (optional)'
+        placeholder='Category description'
         value={description}
         onChange={(e) => setDescription(e.target.value)}
         className='block w-full border rounded p-2'
       />
-      <div className='flex gap-2'>
-        <button
+      <div className={styles.actions}>
+        <ActionButton
           onClick={handleSave}
-          className='bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700'
+         
           type='button'
         >
           Save
-        </button>
-        <button
+        </ActionButton>
+        <ActionButton
           onClick={onCancel}
-          className='text-blue-600 hover:underline'
+          variant='secondary'
           type='button'
         >
           Cancel
-        </button>
+        </ActionButton>
       </div>
     </div>
   )

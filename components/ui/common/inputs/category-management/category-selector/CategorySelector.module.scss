@@ -1,0 +1,14 @@
+@use '@/styles/abstracts/mixins' as *;
+@use '@/styles/abstracts/functions' as *;
+
+.categorySelector {
+    @include flex-center(column, var(--element-gap-md));
+
+    .selector {
+        padding: var(--container-padding-sm);
+        border: var(--border-2);
+        border-radius: var(--br-200);
+        background: var(--bg-secondary);
+        cursor: pointer;
+    }
+}

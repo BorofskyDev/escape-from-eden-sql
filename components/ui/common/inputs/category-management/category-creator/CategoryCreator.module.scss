@@ -1,0 +1,18 @@
+@use '@/styles/abstracts/mixins' as *;
+@use '@/styles/abstracts/functions' as *;
+
+.categoryCreator {
+  @include flex-center(column, var(--element-gap-lg));
+  width: 100%;
+  padding: var(--container-padding-md);
+  background-color: var(--bg-secondary);
+  border: var(--border-2);
+  border-radius: var(--br-200);
+  box-shadow: var(--shadow-400);
+
+  .actions {
+    @include flex-center(row, var(--element-gap-md));
+    width: 100%;
+    justify-content: space-between;
+  }
+}

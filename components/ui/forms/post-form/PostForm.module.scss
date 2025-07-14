@@ -2,6 +2,29 @@
 @use '@/styles/abstracts/functions' as *;
 
 .postForm {
-    @include flex-center(column, var(--element-gap-lg));
+    @include flex-center(column, var(--element-gap-xl));
     margin-top: var(--element-margin-lg);
+
+    .checkboxLabel {
+        @include flex-center(row, var(--element-gap-md));
+        margin-top: var(--element-margin-sm);
+        padding: var(--container-padding-lg);
+        border: var(--border-1);
+        border-radius: var(--br-400);
+        box-shadow: var(--shadow-400);
+        background-color: var(--bg-secondary);
+        cursor: pointer;
+    
+    }
+
+    .publishDateContainer { 
+        @include flex-center(column, var(--element-gap-md));
+        margin-top: var(--element-margin-sm);
+
+    }
+
+    .actionButtons {
+        @include flex-center(row, var(--element-gap-md));
+        margin-top: var(--element-margin-sm);
+    }
 }

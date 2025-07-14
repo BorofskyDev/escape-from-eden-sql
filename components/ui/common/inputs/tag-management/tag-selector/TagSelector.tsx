@@ -2,18 +2,17 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { getTags, Tag} from '@/lib/functions/tag'
-import TagCreator from './TagCreator'
+import { getTags, Tag } from '@/lib/functions/tag'
+import { ActionButton, BodyText, Heading, TagCreator } from '@/components/ui/common'
+
+import styles from './TagSelector.module.scss'
 
 interface TagSelectorProps {
   defaultTagIds?: string[]
   onChange?: (selectedTags: Tag[]) => void
 }
 
-export default function TagSelector({
-  defaultTagIds,
-  onChange,
-}: TagSelectorProps) {
+export function TagSelector({ defaultTagIds, onChange }: TagSelectorProps) {
   const [tags, setTags] = useState<Tag[]>([])
   const [selectedTagIds, setSelectedTagIds] = useState<string[]>(
     defaultTagIds || []
@@ -56,25 +55,22 @@ export default function TagSelector({
   }
 
   return (
-    <div>
-      <label className='block text-sm font-medium text-gray-700'>Tags</label>
+    <div className={styles.tagSelector}>
+      <Heading as='h3' size='container'>
+        Tags
+      </Heading>
       {tags.length === 0 ? (
-        <div className='mt-1 text-sm text-gray-500'>
-          No tags have been created.
-        </div>
+        <BodyText>No tags have been created.</BodyText>
       ) : (
-        <div className='mt-1 flex flex-wrap gap-2'>
+        <div className={styles.tags}>
           {tags.map((tag) => {
             const isActive = selectedTagIds.includes(tag.id)
             return (
               <button
                 key={tag.id}
-                type='button'
                 onClick={() => toggleTag(tag.id)}
-                className={`px-3 py-1 border rounded ${
-                  isActive
-                    ? 'bg-blue-600 text-white'
-                    : 'bg-gray-100 text-gray-700'
+                className={`${styles.tagButton} ${
+                  isActive ? styles.active : ''
                 }`}
               >
                 {tag.name}
@@ -90,13 +86,12 @@ export default function TagSelector({
             onCancel={() => setShowCreator(false)}
           />
         ) : (
-          <button
+          <ActionButton
             onClick={() => setShowCreator(true)}
-            className='mt-2 text-blue-600 hover:underline'
-            type='button'
+            variant='secondary'
           >
             Create Tag
-          </button>
+          </ActionButton>
         )}
       </div>
     </div>

@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { Modal } from './modal/Modal'
-import CategoryCreator from '@/components/ui/common/inputs/CategoryCreator'
+import CategoryCreator from '@/components/ui/common/inputs/category-management/category-creator/CategoryCreator'
 import CategoryManager from '@/components/ui/common/inputs/CategoryManager'
 
 interface ManageCategoriesModalProps {

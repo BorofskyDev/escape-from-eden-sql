@@ -1,0 +1,7 @@
+@import '@/styles/abstracts/mixins';
+@import '@/styles/abstracts/functions';
+
+.tagCreator {
+    @include flex-center(column, var(--element-gap-md));
+    margin-top: var(--element-margin-md);
+}

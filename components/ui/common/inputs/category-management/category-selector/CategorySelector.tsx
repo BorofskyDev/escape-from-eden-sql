@@ -3,14 +3,16 @@
 import { useState, useEffect, ChangeEvent } from 'react'
 import { Category } from '@prisma/client'
 import { getCategories } from '@/lib/functions/categories'
-import CategoryCreator from './CategoryCreator'
+import { ActionButton, BodyText } from '@/components/ui/common'
+import { CategoryCreator } from '@/components/ui/common'
+import styles from './CategorySelector.module.scss'
 
 interface CategorySelectorProps {
   defaultCategoryId?: string
   onSelect?: (category: Category | null) => void
 }
 
-export default function CategorySelector({
+export function CategorySelector({
   defaultCategoryId,
   onSelect,
 }: CategorySelectorProps) {
@@ -39,29 +41,25 @@ export default function CategorySelector({
     onSelect?.(cat)
   }
 
- const handleCategoryCreated = (newCat: Category) => {
-   const category = newCat
-   setCategories((prev) => [...prev, category])
-   setSelectedCategoryId(category.id)
-   onSelect?.(category)
-   setCreating(false)
- }
+  const handleCategoryCreated = (newCat: Category) => {
+    const category = newCat
+    setCategories((prev) => [...prev, category])
+    setSelectedCategoryId(category.id)
+    onSelect?.(category)
+    setCreating(false)
+  }
 
   return (
-    <div>
-      <label className='block text-sm font-medium text-gray-700'>
-        Category
-      </label>
+    <div className={styles.categorySelector}>
+      <label className={styles.label}>Category</label>
 
       {categories.length === 0 ? (
-        <div className='mt-1 text-sm text-gray-500'>
-          No categories have been created.
-        </div>
+        <BodyText>No categories have been created.</BodyText>
       ) : (
         <select
           value={selectedCategoryId}
           onChange={handleSelectChange}
-          className='mt-1 block w-full border rounded p-2'
+          className={styles.selector}
         >
           <option value=''>Select a Category</option>
           {categories.map((cat) => (
@@ -79,13 +77,13 @@ export default function CategorySelector({
             onCancel={() => setCreating(false)}
           />
         ) : (
-          <button
+          <ActionButton
             onClick={() => setCreating(true)}
-            className='mt-2 text-blue-600 hover:underline'
             type='button'
+            variant='secondary'
           >
             Create Category
-          </button>
+          </ActionButton>
         )}
       </div>
     </div>

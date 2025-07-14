@@ -1,0 +1,41 @@
+@use '@/styles/abstracts/mixins' as *;
+@use '@/styles/abstracts/functions' as *;
+
+.tagSelector {
+  @include flex-center(column, var(--element-gap-md));
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--element-gap-md);
+
+  .tagButton {
+    padding: var(--button-padding-sm);
+    border: var(--border-1);
+    border-radius: var(--br-600);
+    box-shadow: var(--shadow-200);
+    background: var(--bg-secondary);
+    cursor: pointer;
+    transition: var(--transition-main);
+
+    &.active {
+        background-color: var(--bg-btn-alt);
+        color: var(--text-opposite);
+        transform: var(--scale-lg);
+
+    }
+
+    &:focus-visible {
+      @include focused;
+    }
+
+    &:hover,
+    &:focus-visible {
+      background-color: var(--bg-button-hover);
+      transform: var(--scale);
+    }
+  }
+}

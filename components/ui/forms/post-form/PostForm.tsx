@@ -2,8 +2,6 @@
 
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
-import CategorySelector from '@/components/ui/common/inputs/CategorySelector'
-import TagSelector from '@/components/ui/common/inputs/TagSelector'
 import { uploadImage } from '@/lib/functions/uploadImage'
 import { createPost } from '@/lib/functions/createPost'
 import { updatePost } from '@/lib/functions/updatePost'
@@ -12,7 +10,14 @@ import {
   SlugGenerator,
   ImageInput,
   RichTextEditor,
+  CategorySelector,
+  Heading,
+  BodyText,
+  LinkTag,
+  GeneralInput,
+  ActionButton,
 } from '@/components/ui/common/'
+import { TagSelector } from '@/components/ui/common'
 import styles from './PostForm.module.scss'
 
 export interface PostFormData {
@@ -34,11 +39,7 @@ interface PostFormProps {
   onSuccess?: () => void // optional callback if you want to refresh a list
 }
 
-export function PostForm({
-  mode,
-  initialData,
-  onSuccess,
-}: PostFormProps) {
+export function PostForm({ mode, initialData, onSuccess }: PostFormProps) {
   // Local state for fields
   const [title, setTitle] = useState<string>(initialData?.title || '')
   const [description, setDescription] = useState<string>(
@@ -133,7 +134,7 @@ export function PostForm({
       }
 
       if (onSuccess) onSuccess()
-     router.push('/admin')
+      router.push('/admin')
     } catch (error) {
       console.error(
         mode === 'create' ? 'Error creating post:' : 'Error updating post:',
@@ -197,21 +198,24 @@ export function PostForm({
 
       {/* Publish Options */}
       <div className='border p-2 rounded'>
-        <h3 className='font-semibold mb-2'>Publish</h3>
-        <label className='inline-flex items-center space-x-2'>
+        <Heading as='h3' size='section-sub'>
+          Publish
+        </Heading>
+        <label className={styles.checkboxLabel}>
           <input
             type='checkbox'
             checked={published}
             onChange={(e) => setPublished(e.target.checked)}
           />
-          <span>Published?</span>
+          <BodyText>Select Date</BodyText>
         </label>
         {published && (
-          <div className='mt-2 space-y-2'>
-            <p className='text-sm text-gray-600'>
+          <div className={styles.publishDateContainer}>
+            <BodyText>
               Choose a date/time or leave blank to publish immediately.
-            </p>
-            <input
+            </BodyText>
+            <GeneralInput
+              label='Publish Date'
               type='datetime-local'
               value={publishDate}
               onChange={(e) => {
@@ -220,35 +224,21 @@ export function PostForm({
               }}
               className='border rounded p-1'
             />
-            <button
-              type='button'
-              className='ml-2 text-sm text-blue-500 underline'
+            <ActionButton
               onClick={() =>
                 setPublishDate(new Date().toISOString().slice(0, 16))
               }
             >
               Publish Now
-            </button>
+            </ActionButton>
           </div>
         )}
       </div>
 
       {/* Action Buttons */}
-      <div className='flex justify-end gap-2 mt-4'>
-        <button
-          className='bg-gray-300 text-gray-700 py-2 px-4 rounded hover:bg-gray-400'
-          onClick={() => router.push('/admin')}
-          disabled={loading}
-          type='button'
-        >
-          Cancel
-        </button>
-        <button
-          className='bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700'
-          onClick={handleSubmit}
-          disabled={loading}
-          type='button'
-        >
+      <div className={styles.actionButtons}>
+        <LinkTag href='/admin'>Cancel</LinkTag>
+        <ActionButton onClick={handleSubmit} disabled={loading}>
           {loading
             ? mode === 'create'
               ? 'Creating...'
@@ -256,7 +246,7 @@ export function PostForm({
             : mode === 'create'
             ? 'Create'
             : 'Update'}
-        </button>
+        </ActionButton>
       </div>
     </div>
   )

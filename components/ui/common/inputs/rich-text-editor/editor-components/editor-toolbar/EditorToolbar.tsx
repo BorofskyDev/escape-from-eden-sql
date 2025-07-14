@@ -3,9 +3,9 @@
 import React, { useState, useRef } from 'react'
 import { useEditorContext } from '../EditorProvider'
 import FootnoteModal from '@/components/ui/modals/FootnoteModal'
-import styles from './EditorToolbar.module.scss'
 import { Heading } from '@/components/ui/common/typography'
 import { ToolbarButton } from '@/components/ui/common/buttons'
+import styles from './EditorToolbar.module.scss'
 
 import {
   getFootnoteNodeInSelection,

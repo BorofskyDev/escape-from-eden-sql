@@ -3,7 +3,7 @@
 
 .editorCanvas {
   // 'editorCanvas footnote border rounded py-4 px-10 h-dvh overflow-auto'
-  height: 100dvh;
+  height: 100%;
   padding: var(--container-padding-xl);
   border: var(--border-1);
   border-radius: var(--br-400);
@@ -18,6 +18,15 @@
     margin: var(--element-margin-md) 0;
     font-size: var(--fs-300);
     line-height: var(--lh-300);
+  }
+
+  & a {
+    color: var(--link);
+    font-weight: var(--fw-bold);
+    transition: var(--transition-main);
+    &:hover {
+      color: var(--link-hover);
+    }
   }
 
   & h3 {

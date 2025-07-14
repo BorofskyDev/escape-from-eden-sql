@@ -1,9 +1,8 @@
 'use client'
 
-import Modal from './modal/Modal'
-import PostForm, {
-  PostFormData,
-} from '@/components/ui/forms/post-form/PostForm'
+import { Modal } from '@/components/ui/modals'
+import { PostForm, PostFormData } from '@/components/ui/forms'
+import { Heading } from '@/components/ui/common'
 
 interface EditPostModalProps {
   open: boolean
@@ -21,7 +20,7 @@ interface EditPostModalProps {
   }
 }
 
-export default function EditPostModal({
+export function EditPostModal({
   open,
   onClose,
   post,
@@ -43,13 +42,10 @@ export default function EditPostModal({
 
   return (
     <Modal open={open} onClose={onClose}>
-      <h2 className='text-xl font-bold mb-4'>Edit Post: {post.title}</h2>
-      <PostForm
-        key={post.id}
-        mode='edit'
-        initialData={initialData}
-        onClose={onClose}
-      />
+      <Heading as='h2' size='section'>
+        Edit Post: {post.title}
+      </Heading>
+      <PostForm key={post.id} mode='edit' initialData={initialData} />
     </Modal>
   )
 }

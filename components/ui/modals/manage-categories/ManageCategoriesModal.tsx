@@ -10,7 +10,7 @@ interface ManageCategoriesModalProps {
   onClose: () => void
 }
 
-export default function ManageCategoriesModal({
+export function ManageCategoriesModal({
   open,
   onClose,
 }: ManageCategoriesModalProps) {

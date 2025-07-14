@@ -2,7 +2,7 @@
 
 import { signOut } from 'next-auth/react'
 import { useState } from 'react'
-import ManageCategoriesModal from '@/components/ui/modals/manage-categories/ManageCategoriesModal'
+import { ManageCategoriesModal } from '@/components/ui/modals'
 import ManageTagsModal from '@/components/ui/modals/ManageTagsModal'
 import { Page } from '@/components/layouts'
 import MessagesList from '@/components/admin/MessageList'

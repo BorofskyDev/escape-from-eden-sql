@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { usePosts, Post } from '@/lib/hooks/usePosts'
 import { formatDate } from '@/lib/functions/formatDate'
-import EditPostModal from '@/components/ui/modals/EditPostModal'
+import { EditPostModal } from '@/components/ui/modals'
 import Image from 'next/image'
 import { deletePost } from '@/lib/functions/deletePost'
 import styles from './AdminPostsTable.module.scss'

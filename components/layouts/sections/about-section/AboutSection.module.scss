@@ -2,4 +2,8 @@
 
 .aboutSection {
     @include flex-center(column, var(--element-gap-lg));
+    padding: var(--container-padding-xl);
+    border: var(--border-2);
+    border-radius: var(--br-400);
+    background-color: var(--bg-secondary);
 }

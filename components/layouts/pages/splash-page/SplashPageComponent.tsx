@@ -18,8 +18,8 @@ export function SplashPageComponent() {
         </BodyText>
       </div>
       <GeneralSection id='main'>
-        <AboutSection />
         <RecentPostsSection />
+        <AboutSection />
         <AllPostsSection />
         <SubscribeContainer />
       </GeneralSection>

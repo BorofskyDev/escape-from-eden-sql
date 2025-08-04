@@ -1,43 +1,26 @@
 import { GeneralSection } from '../general-section/GeneralSection'
-import { BodyText, TextLink } from '@/components/ui/common'
+import { BodyText, TextLink, Heading } from '@/components/ui/common'
 import styles from './AboutSection.module.scss'
 
 export default function AboutSection() {
   return (
     <GeneralSection id='about' className={styles.aboutSection}>
+      <Heading as='h2' size='section'>Escape from Eden</Heading>
       <BodyText>
-        At the age of 7, during the first Gulf War, I grew scared over
-        everything I saw on TV and was afraid that we&apos;d be bombed, I&apos;d
-        go to Hell, and I would never get to Heaven. And so I said the prayer,
-        was baptized, and began my life as a Christian who &quot;made the
-        choice.&quot;
+        Escape from eden is an independent publication for those who can&apos;t
+        unsee the cracks. Part personal essay, part cultural critique,
+        discussing how faith, philosophy, tech, and various systems shape us.
       </BodyText>
 
       <BodyText>
-        Had I known what my life would bring after that — the pain, the
-        betrayal, the hypocrisy, the sacrifice, the lack of joy and inhumanity —
-        I would have just shut the fuck up.
+        I&apos;m writing mostly for myself, but also for those burned by
+        institutions and still choose to ask hard questions. We&apos;ve been
+        promised a utopia, a Garden of Eden, if we just follow the system the
+        right way. We were given easy answers in lieu of honest ones.
       </BodyText>
       <BodyText>
-        I&apos;d endure household trauma exacerbated by a theology that
-        supported what was happening. I would be indoctrinated and groomed
-        within a radical, yet common form of evangelical Christianity. I&apos;d
-        spend nearly a decade professionally studying the faith at one of the
-        various Southern Baptist seminaries in the US. I would debate atheists,
-        liberals, Communists, and all others while putting up the good fight.
-        And in the end, I would be left with the choice that I could love God or
-        love my fellow human, but not both.
-      </BodyText>
-      <BodyText>
-        I chose humanity. That choice upended my world and everything I had ever
-        known or trusted. But it was a choice that had to be made and it had to
-        be honest.{' '}
-      </BodyText>
-      <BodyText>
-        I found freedom in that choice, but it was also scary. Still, I was free
-        to explore a world that had previously been unknown to me. This blog is
-        an exploration of that freedom and my views of the world with a
-        post-Christian perspective.
+        We choose to embrace clarity, honesty, and a recalcitrant approach to
+        all those who&apos;d rather us go quietly.
       </BodyText>
 
       <TextLink href='/about'>Lean More About Me</TextLink>

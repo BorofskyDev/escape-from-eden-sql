@@ -2,7 +2,7 @@
     &:focus-visible {
         outline: var(--border-4);
         outline-offset: 4px;
-        outline-color: hsl(var(--blue-400));
+        outline-color: var(--blue-400);
     }
     
     &:focus:not(:focus-visible) {

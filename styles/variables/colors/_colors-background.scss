@@ -1,44 +1,44 @@
 :root {
-  --bg: hsl(var(--light-100));
-  --bg-secondary: hsl(var(--light-200));
-  --bg-tertiary: hsl(var(--blue-100));
-  --bg-accent: hsl(var(--aqua-100));
+  --bg: var(--light-100);
+  --bg-secondary: var(--light-200);
+  --bg-tertiary: var(--blue-100);
+  --bg-accent: var(--aqua-100);
 
-  --bg-button: hsl(var(--blue-300));
-  --bg-button-hover: hsl(var(--aqua-100));
+  --bg-button: var(--blue-300);
+  --bg-button-hover: var(--aqua-100);
 
-  --bg-btn-alt: hsl(var(--blue-700));
+  --bg-btn-alt: var(--blue-700);
 
-  --bg-warning: hsl(var(--red-300));
-  --bg-danger: hsl(var(--red-700));
+  --bg-warning: var(--red-300);
+  --bg-danger: var(--red-700);
 
-  --bg-button-secondary: hsl(var(--aqua-300));
-  --bg-button-secondary-hover: hsl(var(--blue-100));
+  --bg-button-secondary: var(--aqua-300);
+  --bg-button-secondary-hover: var(--blue-100);
 
-  --bg-progress-bar: hsl(var(--blue-500));
+  --bg-progress-bar: var(--blue-500);
 
-  --bg-input: hsl(var(--blue-300));
-  --bg-input-hover: hsl(var(--blue-100));
-  --bg-input-active: hsl(var(--aqua-100));
+  --bg-input: var(--blue-300);
+  --bg-input-hover: var(--blue-100);
+  --bg-input-active: var(--aqua-100);
 }
 
 [data-theme='dark'] {
-  --bg: hsl(var(--dark-100));
-  --bg-secondary: hsl(var(--dark-200));
-  --bg-tertiary: hsl(var(--blue-900));
-  --bg-accent: hsl(var(--aqua-900));
+  --bg: var(--dark-100);
+  --bg-secondary: var(--dark-200);
+  --bg-tertiary: var(--blue-900);
+  --bg-accent: var(--aqua-900);
 
-  --bg-button: hsl(var(--blue-700));
-  --bg-button-hover: hsl(var(--aqua-900));
+  --bg-button: var(--blue-700);
+  --bg-button-hover: var(--aqua-900);
 
-  --bg-btn-alt: hsl(var(--blue-300));
+  --bg-btn-alt: var(--blue-300);
 
-  --bg-button-secondary: hsl(var(--aqua-800));
-  --bg-button-secondary-hover: hsl(var(--blue-900));
+  --bg-button-secondary: var(--aqua-800);
+  --bg-button-secondary-hover: var(--blue-900);
 
-  --bg-warning: hsl(var(--red-700));
+  --bg-warning: var(--red-700);
 
-  --bg-input: hsl(var(--blue-700));
-  --bg-input-hover: hsl(var(--blue-900));
-  --bg-input-active: hsl(var(--aqua-900));
+  --bg-input: var(--blue-700);
+  --bg-input-hover: var(--blue-900);
+  --bg-input-active: var(--aqua-900);
 }

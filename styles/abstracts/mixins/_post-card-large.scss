@@ -3,35 +3,41 @@
 @mixin post-card-large {
   .large {
     @include breakpoint(lg) {
-      grid-template-columns: repeat(2, 1fr);
-      grid-template-rows: 1fr 0.25fr;
-      align-items: flex-start;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto;
+      align-items: start;
+      grid-template-areas:
+      "content image"
+      "desc image"
+      "meta image"
     }
   }
 
-  .large > .postCard {
+  .large .postCard {
+    align-items: stretch;
     &__image {
       @include breakpoint(lg) {
-        grid-column: 2;
-        grid-row: 1;
+        height: 100%;
+        grid-area: image;
         margin: var(--margin-center);
+        place-self: center start;
+        object-fit: contain;
       }
     }
 
     &__content {
       @include breakpoint(lg) {
-        grid-column: 1;
-        grid-row: 1;
-        padding: var(--container-padding-lg);
+        grid-area: content;
         text-align: left;
         place-self: center;
+     
+
       }
     }
 
     &__desc {
       @include breakpoint(lg) {
-        grid-column: 1;
-        grid-row: 2;
+        grid-area: desc;
         padding: var(--container-padding-lg);
         place-self: flex-end;
         text-align: left;
@@ -41,9 +47,7 @@
     &__tags,
     &__category {
       @include breakpoint(lg) {
-        grid-column: 2;
-        grid-row: 2;
-        place-self: center;
+        grid-area: meta;
       }
     }
   }

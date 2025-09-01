@@ -19,7 +19,7 @@ export default function Header() {
       <div className={styles.header__container}>
         <TextLink href='/'>
           <Heading as='h2' size='sm'>
-            Escape from Eden
+            Journal of a Recalcitrant
           </Heading>
         </TextLink>
         <DesktopNav />

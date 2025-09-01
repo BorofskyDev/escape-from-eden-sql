@@ -5,15 +5,14 @@
 @mixin post-card-small {
   .small {
     @include breakpoint(lg) {
-      @include container-wrapper-400;
       min-height: #{px-to-ch(300)};
       max-width: #{px-to-ch(250)};
       display: grid;
       grid-template-columns: 1fr;
       grid-template-rows: auto;
+      align-items: stretch;
       padding: var(--container-padding-sm);
       place-content: center;
-      background-color: var(--bg-secondary)
     }
   }
 
@@ -29,9 +28,7 @@
       font-size: var(--fs-300);
     }
 
-    &__tags {
-      display: none;
-    }
+   
 
     &__content {
       padding: var(--container-padding-sm);
@@ -39,7 +36,7 @@
     }
 
     &__category {
-      display: none;
+      // display: none;
     }
 
     &__desc {

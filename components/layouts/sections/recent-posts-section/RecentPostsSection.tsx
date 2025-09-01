@@ -13,7 +13,6 @@ import {
   LargePostCard,
   MediumPostCard,
 } from '@/components/ui/cards/'
-import { Heading } from '@/components/ui/common'
 import styles from './RecentPostsSection.module.scss'
 
 export default function RecentPostsSection() {
@@ -54,13 +53,7 @@ export default function RecentPostsSection() {
 
   return (
     <GeneralSection id='recent-posts' className={styles.recentPostsSection}>
-      <Heading
-        as='h2'
-        size='section'
-        className={styles.recentPostsSection__heading}
-      >
-        Recent Posts
-      </Heading>
+      
 
       <ColContainer className={styles.recentPostsSection__container} >
         <div className={styles.recentPostsSection__bigAndMedium}>

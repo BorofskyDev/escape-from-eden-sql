@@ -1,7 +1,7 @@
 @use '@/styles/abstracts/functions' as *;
 
 :root {
-    --section-max-width: #{px-to-rem(1280)};
+    --section-max-width: #{px-to-rem(1680)};
 
     --lg-container-width: #{px-to-ch(680)};
     --md-container-width: #{px-to-rem(468)};

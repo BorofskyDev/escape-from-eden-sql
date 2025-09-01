@@ -7,7 +7,7 @@ export default function AccessibilityStatementPage() {
       </h1>
 
       <p className='w-full mx-auto text-md text-text1'>
-        At Escape From Eden, we are committed to ensuring digital accessibility
+        At Journal of a Recalcitrant, we are committed to ensuring digital accessibility
         for all users. We strive to provide a user-friendly experience and make
         our website accessible to everyone, regardless of their abilities or
         devices.

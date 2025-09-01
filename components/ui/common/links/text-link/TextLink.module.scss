@@ -14,3 +14,7 @@
     transform: rotate(45deg);
   }
 }
+
+.noUnderline {
+  @include link-no-underline;
+}

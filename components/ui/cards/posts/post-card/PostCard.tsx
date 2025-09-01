@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import styles from './PostCard.module.scss'
-import { BodyText, Heading, LinkTag, TextLink } from '@/components/ui/common'
+import { BodyText, Heading, TextLink } from '@/components/ui/common'
 
 interface TagLink {
   id: string
@@ -56,38 +56,35 @@ export function PostCard({ post, variant }: Props) {
       </div>
 
       <div className={styles.postCard__content}>
-        <BodyText variant='body-sm' className={styles.postCard__date}>
-          {publishedAt}
-        </BodyText>
+        <TextLink className={styles.postCard__content__category} href={`/categories/${categoryId ?? 'unknown'}`}>
+          {categoryName}
+        </TextLink>
 
         <Heading as='h3' size='section-sub'>
-          <TextLink href={`/blog/${slug}`} className={styles.postCard__title}>
+          <TextLink
+            href={`/blog/${slug}`}
+            noUnderline
+            className={styles.postCard__title}
+          >
             {title}
           </TextLink>
         </Heading>
       </div>
       <BodyText className={styles.postCard__desc}>{description}</BodyText>
       <div className={styles.postCard__category}>
-        <Heading as='h3' size='container'>
-          Category:{' '}
-        </Heading>
-        <BodyText variant='body-lg'>
-          <TextLink href={`/categories/${categoryId ?? 'unknown'}`}>
-            {categoryName}
-          </TextLink>
+        <BodyText variant='body-sm' className={styles.postCard__date}>
+          {publishedAt}
         </BodyText>
-        <Heading as='h3' size='container'>
-          Tags:
-        </Heading>
+
         <div className={styles.postCard__tags}>
           {tags.map((tag) => (
-            <LinkTag
+            <TextLink
               key={tag.id}
               href={`/tags/${tag.id}`}
               className={styles.postCard__tag}
             >
               {tag.name}
-            </LinkTag>
+            </TextLink>
           ))}
         </div>
       </div>

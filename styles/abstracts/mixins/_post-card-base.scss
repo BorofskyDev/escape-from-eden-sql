@@ -8,10 +8,12 @@
     margin: var(--element-gap-lg) 0;
     display: grid;
     grid-template-columns: 1fr;
-    place-content: center;
+    grid-template-rows: auto auto auto;
+    // place-content: center;
     gap: var(--element-gap-lg);
 
     &__image {
+      // place-self: center;
       position: relative;
       width: 100%;
       height: 100%;
@@ -31,6 +33,12 @@
       padding-top: var(--container-padding-sm);
       text-align: center;
       @include flex-center(column, var(--element-gap-md));
+
+      &__category {
+        @include breakpoint(lg) {
+          align-self: start;
+        }
+      }
     }
 
     &__tags {

@@ -11,6 +11,7 @@ interface TextLinkProps extends AnchorProps {
   href: string
   external?: boolean
   children: ReactNode
+  noUnderline?: boolean
   className?: string
 }
 
@@ -20,6 +21,7 @@ export function TextLink({
   href,
   external,
   children,
+  noUnderline = false,
   className = '',
   ...rest
 }: TextLinkProps) {
@@ -31,7 +33,7 @@ export function TextLink({
         href={href}
         target='_blank'
         rel='noopener noreferrer'
-        className={`${styles.textLink} ${className}`}
+        className={`${noUnderline ? styles.noUnderline : styles.textLink} ${className}`}
         aria-label={
           rest['aria-label'] ??
           (typeof children === 'string'
@@ -53,7 +55,7 @@ export function TextLink({
     )
   }
   return (
-    <Link href={href} className={`${styles.textLink} ${className}`} {...rest}>
+    <Link href={href} className={` ${noUnderline ? styles.noUnderline : styles.textLink} ${className}`} {...rest}>
       {children}
     </Link>
   )

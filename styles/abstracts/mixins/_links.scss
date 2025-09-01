@@ -32,8 +32,7 @@
 
   &::before {
     bottom: 0;
-    left: 110%;
-    opacity: 0;
+  
   }
 
   &::after {
@@ -58,5 +57,14 @@
   &:hover::after,
   &:focus-visible::after {
     right: 0;
+  }
+}
+
+@mixin link-no-underline{
+  @include link-base;
+
+  &::before {
+      left: 110%;
+    opacity: 0;
   }
 }

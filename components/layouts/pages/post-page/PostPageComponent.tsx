@@ -76,7 +76,8 @@ export default async function PostPageComponent({
               <Image
                 src={post.featuredImage}
                 alt={post.title}
-                fill
+                height={1600}
+                width={2400}
                 className={styles.blogPostContent__image__img}
               />
             </div>

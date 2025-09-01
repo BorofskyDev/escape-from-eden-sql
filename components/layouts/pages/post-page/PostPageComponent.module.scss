@@ -9,14 +9,11 @@
   @include flex-center(column, var(--element-gap-lg));
 
   &__image {
-    // 'relative w-full h-96 mb-4'
     position: relative;
     width: 100%;
-    height: #{px-to-em(280)};
-    aspect-ratio: 16 / 9;
+    max-height: #{px-to-em(680)};
     border: var(--border-6);
     border-radius: var(--br-200);
-    box-shadow: var(--shadow-700);
 
     @include breakpoint(md) {
       height: #{px-to-em(360)};
@@ -30,11 +27,12 @@
       width: 100%;
       height: 100%;
       object-position: center;
+      object-fit: cover;
+      aspect-ratio: 16 / 9;
     }
   }
 
   &__body {
-    // 'prose mb-4 bg-bg2 p-8 max-w-4xl mx-auto shadow-lg rounded-md leading-6 flex flex-col gap-4'
     display: flex;
     flex-direction: column;
     gap: 40px

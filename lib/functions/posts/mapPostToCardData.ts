@@ -1,5 +1,7 @@
-import type { TagData, PostWithRelations } from "@/lib/types/tagTypes";
-import type { PostData } from "@/components/ui/cards";
+//lib/functions/posts/mapPostToCardData.ts
+
+import type { TagData, PostWithRelations } from '@/lib/types/tagTypes'
+import type { PostData } from '@/components/ui/cards'
 
 export function mapPostToCardData(post: PostWithRelations): PostData {
   return {
@@ -14,6 +16,9 @@ export function mapPostToCardData(post: PostWithRelations): PostData {
         })
       : '',
     imageUrl: post.featuredImage || 'https://via.placeholder.com/800',
+    imageAlt:
+      (post.featuredImageAlt ?? '').trim() ||
+      `Illustration for “${post.title}”`,
     categoryName: post.category?.name || 'Uncategorized',
     categoryId: post.category?.id ?? undefined,
     tags: post.tags.map<TagData>((t) => ({ id: t.id, name: t.name, slug: '' })), // slug unused in card

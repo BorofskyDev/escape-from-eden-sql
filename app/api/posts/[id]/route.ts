@@ -21,6 +21,7 @@ export async function GET(
         description: true,
         content: true,
         featuredImage: true,
+        featuredImageAlt: true,
         published: true,
         publishedAt: true,
         createdAt: true,
@@ -60,6 +61,7 @@ export async function PATCH(
       description,
       content,
       featuredImage,
+      featuredImageAlt,
       published,
       publishedAt, // Extract publishedAt from the payload
       categoryId,
@@ -98,6 +100,7 @@ export async function PATCH(
         description,
         content,
         featuredImage,
+        featuredImageAlt: (featuredImageAlt ?? null),
         published: isNowPublished,
         publishedAt: newPublishedAt,
         category: categoryId

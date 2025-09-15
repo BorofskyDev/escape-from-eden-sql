@@ -6,6 +6,7 @@ export interface RecentPost {
   title: string
   description: string
   featuredImage: string | null
+  featuredImageAlt: string | null
   publishedAt: string | null
   updatedAt: string
   slug: string

@@ -1,15 +1,8 @@
 // lib/hooks/usePosts.ts
 import { useState, useEffect, useCallback } from 'react'
+import { Post } from '@prisma/client'
 
-export interface Post {
-  id: string
-  title: string
-  featuredImage: string
-  published: boolean
-  publishedAt?: string | null
-  createdAt: string
-  updatedAt: string
-}
+
 
 export function usePosts(page: number = 1, limit: number = 10) {
   const [posts, setPosts] = useState<Post[]>([])

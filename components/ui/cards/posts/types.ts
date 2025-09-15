@@ -10,6 +10,7 @@ export interface PostData {
   categoryId?: string
   publishedAt: string
   imageUrl: string
+  imageAlt?: string
   tags: TagLink[]
   slug: string
   id: string

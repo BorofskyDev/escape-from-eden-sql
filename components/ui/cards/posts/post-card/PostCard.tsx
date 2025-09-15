@@ -3,23 +3,8 @@
 import Image from 'next/image'
 import styles from './PostCard.module.scss'
 import { BodyText, Heading, TextLink } from '@/components/ui/common'
+import type { PostData } from '@/components/ui/cards'
 
-interface TagLink {
-  id: string
-  name: string
-}
-
-export interface PostData {
-  title: string
-  description: string
-  categoryName: string
-  categoryId?: string
-  publishedAt: string
-  imageUrl: string
-  tags: TagLink[]
-  slug: string
-  id: string
-}
 
 type Variant = 'small' | 'medium' | 'largeRow' | 'large'
 

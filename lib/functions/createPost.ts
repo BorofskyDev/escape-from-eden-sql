@@ -6,6 +6,7 @@ export interface CreatePostPayload {
   description: string
   content: string
   featuredImage?: string
+  featuredImageAlt?: string | null
   slug: string
   published?: boolean // Will always be false on create
   categoryId?: string

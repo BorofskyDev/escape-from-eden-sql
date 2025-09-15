@@ -56,18 +56,14 @@ export function EditorToolbar() {
       <div className={styles.toolbarButtons}>
         {/* Text Styles */}
         <ToolbarButton onClick={() => focusEditor(editor).toggleBold().run()}>
-          Bold
+          <b>B</b>
         </ToolbarButton>
         <ToolbarButton onClick={() => focusEditor(editor).toggleItalic().run()}>
-          Italic
+          <i>I</i>
         </ToolbarButton>
-        <ToolbarButton
-          onClick={() => focusEditor(editor).toggleUnderline().run()}
-        >
-          Underline
-        </ToolbarButton>
+       
         <ToolbarButton onClick={() => focusEditor(editor).toggleStrike().run()}>
-          Strike
+          <s>S</s>
         </ToolbarButton>
         <ToolbarButton onClick={() => focusEditor(editor).toggleCode().run()}>
           Inline Code

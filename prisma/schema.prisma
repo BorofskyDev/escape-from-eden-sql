@@ -35,6 +35,7 @@ model Post {
   description   String
   content       String
   featuredImage String?
+  featuredImageAlt String?
   views         Int       @default(0)
   slug          String    @unique
   published     Boolean   @default(false)

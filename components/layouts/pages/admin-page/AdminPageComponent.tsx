@@ -25,6 +25,15 @@ export function AdminPageComponent() {
         Admin Dashboard
       </Heading>
 
+      {/* Messages Section */}
+      <section className={styles.messagesSection}>
+        <Heading as='h2' size='section'>
+          Messages
+        </Heading>
+        <BodyText>Here are your latest messages.</BodyText>
+        <MessagesList />
+      </section>
+      
       {/* Blog Settings Section */}
       <section className={styles.blogSettingsSection}>
         <Heading as='h2' size='section'>
@@ -48,15 +57,6 @@ export function AdminPageComponent() {
           <LinkTag href='/admin/subscribers'>Manage Subscribers</LinkTag>
         </div>
         <AdminPostsTable />
-      </section>
-
-      {/* Messages Section */}
-      <section className={styles.messagesSection}>
-        <Heading as='h2' size='section'>
-          Messages
-        </Heading>
-        <BodyText>Here are your latest messages.</BodyText>
-        <MessagesList />
       </section>
 
       {/* Sign Out Button at the end */}

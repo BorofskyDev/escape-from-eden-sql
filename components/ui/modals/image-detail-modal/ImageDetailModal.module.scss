@@ -1,0 +1,10 @@
+@use '@/styles/abstracts/mixins' as *;
+@use '@/styles/abstracts/functions' as *;
+
+.form {
+    @include flex-center(column, var(--element-gap-lg));
+}
+
+.buttons {
+    @include flex-center(row, var(--element-gap-lg));
+}

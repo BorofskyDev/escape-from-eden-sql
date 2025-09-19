@@ -2,7 +2,7 @@
 @use '@/styles/abstracts/functions' as *;
 
 .editorCanvas {
-  // 'editorCanvas footnote border rounded py-4 px-10 h-dvh overflow-auto'
+  min-height: 100dvh;
   height: 100%;
   padding: var(--container-padding-xl);
   border: var(--border-1);

@@ -1,29 +1,48 @@
 'use client'
 
-import React, { useState, useRef } from 'react'
+import React from 'react'
 import { useEditorContext } from '../EditorProvider'
-import FootnoteModal from '@/components/ui/modals/FootnoteModal'
 import { Heading } from '@/components/ui/common/typography'
-import { ToolbarButton } from '@/components/ui/common/buttons'
 import styles from './EditorToolbar.module.scss'
-
 import {
   getFootnoteNodeInSelection,
   handleSubmitFootnote,
-  focusEditor,
 } from '@/lib/functions/editor-toolbar'
+import {
+  useFigureImage,
+  useHeaderHeight,
+  useStickySentinel,
+} from '@/lib/hooks/'
+import { ToolbarNodes, ToolbarTextBtns } from './toolbar-components'
 
 export function EditorToolbar() {
-  const { editor, handleAddImage, handleAddLink } = useEditorContext()
+  const { editor, handleAddLink } = useEditorContext()
 
-  const [showFootnoteModal, setShowFootnoteModal] = useState(false)
-  const [isEditing, setIsEditing] = useState(false)
-  const [initialTitle, setInitialTitle] = useState<string | undefined>()
-  const [initialContent, setInitialContent] = useState<string | undefined>()
-  const fileInputRef = useRef<HTMLInputElement>(null)
+  // Footnotes
+  const [showFootnoteModal, setShowFootnoteModal] = React.useState(false)
+  const [isEditing, setIsEditing] = React.useState(false)
+  const [initialTitle, setInitialTitle] = React.useState<string | undefined>()
+  const [initialContent, setInitialContent] = React.useState<
+    string | undefined
+  >()
+
+  // Images (hook)
+  const {
+    fileInputRef,
+    showImageModal,
+    isUploading,
+    openFilePicker,
+    onFileChange,
+    onSubmitImage,
+    closeImageModal,
+  } = useFigureImage(editor /*, { uploadImage } */)
+
+  const headerHeight = useHeaderHeight('#site-header')
+  const { sentinelRef, isStuck } = useStickySentinel()
 
   if (!editor) return null
 
+  // Footnote handlers
   const handleNewFootnote = () => {
     setIsEditing(false)
     setInitialTitle(undefined)
@@ -49,110 +68,41 @@ export function EditorToolbar() {
   }
 
   return (
-    <div className={styles.editorToolbar}>
-      <Heading as='h3' size='section-sub'>
-        Text Editor Toolbox
-      </Heading>
-      <div className={styles.toolbarButtons}>
-        {/* Text Styles */}
-        <ToolbarButton onClick={() => focusEditor(editor).toggleBold().run()}>
-          <b>B</b>
-        </ToolbarButton>
-        <ToolbarButton onClick={() => focusEditor(editor).toggleItalic().run()}>
-          <i>I</i>
-        </ToolbarButton>
-       
-        <ToolbarButton onClick={() => focusEditor(editor).toggleStrike().run()}>
-          <s>S</s>
-        </ToolbarButton>
-        <ToolbarButton onClick={() => focusEditor(editor).toggleCode().run()}>
-          Inline Code
-        </ToolbarButton>
+    <>
+      <div ref={sentinelRef} aria-hidden></div>
+      <div
+        className={`${styles.stickyWrapper} ${isStuck ? styles.isStuck : ''}`}
+        style={{ top: headerHeight || 0 }}
+      >
+        <div className={styles.editorToolbar}>
+          <Heading as='h3' size='section-sub'>
+            Text Editor Toolbox
+          </Heading>
 
-        {/* Headings */}
-        <ToolbarButton onClick={() => focusEditor(editor).setParagraph().run()}>
-          Paragraph
-        </ToolbarButton>
-        {[3, 4, 5, 6].map((level) => (
-          <ToolbarButton
-            key={level}
-            onClick={() =>
-              focusEditor(editor)
-                .toggleHeading({ level: level as 3 | 4 | 5 | 6 })
-                .run()
-            }
-          >
-            H{level}
-          </ToolbarButton>
-        ))}
+          <div className={styles.toolbarButtons}>
+            <ToolbarTextBtns editor={editor} />
 
-        {/* Lists */}
-        <ToolbarButton
-          onClick={() => focusEditor(editor).toggleBulletList().run()}
-        >
-          Bullet List
-        </ToolbarButton>
-        <ToolbarButton
-          onClick={() => focusEditor(editor).toggleOrderedList().run()}
-        >
-          Ordered List
-        </ToolbarButton>
-
-        {/* Blocks */}
-        <ToolbarButton
-          onClick={() => focusEditor(editor).toggleCodeBlock().run()}
-        >
-          Code Block
-        </ToolbarButton>
-        <ToolbarButton
-          onClick={() => focusEditor(editor).toggleBlockquote().run()}
-        >
-          Blockquote
-        </ToolbarButton>
-        <ToolbarButton onClick={() => focusEditor(editor).setHardBreak().run()}>
-          Hard Break
-        </ToolbarButton>
-
-        {/* Undo/Redo */}
-        <ToolbarButton onClick={() => focusEditor(editor).undo().run()}>
-          Undo
-        </ToolbarButton>
-        <ToolbarButton onClick={() => focusEditor(editor).redo().run()}>
-          Redo
-        </ToolbarButton>
-
-        {/* Media */}
-        <ToolbarButton onClick={() => fileInputRef.current?.click()}>
-          Image
-        </ToolbarButton>
-        <input
-          type='file'
-          accept='image/*'
-          ref={fileInputRef}
-          onChange={handleAddImage}
-          style={{ display: 'none' }}
-        />
-
-        {/* Link */}
-        <ToolbarButton onClick={handleAddLink}>Link</ToolbarButton>
-
-        {/* Footnotes */}
-        <ToolbarButton onClick={handleNewFootnote}>New Footnote</ToolbarButton>
-        <ToolbarButton onClick={handleEditFootnote}>
-          Edit Footnote
-        </ToolbarButton>
-
-        {/* Modal */}
-        {showFootnoteModal && (
-          <FootnoteModal
-            open={showFootnoteModal}
-            onClose={() => setShowFootnoteModal(false)}
-            initialTitle={initialTitle}
-            initialContent={initialContent}
-            onSubmitFootnote={handleSubmitFootnoteWrapper}
-          />
-        )}
+            <ToolbarNodes
+              editor={editor}
+              openFilePicker={openFilePicker}
+              fileInputRef={fileInputRef}
+              onFileChange={onFileChange}
+              isUploading={isUploading}
+              showImageModal={showImageModal}
+              onSubmitImage={onSubmitImage}
+              closeImageModal={closeImageModal}
+              handleAddLink={handleAddLink}
+              handleNewFootnote={handleNewFootnote}
+              handleEditFootnote={handleEditFootnote}
+              showFootnoteModal={showFootnoteModal}
+              closeFootnoteModal={() => setShowFootnoteModal(false)}
+              initialTitle={initialTitle}
+              initialContent={initialContent}
+              handleSubmitFootnoteWrapper={handleSubmitFootnoteWrapper}
+            />
+          </div>
+        </div>
       </div>
-    </div>
+    </>
   )
 }

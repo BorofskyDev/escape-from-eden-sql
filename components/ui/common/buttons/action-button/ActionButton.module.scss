@@ -43,11 +43,20 @@
   &__delete {
     background-color: var(--bg-danger);
     color: var(--text-opposite);
+
+    &:hover, &:focus-visible { 
+      background-color: var(--bg);
+      box-shadow: var(--shadow-400);
+      transform: scale(1.05);
+      color: var(--text)
+    }
   }
   
   &__disabled {
     background-color: none;
     cursor: not-allowed;
     opacity: 0.6;
+
+     
   }
 }

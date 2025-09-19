@@ -4,6 +4,7 @@ import StarterKit from '@tiptap/starter-kit'
 import LinkExtension from '@tiptap/extension-link'
 import ImageExtension from '@tiptap/extension-image'
 import { FootnoteNode } from '@/lib/tiptap-extensions/footnote-node/footnoteNode'
+import { CustomImageWithCaption } from './editor-toolbar/CustomImageWithCaption'
 
 interface EditorContextProps {
   editor: Editor | null
@@ -37,6 +38,7 @@ export function EditorProvider({
       StarterKit,
       LinkExtension.configure({ openOnClick: false }),
       ImageExtension,
+      CustomImageWithCaption,
       FootnoteNode, // use the simplified node here
     ],
     content: initialHTML || '<p></p>',

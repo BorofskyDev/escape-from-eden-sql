@@ -15,7 +15,7 @@ export default function Header() {
   const closeMenu = () => setIsOpen(false)
 
   return (
-    <header className={styles.header}>
+    <header id='site-header' className={styles.header}>
       <div className={styles.header__container}>
         <TextLink href='/'>
           <Heading as='h2' size='sm'>

@@ -1,6 +1,17 @@
 @use '@/styles/abstracts/mixins' as *;
 @use '@/styles/abstracts/functions' as *;
 
+
+.stickyWrapper {
+  position: sticky;
+  top: 0;
+  z-index: 45;
+}
+
+.isStuck {
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 1));
+}
+
 .editorToolbar {
   @include flex-center(column, var(--element-gap-md));
   margin: var(--element-margin-lg) auto;

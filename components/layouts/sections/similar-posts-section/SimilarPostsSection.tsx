@@ -1,6 +1,6 @@
 import { prisma } from '@/lib/prisma'
-import { SmallPostCard } from '@/components/ui/cards'
-import { PostData } from '@/components/ui/cards/posts/post-card/PostCard'
+import { SmallPostCard, PostData } from '@/components/ui/cards'
+
 import styles from './SimilarPostsSection.module.scss'
 import { BodyText, Heading } from '@/components/ui/common'
 

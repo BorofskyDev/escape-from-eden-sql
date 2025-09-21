@@ -3,8 +3,7 @@
 
 import { useState } from 'react'
 import usePaginatedPosts from '@/lib/hooks/usePaginatedPosts'
-import { SmallPostCard } from '@/components/ui/cards/'
-import { PostData } from '@/components/ui/cards/'
+import { SmallPostCard, PostData } from '@/components/ui/cards/'
 import { RecentPost } from '@/lib/functions/getRecentPosts'
 import { GeneralSection } from '@/components/layouts/'
 import { Heading } from '@/components/ui/common'

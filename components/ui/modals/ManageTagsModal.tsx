@@ -2,8 +2,9 @@
 
 import { useState } from 'react'
 import { Modal } from './modal/Modal'
-import TagCreator from '@/components/ui/common/inputs/tag-management/tag-creator/TagCreator'
+
 import TagManager from '@/components/ui/common/inputs/TagManager'
+import { TagCreator } from '@/components/ui/common'
 
 interface ManageTagsModalProps {
   open: boolean

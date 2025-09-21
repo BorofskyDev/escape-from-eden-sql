@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
-import Modal from './modal/Modal'
+import { Modal } from './modal/Modal'
 import { v4 as uuidv4 } from 'uuid'
 
 // Import your new types + row

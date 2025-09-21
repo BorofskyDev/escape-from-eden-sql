@@ -1,6 +1,9 @@
+@use "sass:math";
+@use "sass:meta";
+
 @function convert-px($px-value, $unit: 'rem') {
   $px-number: if(
-    type-of($px-value) == 'number' and unit($px-value) == 'px',
+    meta.type-of($px-value) == 'number' and math.unit($px-value) == 'px',
     $px-value / 1px,
     $px-value
   );

@@ -1,0 +1,29 @@
+@use '@/styles/abstracts/mixins' as *;
+@use '@/styles/abstracts/functions' as *;
+
+.form {
+    margin-bottom: var(--element-margin-lg);
+    display: grid;
+    gap: var(--element-gap-md);
+
+    & .row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--element-gap-md);
+    }
+
+    & .actions {
+        margin-top: var(--element-margin-xl);
+        display: grid;
+        place-content: center;
+    }
+
+    
+}
+.results {
+     display: flex;
+     flex-wrap: wrap;
+     justify-content: center;
+    align-items: start;
+    gap: var(--element-gap-lg);
+ }

@@ -1,7 +1,8 @@
 // components/ui/cards/SmallPostCard.tsx
 'use client'
 
-import {PostCard, PostData } from './post-card/PostCard'
+import {PostCard } from './post-card/PostCard'
+import { PostData } from './types'
 
 interface SmallPostCardProps {
   post: PostData

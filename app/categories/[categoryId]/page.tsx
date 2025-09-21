@@ -1,4 +1,3 @@
-// app/categories/[categoryId]/page.tsx
 import { notFound } from 'next/navigation'
 import { Page } from '@/components/layouts'
 import { Heading, BodyText } from '@/components/ui/common'
@@ -9,17 +8,16 @@ import {
   getPublishedPostsForCategory,
   mapPostToCardData,
 } from '@/lib/functions'
-import type { PostData } from '@/components/ui/cards/posts/post-card/PostCard' // 👈 import the shape
+import type { PostData } from '@/components/ui/cards'
+import type { WithParams } from '@/lib/types/nextHelpers' // ⬅️
 import styles from './CategoryPage.module.scss'
 
 export const revalidate = 60
 
 export default async function CategoryPage({
   params,
-}: {
-  params: { categoryId: string }
-}) {
-  const { categoryId } = params
+}: WithParams<{ categoryId: string }>) {
+  const { categoryId } = await params // ⬅️
 
   const [category, posts] = await Promise.all([
     getCategory(categoryId),
@@ -28,7 +26,6 @@ export default async function CategoryPage({
 
   if (!category) notFound()
 
-  // 👇 tell TS what this array really is
   const postCards: PostData[] = posts.map(mapPostToCardData)
 
   return (

@@ -1,7 +1,8 @@
 // components/ui/cards/LargePostRowCard.tsx
 'use client'
 
-import {PostCard, PostData } from './post-card/PostCard'
+import {PostCard} from './post-card/PostCard'
+import type { PostData } from './types'
 
 interface LargePostRowCardProps {
   post: PostData

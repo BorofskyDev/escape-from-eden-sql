@@ -1,7 +1,7 @@
 // app/not-found.tsx
 
-import { Page } from "@/components/layouts";
-import Link from "next/link";
+import { Page } from '@/components/layouts'
+import Link from 'next/link'
 
 export default function NotFound() {
   return (

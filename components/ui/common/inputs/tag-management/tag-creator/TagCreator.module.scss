@@ -1,5 +1,5 @@
-@use '@/styles/abstracts/mixins';
-@use '@/styles/abstracts/functions';
+@use '@/styles/abstracts/mixins' as *;
+@use '@/styles/abstracts/functions' as *;
 
 .tagCreator {
     @include flex-center(column, var(--element-gap-md));

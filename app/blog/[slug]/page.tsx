@@ -1,23 +1,23 @@
 // app/blog/[slug]/page.tsx
-
 import { prisma } from '@/lib/prisma'
-import { Metadata } from 'next'
+import type { Metadata } from 'next'
 import PostPageComponent from '@/components/layouts/pages/post-page/PostPageComponent'
+
+// Optionally update this copy now that the site is renamed:
+const defaultDescription =
+  'Journal of a Recalcitrant: essays on power, faith, politics, and the habits of resistance.'
 
 export async function generateMetadata({
   params,
 }: {
-  params: { slug: string }
+  params: Promise<{ slug: string }>
 }): Promise<Metadata> {
-  const { slug } = params
+  const { slug } = await params
 
   const post = await prisma.post.findUnique({
     where: { slug },
     select: { title: true, description: true, featuredImage: true },
   })
-
-  const defaultDescription =
-    'Escape from Eden is a blog about looking at the world in a post-Christian life.'
 
   return {
     title: post?.title ?? 'Blog Post',
@@ -36,7 +36,11 @@ export async function generateMetadata({
   }
 }
 
-// Main page component
-export default function Page({ params }: { params: { slug: string } }) {
-  return <PostPageComponent slug={params.slug} />
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ slug: string }>
+}) {
+  const { slug } = await params
+  return <PostPageComponent slug={slug} />
 }

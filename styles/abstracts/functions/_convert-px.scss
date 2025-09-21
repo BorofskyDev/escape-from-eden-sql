@@ -2,18 +2,20 @@
 @use "sass:meta";
 
 @function convert-px($px-value, $unit: 'rem') {
+  // Normalize: turn 24px → 24 (unitless). If it's already unitless, keep it.
   $px-number: if(
     meta.type-of($px-value) == 'number' and math.unit($px-value) == 'px',
-    $px-value / 1px,
+    math.div($px-value, 1px),
     $px-value
   );
 
   @if $unit == 'rem' {
-    @return ($px-number / 16) * 1rem;
+    @return math.div($px-number, 16) * 1rem;
   } @else if $unit == 'em' {
-    @return ($px-number / 16) * 1em;
+    @return math.div($px-number, 16) * 1em;
   } @else if $unit == 'ch' {
-    @return ($px-number / 16 / 0.5) * 1ch;
+    // ($px-number / 16 / 0.5) == $px-number / 8
+    @return math.div($px-number, 8) * 1ch;
   } @else {
     @error "Unsupported unit: #{$unit}. Use 'rem', 'em', or 'ch'.";
   }

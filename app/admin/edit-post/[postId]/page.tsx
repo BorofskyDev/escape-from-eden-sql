@@ -6,9 +6,9 @@ import type { PostFormData } from '@/lib/hooks/usePostForm'
 export default async function EditPost({
   params,
 }: {
-  params: { postId: string }
+  params: Promise<{ postId: string }>
 }) {
-  const { postId } = params
+  const { postId } = await params
 
   const post = await prisma.post.findUnique({
     where: { id: postId },
